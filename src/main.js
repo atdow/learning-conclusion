@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Vuebar from 'vuebar';
+Vue.use(Vuebar);
+import './sytle/vuebar.css'
 
 Vue.config.productionTip = false
 
