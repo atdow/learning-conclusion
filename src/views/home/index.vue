@@ -1,61 +1,36 @@
-import VueRouter from "vue-router";
-
+<!--
+ * @Author: atdow
+ * @Date: 2021-06-17 10:31:50
+ * @LastEditors: null
+ * @LastEditTime: 2021-06-17 18:49:38
+ * @Description: file description
+-->
 <template>
   <div>
-    <div class="test-container">
-      <div
-        class="vuebar-element"
-        :style="{ height: testContainerHeight + 'px' }"
-        v-bar="{ overrideFloatingScrollbar: true, useScrollbarPseudo: true }"
-      >
-        <div class="el2">
-          <ul class="test-scollbar-content">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <h3 class="orderTitle">滚动数字</h3>
+    <dynamic-number v-model="count" :isThousandSplit="true" :length="9" />
   </div>
 </template>
 <script>
+import DynamicNumber from "@/components/dynamic-number";
 export default {
   name: "index",
   data() {
     return {
-      testContainerHeight: 200,
+      count: 0,
     };
   },
-  components: {},
+  components: {
+    DynamicNumber,
+  },
   mounted() {
-    setTimeout(() => {
-      this.testContainerHeight += 100;
-      // let dom = document.querySelector(".el-select-dropdown__wrap");
-      // console.log("dom:", dom);
-      // dom.style.maxHeight = "400px";
-    }, 3000);
+    let timer = setInterval(() => {
+      this.count += 123;
+    }, 1000);
+    this.$once("hook:beforeDestory", () => {
+      clearInterval(timer);
+    });
   },
 };
 </script>
-<style lang="less" scoped>
-.test-container {
-  // width: 300px;
-  // overflow-x: scroll;
-  // height: 200px;
-  // background: pink;
-}
-.test-scollbar-content {
-  // display: flex;
-  // flex-direction: column;
-  width: 500px;
-  li {
-    width: 500px;
-    height: 100px;
-    border-bottom: 1px solid #ccc;
-  }
-}
-</style>
+<style lang="less" scoped></style>
