@@ -1,13 +1,21 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import Vuebar from 'vuebar';
+/*
+ * @Author: atdow
+ * @Date: 2021-06-17 10:31:50
+ * @LastEditors: null
+ * @LastEditTime: 2021-06-18 18:29:43
+ * @Description: file description
+ */
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import Vuebar from "vuebar";
 Vue.use(Vuebar);
-import './sytle/vuebar.css'
+import "./style/global.less";
+import "prismjs/themes/prism.css";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");

@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:54:48
  * @LastEditors: null
- * @LastEditTime: 2021-06-17 10:57:59
+ * @LastEditTime: 2021-06-18 18:35:48
  * @Description: file description
  */
 
@@ -13,13 +13,21 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-// const publicPath = "/fic-web";
+// const publicPath = "";
 
 const vueConfig = {
   // publicPath: publicPath,
-
   chainWebpack: (config) => {
     config.resolve.alias.set("@$", resolve("src"));
+    config.module
+      .rule("mdLoader")
+      .test(/\.md$/)
+      .use("vue-loader")
+      .loader("vue-loader")
+      .end()
+      .use("mdLoader")
+      .loader(require.resolve("./build/markdown-loader"))
+      .end();
   },
   productionSourceMap: false,
   lintOnSave: undefined,
