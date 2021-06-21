@@ -1,3 +1,11 @@
+<!--
+ * @Author: atdow
+ * @Date: 2021-06-18 18:23:37
+ * @LastEditors: null
+ * @LastEditTime: 2021-06-21 16:59:36
+ * @Description: file description
+-->
+
 # 滚动数字
 
 ## 第二标题
@@ -5,8 +13,9 @@
 <slot></slot>
 
 <slot name="scrollNumber"></slot>
+language-javascript
 
-```vue
+```language-javascript
 <template>
   <DynamicNumber v-model="count" :isThousandSplit="true" :length="9" />
 </template>
