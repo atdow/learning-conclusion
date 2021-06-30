@@ -1,0 +1,44 @@
+@import "./vars.less";
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: @theme-color;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.approved {
+  background: @theme-color !important;
+}
+.research {
+  background: #34b800 !important;
+}
+.content-slot {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20px;
+  p {
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 20px;
+  }
+}
+.footSlot {
+  li:first-child {
+    margin-right: 140px;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #333333;
+      line-height: 12px;
+    }
+  }
+}

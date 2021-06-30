@@ -2,7 +2,10 @@
   "dynamic-number": {
     "title": "滚动数字"
   },
-  "test-component": {
-    "title": "测试组件"
+  "virtualScroll-demo": {
+    "title": "虚拟滚动demo"
+  },
+  "virtualScroll-milestoneTable": {
+    "title": "虚拟滚动实例组件"
   }
 }

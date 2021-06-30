@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import GeminiScrollbar from "gemini-scrollbar";
-import "gemini-scrollbar/gemini-scrollbar.css";
+import GeminiScrollbar from 'gemini-scrollbar'
+import 'gemini-scrollbar/gemini-scrollbar.css'
 export default {
-  name: "GeminiScrollbar",
+  name: 'GeminiScrollbar',
   props: {
     autoCreate: {
       type: Boolean,
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       geminiScrollbar: null,
-    };
+    }
   },
   mounted() {
     this.geminiScrollbar = new GeminiScrollbar({
@@ -46,40 +46,37 @@ export default {
       createElements: false,
       forceGemini: true,
       onResize: () => {
-        this.$emit("resize");
+        this.$emit('resize')
       },
       ...this.$props,
-    });
+    })
     if (this.autoCreate && this.geminiScrollbar) {
-      this.geminiScrollbar.create();
+      this.geminiScrollbar.create()
     }
-    this.$emit("ready", this.geminiScrollbar);
+    this.$emit('ready', this.geminiScrollbar)
   },
   updated() {
     if (this.geminiScrollbar) {
-      this.geminiScrollbar.update();
+      this.geminiScrollbar.update()
     }
   },
   methods: {
     forceFit() {
       // console.log(this.$refs.geminiScrollbar.getBoundingClientRect().width)
-      this.$refs.geminiScrollbar.style.width =
-        this.$refs.geminiScrollbar.getBoundingClientRect().width - 1 + "px";
+      this.$refs.geminiScrollbar.style.width = this.$refs.geminiScrollbar.getBoundingClientRect().width - 1 + 'px'
       this.$nextTick(() => {
-        this.$refs.geminiScrollbar.style.width =
-          this.$refs.geminiScrollbar.getBoundingClientRect().width + 1 + "px";
-      });
+        this.$refs.geminiScrollbar.style.width = this.$refs.geminiScrollbar.getBoundingClientRect().width + 1 + 'px'
+      })
     },
     scrollbarUpdate() {
-      console.log("scrollbarUpdate");
-      this.geminiScrollbar.update();
+      this.geminiScrollbar.update()
     },
   },
   beforeDestroy() {
     if (this.geminiScrollbar) {
-      this.geminiScrollbar.destroy();
+      this.geminiScrollbar.destroy()
     }
-    this.geminiScrollbar = null;
+    this.geminiScrollbar = null
   },
-};
+}
 </script>

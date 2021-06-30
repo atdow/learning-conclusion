@@ -1,0 +1,262 @@
+@gm-scrollbar-background-color:rgba(235, 237, 248, 1);
+@thumb-color:rgba(192, 199, 232, 0.8);
+.gm-scrollbar.-horizontal{
+  bottom: 0px !important;  // 解决留空的情况
+}
+
+// 只显示垂直滚动条
+.only-vertival-scrollbar{
+  &:hover {
+    .gm-scrollbar.-vertical {
+      opacity: 1;
+    }
+  }
+  .gm-scrollbar.-vertical {
+    opacity: 0;
+    width: 8px;
+    right: 0;
+    background-color: @gm-scrollbar-background-color;
+    .thumb{
+      background-color:  @thumb-color;
+    }
+  }
+  .gm-scrollbar.-horizontal {
+    opacity: 0;
+  }
+  .gm-scrollbar:active {
+    &.-vertical {
+      opacity: 1;
+    }
+  }
+}
+
+.search-bar {
+  width: 100%;
+  .gm-scroll-view {
+    padding-right: 34px;
+  }
+  .gm-scrollbar.-vertical {
+    opacity: 1;
+    border-radius: 4px;
+    width: 8px;
+  }
+  .gm-scrollbar.-horizontal {
+    background-color: rgba(235, 237, 248, 1);
+    opacity: 0;
+    display: none;
+  }
+
+  .gm-scrollbar .thumb {
+    background-color: rgba(180, 185, 210, 0.4);
+  }
+
+  .gm-scrollbar .thumb:hover,
+  .gm-scrollbar .thumb:active {
+    background-color: rgba(180, 185, 210, 0.4);
+  }
+  .gm-scrollbar-color {
+    .gm-scrollbar .thumb {
+      background-color: rgba(180, 185, 210, 0.4);
+    }
+  }
+}
+
+.timeline-table {
+  .companyWrap,
+  .tableHeaderWrap{
+    .gm-scrollbar.-vertical {
+      opacity: 0;
+    }
+    .gm-scrollbar.-horizontal {
+      height: 0px;
+      opacity: 0;
+    }
+  }
+  .tableBodyWrap{
+    &:hover {
+      .gm-scrollbar.-vertical,
+      .gm-scrollbar.-horizontal {
+        opacity: 1;
+      }
+    }
+    .gm-scrollbar.-vertical {
+      opacity: 0;
+      width: 8px;
+      right: 0;
+      background-color:  rgba(231, 232, 239, 0.8);
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+    .gm-scrollbar.-horizontal {
+      // opacity: 0;
+      height: 8px;
+      background-color:  rgba(231, 232, 239, 0.8);
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+    .gm-scrollbar:active {
+      &.-vertical,
+      &.-horizontal {
+        opacity: 1;
+      }
+    }
+  }
+ 
+}
+
+.nesttable-wrap,
+.fixheader-table {
+  .gm-scrollbar.-vertical {
+    opacity: 0;
+  }
+  .gm-scrollbar.-horizontal {
+    background-color: rgba(235, 237, 248, 1);
+    background-color:white;
+    height: 12px;
+    border-radius: 6px;
+  }
+
+  .gm-scrollbar .thumb {
+    background-color: rgba(180, 185, 210, 0.4);
+  }
+
+  .gm-scrollbar .thumb:hover,
+  .gm-scrollbar .thumb:active {
+    background-color: rgba(180, 185, 210, 0.4);
+  }
+  .gm-scrollbar-color {
+    .gm-scrollbar .thumb {
+      background-color: rgba(180, 185, 210, 0.4);
+    }
+  }
+}
+
+.nest-table{
+  .gm-scroll-view{
+    //transition: width 3s;
+  }
+}
+
+
+
+.competiton-pattern-scrollbar{
+  .only-vertival-scrollbar
+}
+
+.process-table-scrollbar{
+  &:hover {
+    .gm-scrollbar.-vertical {
+      opacity: 1;
+    }
+  }
+  .gm-scrollbar.-vertical {
+    opacity: 0;
+    width: 8px;
+    right: 0;
+    // right: 0;
+    background-color: @gm-scrollbar-background-color;
+    .thumb{
+      background-color:  @thumb-color;
+    }
+  }
+  .gm-scrollbar.-horizontal {
+    opacity: 0;
+  }
+  .gm-scrollbar:active {
+    &.-vertical {
+      opacity: 1;
+    }
+  }
+}
+
+#clinic-trial-area .total-exhibition{
+  &:hover {
+    .gm-scrollbar.-vertical {
+      opacity: 1;
+    }
+  }
+  .gm-scrollbar.-vertical {
+    opacity: 0;
+    width: 8px;
+    right: 0;
+    background-color: @gm-scrollbar-background-color;
+    .thumb{
+      background-color:  @thumb-color;
+    }
+  }
+  .gm-scrollbar.-horizontal {
+    opacity: 0;
+  }
+  .gm-scrollbar:active {
+    &.-vertical {
+      opacity: 1;
+    }
+  }
+}
+
+.competition-environment-GeminiScrollbar{
+  &:hover {
+    .gm-scrollbar.-horizontal {
+      opacity: 1;
+    }
+  }
+  .gm-scrollbar.-vertical {
+    opacity: 0;
+    width: 8px;
+    right: 0;
+    background-color:  rgba(231, 232, 239, 0.8);
+    .thumb{
+      background-color:  rgba(192, 199, 232, 0.8);
+    }
+  }
+  .gm-scrollbar.-horizontal {
+    opacity: 0;
+    height: 8px;
+    background-color:  rgba(231, 232, 239, 0.8);
+    .thumb{
+      background-color:  rgba(192, 199, 232, 0.8);
+    }
+  }
+  .gm-scrollbar:active {
+    &.-vertical,
+    &.-horizontal {
+      opacity: 1;
+    }
+  }
+}
+
+.milestone-table{
+  .tableHeaderWrap{
+    .gm-scrollbar.-vertical {
+      opacity: 0;
+    }
+    .gm-scrollbar.-horizontal {
+      height: 0px;
+      opacity: 0;
+    }
+  }
+  .tableBodyWrap{
+    .gm-scrollbar.-vertical {
+      opacity: 1;
+      width: 8px;
+      right: 0;
+     // background-color:  rgba(231, 232, 239, 0.8);
+      background-color:  white;
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+    .gm-scrollbar.-horizontal {
+      opacity: 1;
+      height: 8px;
+      background-color:  rgba(231, 232, 239, 0.8);
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+  }
+}
+
+

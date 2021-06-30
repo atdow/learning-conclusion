@@ -1,0 +1,114 @@
+{
+  "id": "1932512",
+  "name": "FIC",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13186960",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9673157",
+      "name": "关  闭",
+      "font_class": "guanbi",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "5886129",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "13001501",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "16398989",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e85e",
+      "unicode_decimal": 59486
+    },
+    {
+      "icon_id": "689249",
+      "name": "回到顶部",
+      "font_class": "huidaodingbu",
+      "unicode": "e7ed",
+      "unicode_decimal": 59373
+    },
+    {
+      "icon_id": "9826644",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "2168192",
+      "name": "列表",
+      "font_class": "liebiao",
+      "unicode": "e6d3",
+      "unicode_decimal": 59091
+    },
+    {
+      "icon_id": "4640805",
+      "name": "列表",
+      "font_class": "liebiao1",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "7463954",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "7463955",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "4848298",
+      "name": "上升",
+      "font_class": "shangsheng",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "4848301",
+      "name": "下降",
+      "font_class": "xiajiang",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "5485646",
+      "name": "上",
+      "font_class": "shang",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "7409538",
+      "name": "filter",
+      "font_class": "guolv",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    }
+  ]
+}
