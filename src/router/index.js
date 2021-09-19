@@ -2,15 +2,12 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2021-06-18 18:09:31
+ * @LastEditTime: 2021-09-20 01:11:55
  * @Description: file description
  */
 import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-
-// import aaaMd from "../examples/aaa.md";
-// console.log("aaaMd:", aaaMd);
 
 import packagesJson from "@/packages/packages.json";
 function componentRequire(name) {
@@ -35,12 +32,6 @@ function generateroute(packagesJson) {
   return route;
 }
 let route = generateroute(packagesJson);
-// route.push({
-//   path: "/aaa",
-//   name: "aaa",
-//   component: () => import(/* webpackChunkName: "aaa" */ "../examples/aaa.md"),
-//   children: [],
-// });
 const routes = [
   {
     path: "/",
