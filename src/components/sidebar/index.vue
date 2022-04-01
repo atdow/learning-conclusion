@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2021-06-18 18:43:38
+ * @LastEditTime: 2022-04-01 20:50:08
  * @Description: file description
 -->
 <template>
@@ -33,7 +33,7 @@ export default {
   components: {},
   watch: {},
   computed: {
-    routeActiveName: function() {
+    routeActiveName: function () {
       return this.$route.name;
     },
   },

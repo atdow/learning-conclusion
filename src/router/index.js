@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 18:59:18
+ * @LastEditTime: 2022-04-01 21:06:12
  * @Description: file description
  */
 import Vue from "vue";
@@ -15,7 +15,7 @@ function componentRequire(name, packagesJson) {
   return (r) =>
     require.ensure(
       [],
-      () => type === 'vue' ? r(require(`../examples/${name}-example/index.vue`)) : r(require(`../examples/${name}-example/index.md`)),
+      () => r(require(`../examples/${name}-example/index.${type}`)),
       "zh-CN"
     );
 }
