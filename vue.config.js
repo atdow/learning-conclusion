@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:54:48
  * @LastEditors: null
- * @LastEditTime: 2021-06-18 18:35:48
+ * @LastEditTime: 2022-04-01 19:03:55
  * @Description: file description
  */
 
@@ -19,6 +19,10 @@ const vueConfig = {
   // publicPath: publicPath,
   chainWebpack: (config) => {
     config.resolve.alias.set("@$", resolve("src"));
+    // config.module
+    //   .use("vue-loader")
+    //   .loader("vue-loader")
+    //   .end()
     config.module
       .rule("mdLoader")
       .test(/\.md$/)
@@ -26,8 +30,15 @@ const vueConfig = {
       .loader("vue-loader")
       .end()
       .use("mdLoader")
-      .loader(require.resolve("./build/markdown-loader"))
+      .loader(require.resolve("./markdown-vue-loader/lib/index.js"))
+      .options({
+        demoWrapperClass: 'vue-demo-wrapper',
+        templateClass: 'vue-demo-container',
+        descWrapperClass: 'vue-demo-desc',
+        highlightClass: 'vue-demo-highlight'
+      })
       .end();
+
   },
   productionSourceMap: false,
   lintOnSave: undefined,

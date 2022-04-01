@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 10:19:30
+ * @LastEditTime: 2022-04-01 19:20:25
  * @Description: file description
 -->
 <template>
@@ -19,6 +19,8 @@
 <script>
 import SideBar from "@/components/sidebar";
 import GlobalHeader from "@/components/global-header";
+import "highlight.js/styles/atom-one-dark.css";
+import hljs from "highlight.js";
 
 export default {
   name: "index",
@@ -31,7 +33,25 @@ export default {
     SideBar,
     GlobalHeader,
   },
-  mounted() {},
+  mounted() {
+    this.setCodeHighLight();
+  },
+  updated() {
+    this.setCodeHighLight();
+  },
+  methods: {
+    setCodeHighLight() {
+      this.$nextTick(() => {
+        [
+          ...document.querySelectorAll(
+            ".vue-demo-highlight pre code:not(.hljs)"
+          ),
+        ].forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      });
+    },
+  },
 };
 </script>
 <style lang="less" scoped>

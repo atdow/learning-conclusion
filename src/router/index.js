@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 13:53:04
+ * @LastEditTime: 2022-04-01 18:59:18
  * @Description: file description
  */
 import Vue from "vue";
@@ -10,11 +10,12 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import packagesJson from "@/packages/packages.json";
-function componentRequire(name) {
+function componentRequire(name, packagesJson) {
+  const type = packagesJson[name].type
   return (r) =>
     require.ensure(
       [],
-      () => r(require(`../examples/${name}-example/index.vue`)),
+      () => type === 'vue' ? r(require(`../examples/${name}-example/index.vue`)) : r(require(`../examples/${name}-example/index.md`)),
       "zh-CN"
     );
 }
@@ -27,7 +28,7 @@ function generateRoute(packagesJson) {
       meta: {
         title: packagesJson[key].title
       },
-      component: componentRequire(key),
+      component: componentRequire(key, packagesJson),
       children: [],
     });
   });

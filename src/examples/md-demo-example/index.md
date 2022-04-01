@@ -1,10 +1,10 @@
-<!--
- * @Author: atdow
- * @Date: 2021-11-10 17:16:54
- * @LastEditors: null
- * @LastEditTime: 2022-04-01 18:51:08
- * @Description: file description
--->
+## Button 组件
+
+一、`Button` 组件的基本使用
+
+:::demo #### Button 组件基础用法:
+
+```vue
 <template>
   <div>
     <s-tabbar v-model="activeName" @tab-click="handleClick">
@@ -37,3 +37,6 @@ export default {
 </script>
 
 <style lang="less" scoped></style>
+```
+
+:::
