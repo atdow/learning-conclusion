@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 19:20:25
+ * @LastEditTime: 2022-04-01 23:06:23
  * @Description: file description
 -->
 <template>
@@ -35,9 +35,11 @@ export default {
   },
   mounted() {
     this.setCodeHighLight();
+    this.addExpand();
   },
   updated() {
     this.setCodeHighLight();
+    this.addExpand();
   },
   methods: {
     setCodeHighLight() {
@@ -48,6 +50,24 @@ export default {
           ),
         ].forEach((block) => {
           hljs.highlightBlock(block);
+        });
+      });
+    },
+    addExpand() {
+      this.$nextTick(() => {
+        let dom = document.querySelectorAll(".vue-demo-highlight pre");
+        dom.forEach((domItem) => {
+          let height = domItem.scrollHeight;
+          domItem.style.setProperty("--max-height", height + "px");
+          domItem.addEventListener("dblclick", () => {
+            let className = domItem.className;
+            if (className.indexOf("expand") === -1) {
+              className = "expand";
+            } else {
+              className = "";
+            }
+            domItem.className = className;
+          });
         });
       });
     },
@@ -66,5 +86,34 @@ export default {
   overflow-y: auto;
   box-sizing: border-box;
   height: calc(100vh - 50px);
+}
+
+/deep/.vue-demo-highlight {
+  position: relative;
+  padding-bottom: 30px;
+  &::after {
+    content: "双击代码区域折叠展开";
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: white;
+    color: #ccc;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  pre {
+    transition: max-height 0.5s;
+    overflow: hidden;
+    max-height: 100px;
+    margin-bottom: 0;
+    &.expand {
+      max-height: var(--max-height);
+    }
+  }
 }
 </style>

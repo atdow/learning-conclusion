@@ -1,6 +1,6 @@
 {
   "name": "markdone-vue-loader",
-  "version": "1.0.11",
+  "version": "1.0.0",
   "description": "load vue component from md files",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -17,11 +17,11 @@
     "markdown",
     "vue"
   ],
-  "author": "Zoro Yang<935704186@qq.com>",
+  "author": "atdow",
   "license": "ISC",
-  "repository": "https://github.com/linlinyang/md-vue-loader",
-  "homepage": "https://github.com/linlinyang/md-vue-loader",
-  "bugs": "https://github.com/linlinyang/md-vue-loader/issues",
+  "repository": "",
+  "homepage": "",
+  "bugs": "",
   "dependencies": {
     "colors": "^1.4.0",
     "loader-utils": "^2.0.0",

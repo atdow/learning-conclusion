@@ -5,8 +5,9 @@
 ```vue
 <template>
     <ColorGridChartVirtualScroll
-        :data="ColorGridChartData"
-        :showTooltip="false"
+      :data="ColorGridChartData"
+      :showTooltip="false"
+      style="width:80%;margin:0 auto"
     >
     </ColorGridChartVirtualScroll>
 </template>
@@ -57,8 +58,9 @@ export default {
 ```vue
 <template>
     <ColorGridChartVirtualScroll
-        :data="ColorGridChartData"
-        :showTooltip="false"
+      :data="ColorGridChartData"
+      :showTooltip="false"
+      style="width:80%;margin:0 auto"
     >
         <span slot-scope="{ record }">{{ `slot-${record.value}` }}</span>
     </ColorGridChartVirtualScroll>
@@ -109,8 +111,9 @@ export default {
 ```vue
 <template>
     <ColorGridChartVirtualScroll
-        :data="ColorGridChartData"
-        :showTooltip="true"
+      :data="ColorGridChartData"
+      :showTooltip="true"
+      style="width:80%;margin:0 auto"
     >
         <span slot="tooltipSlot" slot-scope="{ record }">{{ record }}</span>
     </ColorGridChartVirtualScroll>
@@ -161,11 +164,12 @@ export default {
 ```vue
 <template>
     <ColorGridChartVirtualScroll
-        :data="ColorGridChartData"
-        :showTooltip="false"
-        :cursorStyle="cursorStyle"
-        @itemMouseMove="itemMouseMove"
-        @itemClick="itemClick"
+      :data="ColorGridChartData"
+      :showTooltip="false"
+      :cursorStyle="cursorStyle"
+      @itemMouseMove="itemMouseMove"
+      @itemClick="itemClick"
+      style="width:80%;margin:0 auto"
     >
     </ColorGridChartVirtualScroll>
 </template>
