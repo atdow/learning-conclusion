@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import DynamicNumber from "@/components/dynamic-number";
+import DynamicNumber from "@/packages/dynamic-number";
 export default {
   name: "dynamic-number",
   props: {},

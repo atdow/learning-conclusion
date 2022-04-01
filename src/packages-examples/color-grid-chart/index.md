@@ -5,8 +5,9 @@
 ```vue
 <template>
     <ColorGridChart
-        :data="ColorGridChartData"
-        :itemHeight="50"
+      :data="ColorGridChartData"
+      :itemHeight="50"
+      style="width:80%;margin:0 auto"
     ></ColorGridChart>
 </template>
 <script>
@@ -52,7 +53,7 @@ export default {
 
 ```vue
 <template>
-      <ColorGridChart :data="ColorGridChartData" :itemHeight="50">
+      <ColorGridChart :data="ColorGridChartData" :itemHeight="50" style="width:80%;margin:0 auto">
         <span slot-scope="{ record }">{{ `slot-${record.value}` }}</span>
       </ColorGridChart>
 </template>
