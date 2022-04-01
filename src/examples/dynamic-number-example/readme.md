@@ -31,7 +31,7 @@ export default {
     let timer = setInterval(() => {
       this.count += 123;
     }, 1000);
-    this.$once("hook:beforeDestory", () => {
+    this.$once("hook:beforeDestroy", () => {
       clearInterval(timer);
     });
   },

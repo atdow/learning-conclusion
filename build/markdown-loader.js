@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 17:49:37
  * @LastEditors: null
- * @LastEditTime: 2021-06-18 18:15:26
+ * @LastEditTime: 2022-04-01 11:33:37
  * @Description: file description
  */
 const HyperDown = require("hyperdown");
@@ -11,6 +11,7 @@ const Prism = require("prismjs");
 function markdownLoader(val) {
   let parser = new HyperDown();
   let html = parser.makeHtml(val);
+  // 代码高亮
   html = html.replace(
     /(?<=<pre><code[^>]*?>)[\s\S]*?(?=<\/code><\/pre>)/gi,
     (v) => {

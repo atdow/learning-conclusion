@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2021-09-20 01:11:55
+ * @LastEditTime: 2022-04-01 13:53:04
  * @Description: file description
  */
 import Vue from "vue";
@@ -18,12 +18,15 @@ function componentRequire(name) {
       "zh-CN"
     );
 }
-function generateroute(packagesJson) {
+function generateRoute(packagesJson) {
   let route = [];
   Object.keys(packagesJson).forEach((key) => {
     route.push({
       path: `/${key}`,
       name: `${key}`,
+      meta: {
+        title: packagesJson[key].title
+      },
       component: componentRequire(key),
       children: [],
     });
@@ -31,7 +34,7 @@ function generateroute(packagesJson) {
 
   return route;
 }
-let route = generateroute(packagesJson);
+let route = generateRoute(packagesJson);
 const routes = [
   {
     path: "/",

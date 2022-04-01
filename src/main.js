@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2021-11-11 10:42:31
+ * @LastEditTime: 2022-04-01 15:06:58
  * @Description: file description
  */
 import Vue from "vue";
@@ -12,9 +12,8 @@ import Vuebar from "vuebar";
 Vue.use(Vuebar);
 import "./style/global.less";
 import "prismjs/themes/prism.css";
-import GeminiScrollbar from "@/components/geminiScrollbar/index";
-Vue.use(GeminiScrollbar);
-import "./config/componnets_use";
+
+import "./config/components_use";
 // import "prismjs/themes/prism-coy.css";
 // import "prismjs/themes/prism-dark.css";
 // import "prismjs/themes/prism-funky.css";
@@ -22,6 +21,14 @@ import "./config/componnets_use";
 // import "prismjs/themes/prism-solarizedlight.css";
 // import "prismjs/themes/prism-tomorrow.css";
 // import "prismjs/themes/prism-twilight.css";
+
+
+router.afterEach((to, from) => {
+  const { meta = {} } = to
+  const title = meta.title || '常用组件'
+  document.title = title
+})
+
 
 Vue.config.productionTip = false;
 

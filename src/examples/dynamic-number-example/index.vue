@@ -2,24 +2,22 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:01:14
  * @LastEditors: null
- * @LastEditTime: 2021-06-18 18:28:00
+ * @LastEditTime: 2022-04-01 10:50:36
  * @Description: file description
 -->
 
 <template>
-  <div class="dynamic-number">
-    <DynamicNumberMd>
-      <p style="color:red">默认插槽</p>
-      <template v-slot:scrollNumber>
-        <DynamicNumber v-model="count" :isThousandSplit="true" :length="9" />
-      </template>
-    </DynamicNumberMd>
-  </div>
+  <Doc>
+    <p style="color: red">默认插槽</p>
+    <template v-slot:scrollNumber>
+      <DynamicNumber v-model="count" :isThousandSplit="true" :length="9" />
+    </template>
+  </Doc>
 </template>
 
 <script>
 import DynamicNumber from "@/components/dynamic-number";
-import DynamicNumberMd from "./dynamic-numbe.md";
+import Doc from "./readme.md";
 export default {
   name: "dynamic-number",
   props: {},
@@ -30,7 +28,7 @@ export default {
   },
   components: {
     DynamicNumber,
-    DynamicNumberMd,
+    Doc,
   },
   watch: {},
   computed: {},
@@ -39,7 +37,7 @@ export default {
     let timer = setInterval(() => {
       this.count += 123;
     }, 1000);
-    this.$once("hook:beforeDestory", () => {
+    this.$once("hook:beforeDestroy", () => {
       clearInterval(timer);
     });
   },

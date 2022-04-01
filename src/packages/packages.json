@@ -2,6 +2,12 @@
   "dynamic-number": {
     "title": "滚动数字"
   },
+  "color-grid-chart": {
+    "title": "色块图"
+  },
+  "color-grid-chart-virtual-scroll": {
+    "title": "色块图-虚拟滚动"
+  },
   "virtualScroll-demo": {
     "title": "虚拟滚动demo"
   },
