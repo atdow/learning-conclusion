@@ -1,6 +1,6 @@
 ## 色块图
 
-:::demo ### 1.基本使用:
+:::demo ### 1. 基本使用:
 
 ```vue
 <template>
@@ -49,7 +49,7 @@ export default {
 
 :::
 
-:::demo #### 2.使用插槽:
+:::demo #### 2. 使用插槽:
 
 ```vue
 <template>
@@ -100,7 +100,7 @@ export default {
 
 | 属性       | 说明           | 类型         | 默认值 |
 | ---------- | -------------- | ------------ | ------ |
-| data       | 渲染数据       |    `Array<Array> `| `[[]]`   |
+| data       | 渲染数据       | `Array<Array> ` | `[[]]` |
 | itemHeight | 每个格子的高度 | Number       | 50     |
 
 ### 事件

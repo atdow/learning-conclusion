@@ -1,0 +1,38 @@
+{
+    "name": "组件",
+    "path": "/packages-examples",
+    "groups": [
+        {
+            "groupName": "成型组件",
+            "list": [
+                {
+                    "path": "/dynamic-number",
+                    "title": "滚动数字"
+                },
+                {
+                    "path": "/color-grid-chart",
+                    "title": "色块图"
+                },
+                {
+                    "path": "/color-grid-chart-virtual-scroll",
+                    "title": "色块图-虚拟滚动"
+                }
+            ]
+        },
+        {
+            "groupName": "未完善组件",
+            "list": [
+                {
+                    "path": "/virtualScroll-milestoneTable",
+                    "title": "虚拟滚动milestone表格",
+                    "type": "vue"
+                },
+                {
+                    "path": "/tabbar",
+                    "title": "tabbar",
+                    "type": "vue"
+                }
+            ]
+        }
+    ]
+}

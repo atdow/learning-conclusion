@@ -1,5 +1,12 @@
 <!--
  * @Author: atdow
+ * @Date: 2022-04-03 21:40:12
+ * @LastEditors: null
+ * @LastEditTime: 2022-04-03 21:40:13
+ * @Description: file description
+-->
+<!--
+ * @Author: atdow
  * @Date: 2021-06-18 16:01:43
  * @LastEditors: null
  * @LastEditTime: 2021-06-29 17:26:12
@@ -66,8 +73,9 @@ export default {
       this.list = this.data.slice(start, end);
 
       // 把可见区域的 top 设置为起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
-      this.$refs.content.style.webkitTransform = `translate3d(0, ${start *
-        this.itemHeight}px, 0)`;
+      this.$refs.content.style.webkitTransform = `translate3d(0, ${
+        start * this.itemHeight
+      }px, 0)`;
     },
     handleScroll(e) {
       // 获取当前滚动条滚动位置

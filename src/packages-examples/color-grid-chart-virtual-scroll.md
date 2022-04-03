@@ -1,6 +1,6 @@
-> 默认使用`{name:xxx, value:xxx}`中的 value 显示格子内容，不显示 tooltip
+> 默认使用 `{name:xxx, value:xxx}` 中的 value 显示格子内容，不显示 tooltip
 
-:::demo #### 1.基本使用:
+:::demo #### 1. 基本使用:
 
 ```vue
 <template>
@@ -53,7 +53,7 @@ export default {
 
 :::
 
-:::demo #### 2.使用插槽显示格子内容:
+:::demo #### 2. 使用插槽显示格子内容:
 
 ```vue
 <template>
@@ -106,7 +106,7 @@ export default {
 
 :::
 
-:::demo #### 3.使用 tooltip:
+:::demo #### 3. 使用 tooltip:
 
 ```vue
 <template>
@@ -159,7 +159,7 @@ export default {
 
 :::
 
-:::demo #### 4.改变 grid 中的鼠标样式:
+:::demo #### 4. 改变 grid 中的鼠标样式:
 
 ```vue
 <template>
@@ -228,11 +228,11 @@ export default {
 
 | 属性        | 说明                                                            | 类型         | 默认值           |
 | ----------- | --------------------------------------------------------------- | ------------ | ---------------- |
-| data        | 渲染数据                                                        | `Array<Array>` | `[[]]  `           |
+| data        | 渲染数据                                                        | `Array<Array>` | `[[]]  ` |
 | itemHeight  | 每个格子的高度                                                  | Number       | 50               |
 | itemWidth   | 每个格子的宽度                                                  | Number       |                  |
 | maxHeight   | 容器的最大高度                                                  | Number       | 300              |
-| showTooltip | 是否显示 showTooltip ,当时显示时需要指定插槽 slot="tooltipSlot" | Boolean      | true             |
+| showTooltip | 是否显示 showTooltip , 当时显示时需要指定插槽 slot="tooltipSlot" | Boolean      | true             |
 | cursorStyle | grid 的鼠标样式                                                 | Object       | {cursor:"auto" } |
 
 ### 事件

@@ -1,0 +1,15 @@
+{
+    "name": "文章",
+    "path": "/doc",
+    "groups": [
+        {
+            "groupName": "Basic",
+            "list": [
+                {
+                    "path": "/introduction",
+                    "title": "介绍"
+                }
+            ]
+        }
+    ]
+}

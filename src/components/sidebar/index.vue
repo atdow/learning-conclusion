@@ -2,51 +2,72 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 20:50:08
+ * @LastEditTime: 2022-04-03 21:57:15
  * @Description: file description
 -->
 <template>
-  <aside class="s-siderbar">
-    <ul class="component-list">
-      <li
-        :class="['component-list-content', { active: key === routeActiveName }]"
-        v-for="key in Object.keys(packagesJson)"
-        :key="key"
-        @click="switchComponent(key)"
-      >
-        {{ packagesJson[key].title }}
-      </li>
-    </ul>
+  <aside class="s-sidebar">
+    <div
+      v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []"
+      :key="sideBarDataIndex"
+    >
+      <p class="group-name">{{ sideBarDataItem.groupName }}</p>
+      <ul class="component-list">
+        <li
+          :class="[
+            'component-list-content',
+            { active: $route.path.indexOf(listItem.path) !== -1 },
+          ]"
+          v-for="(listItem, listIndex) in sideBarDataItem.list"
+          :key="listIndex"
+          @click="switchRoute(listItem)"
+        >
+          {{ listItem.title }}
+        </li>
+      </ul>
+    </div>
   </aside>
 </template>
 
 <script>
-import packagesJson from "@/packages/packages.json";
+import navConfig from "@/config/navConfig";
 export default {
-  name: "siderbar",
+  name: "sidebar",
   props: {},
   data() {
     return {
-      packagesJson,
+      sideBarData: {
+        groups: [],
+      },
     };
   },
   components: {},
   watch: {},
+  updated() {
+    this.updatedSideBar();
+  },
   computed: {
     routeActiveName: function () {
       return this.$route.name;
     },
   },
   created() {
-    // console.log("packagesJson:", packagesJson);
+    this.updatedSideBar();
+    // console.log("navConfig:", navConfig);
   },
   methods: {
-    switchComponent(key) {
-      // console.log("switchComponent:", key);
-      // console.log("this.$route:", this.$route.name);
-      if (this.$route.name !== key) {
-        this.$router.push({ name: key });
+    switchRoute(listItem) {
+      if (this.$route.path.indexOf(listItem.path) === -1) {
+        this.$router.push({ path: listItem.path });
       }
+    },
+    updatedSideBar() {
+      let data = navConfig["zh-CN"];
+      let sideBarData =
+        data.filter((dataItem) => {
+          return this.$route.path.indexOf(dataItem.path) !== -1;
+        })[0] || {};
+      this.sideBarData = sideBarData;
     },
   },
   mounted() {},
@@ -55,7 +76,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.s-siderbar {
+@import "~@/style/vars.less";
+.s-sidebar {
   width: 300px;
   border-right: 1px solid rgba(0, 0, 0, 0.07);
   border-right-width: 1px;
@@ -78,12 +100,16 @@ export default {
     cursor: pointer;
     border-left: 4px solid white;
     &:hover {
-      color: green;
+      color: @theme-color;
     }
     &.active {
-      border-left: 4px solid green;
-      color: green;
+      border-left: 4px solid @theme-color;
+      color: @theme-color;
     }
   }
+}
+.group-name {
+  color: rgb(163, 163, 163);
+  padding-left: 10px;
 }
 </style>

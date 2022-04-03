@@ -15680,7 +15680,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../style/milestone.less";
+@import "../style/milestone.less";
 .operation {
   // margin-bottom: 20px;
 }
