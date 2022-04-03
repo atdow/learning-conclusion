@@ -1,0 +1,35 @@
+@gm-scrollbar-background-color:rgba(235, 237, 248, 1);
+@thumb-color:rgba(192, 199, 232, 0.8);
+.milestone-table{
+  .tableHeaderWrap{
+    .gm-scrollbar.-vertical {
+      opacity: 0;
+    }
+    .gm-scrollbar.-horizontal {
+      height: 0px;
+      opacity: 0;
+    }
+  }
+  .tableBodyWrap{
+    .gm-scrollbar.-vertical {
+      opacity: 1;
+      width: 8px;
+      right: 0;
+     // background-color:  rgba(231, 232, 239, 0.8);
+      background-color:  white;
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+    .gm-scrollbar.-horizontal {
+      opacity: 1;
+      height: 8px;
+      background-color:  rgba(231, 232, 239, 0.8);
+      .thumb{
+        background-color:  rgba(192, 199, 232, 0.8);
+      }
+    }
+  }
+}
+
+
