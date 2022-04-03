@@ -2,11 +2,11 @@
  * @Author: atdow
  * @Date: 2021-03-18 11:23:04
  * @LastEditors: null
- * @LastEditTime: 2021-06-30 17:09:09
+ * @LastEditTime: 2022-04-04 00:08:48
  * @Description: file content
  */
 import MilestoneTable from "./modules/milestone-table";
-import Magnify from "@/components/Magnify";
+import Magnify from "./modules/Magnify";
 export default {
   data() {
     return {
@@ -18,10 +18,6 @@ export default {
     };
   },
   props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
     data: {
       type: Array,
       default: () => [],
@@ -37,17 +33,25 @@ export default {
       //   { date: 2012, event: null },
       // ],
     },
+    tdHeight: {
+      type: Number,
+      default: 80, // body的td高度
+    },
+    tdWidth: {
+      type: Number,
+      default: 230, // body的td高度
+    },
     contentHeight: {
       type: Number,
       default: 300,
     },
-    title: {
+    noFullScreen: {
+      type: Boolean,
+      default: false,
+    },
+    fullScreenTitle: {
       type: String,
       default: "相关药物",
-    },
-    tdHeight: {
-      type: Number,
-      default: 80, // body的td高度
     },
   },
   components: {
@@ -79,11 +83,11 @@ export default {
           magnifyRefContent.getBoundingClientRect().height -
           magnifyRefHeader.getBoundingClientRect().height;
         this.calContentHeight = contentHeight - 120;
-      } catch (error) {}
+      } catch (error) { }
     },
     onClose(flag) {
       // 手动触发
-      this.$refs.milestoneTableSmallRef.bodyScorllBarScollInit();
+      this.$refs.milestoneTableSmallRef.bodyScrollBarScrollInit();
     },
   },
   render() {
@@ -91,7 +95,7 @@ export default {
       <div>
         <MilestoneTable
           {...{
-            props: { ...this.$props, contentHeight: 300 },
+            props: { ...this.$props, contentHeight: this.contentHeight, noFullscreen: this.noFullScreen, },
             scopedSlots: { ...this.$scopedSlots },
           }}
           scrollData={this.scrollData}
@@ -99,7 +103,7 @@ export default {
           onScroll={this.scrollResolve}
           ref="milestoneTableSmallRef"
         ></MilestoneTable>
-        <Magnify title={this.title} ref="magnifyRef" onClose={this.onClose}>
+        <Magnify title={this.fullScreenTitle} ref="magnifyRef" onClose={this.onClose}>
           <MilestoneTable
             {...{
               props: {

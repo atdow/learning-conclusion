@@ -16,17 +16,17 @@
                 {
                     "path": "/color-grid-chart-virtual-scroll",
                     "title": "色块图-虚拟滚动"
+                },
+                {
+                    "path": "/virtualScroll-milestoneTable",
+                    "title": "虚拟滚动milestone表格",
+                    "type": "md"
                 }
             ]
         },
         {
             "groupName": "未完善组件",
             "list": [
-                {
-                    "path": "/virtualScroll-milestoneTable",
-                    "title": "虚拟滚动milestone表格",
-                    "type": "vue"
-                },
                 {
                     "path": "/tabbar",
                     "title": "tabbar",
