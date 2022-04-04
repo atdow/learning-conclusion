@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 23:06:23
+ * @LastEditTime: 2022-04-04 17:33:15
  * @Description: file description
 -->
 <template>
@@ -46,7 +46,8 @@ export default {
       this.$nextTick(() => {
         [
           ...document.querySelectorAll(
-            ".vue-demo-highlight pre code:not(.hljs)"
+            // ".vue-demo-highlight pre code:not(.hljs)"
+            "pre code:not(.hljs)"
           ),
         ].forEach((block) => {
           hljs.highlightBlock(block);

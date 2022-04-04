@@ -10,6 +10,15 @@
                     "title": "介绍"
                 }
             ]
+        },
+        {
+            "groupName": "Git相关",
+            "list": [
+                {
+                    "path": "/git/command",
+                    "title": "git基础命令"
+                }
+            ]
         }
     ]
 }
