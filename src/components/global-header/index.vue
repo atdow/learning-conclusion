@@ -2,12 +2,12 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2022-04-03 21:31:11
+ * @LastEditTime: 2022-04-04 18:00:43
  * @Description: file description
 -->
 <template>
   <div class="s-global-header">
-    <h3>常用组件</h3>
+    <div class="global-logo"><img src="@/assets/aaa.gif" alt="" /></div>
     <ul class="s-menu">
       <template v-for="(item, index) in navConfig['zh-CN']">
         <li
@@ -61,7 +61,14 @@ export default {
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 30px;
+  padding: 0 10px;
+}
+.global-logo {
+  display: flex;
+  align-items: center;
+  img {
+    height: 45px;
+  }
 }
 .s-menu {
   display: flex;
