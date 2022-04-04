@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-04 17:33:15
+ * @LastEditTime: 2022-04-05 01:05:25
  * @Description: file description
 -->
 <template>
@@ -10,9 +10,10 @@
     <GlobalHeader />
     <div class="s-content">
       <SideBar />
-      <div class="example-container">
+      <div class="main-content-container">
         <router-view></router-view>
       </div>
+      <ArticleCatalog />
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import SideBar from "@/components/sidebar";
 import GlobalHeader from "@/components/global-header";
 import "highlight.js/styles/atom-one-dark.css";
 import hljs from "highlight.js";
+import ArticleCatalog from "@/components/article-catalog";
 
 export default {
   name: "index",
@@ -32,6 +34,7 @@ export default {
   components: {
     SideBar,
     GlobalHeader,
+    ArticleCatalog,
   },
   mounted() {
     this.setCodeHighLight();
@@ -76,17 +79,17 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.s-home {
-}
+@import "~@/style/vars.less";
 .s-content {
   display: flex;
 }
-.example-container {
+.main-content-container {
   width: 100%;
   padding: 30px;
   overflow-y: auto;
   box-sizing: border-box;
   height: calc(100vh - 50px);
+  padding-right: @article-catalog-width+40px;
 }
 
 /deep/.vue-demo-highlight {

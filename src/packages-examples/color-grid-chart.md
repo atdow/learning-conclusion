@@ -49,7 +49,7 @@ export default {
 
 :::
 
-:::demo #### 2. 使用插槽:
+:::demo ### 2. 使用插槽:
 
 ```vue
 <template>
