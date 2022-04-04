@@ -19,6 +19,15 @@
                     "title": "git基础命令"
                 }
             ]
+        },
+        {
+            "groupName": "vue相关",
+            "list": [
+                {
+                    "path": "/vue/vue-router",
+                    "title": "vue-router"
+                }
+            ]
         }
     ]
 }
