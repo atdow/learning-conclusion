@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-04 00:31:54
+ * @LastEditTime: 2022-04-05 01:52:27
  * @Description: file description
 -->
 <template>
@@ -79,14 +79,18 @@ export default {
 @import "~@/style/vars.less";
 .s-sidebar {
   width: 300px;
-  border-right: 1px solid rgba(0, 0, 0, 0.07);
-  border-right-width: 1px;
-  border-right-style: solid;
-  border-right-color: rgba(0, 0, 0, 0.07);
-  height: calc(100vh - 50px);
+  // border-right: 1px solid rgba(0, 0, 0, 0.07);
+  // border-right-width: 1px;
+  // border-right-style: solid;
+  // border-right-color: rgba(0, 0, 0, 0.07);
+  // height: calc(100vh - 50px);
   box-sizing: border-box;
   padding: 30px 0 30px 0;
   overflow-y: auto;
+  background: white;
+  margin-right: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 }
 .component-list {
   display: flex;

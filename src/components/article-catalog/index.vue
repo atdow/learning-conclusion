@@ -2,12 +2,12 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 01:04:49
+ * @LastEditTime: 2022-04-05 02:02:27
  * @Description: file description
 -->
 <template>
    
-  <div class="article-catalog">
+  <div class="article-catalog" :style="{ top: top + 'px' }">
      
     <p class="article-catalog-reminder">目录</p>
     <div class="article-catalog-content">
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       catalogStr: "",
+      top: 100,
     };
   },
   components: {},
@@ -43,6 +44,9 @@ export default {
   created() {},
   mounted() {
     //  this.generateCatalogStr();
+    let sGlobalHeader = document.querySelector(".s-global-header");
+    const { height = 0 } = sGlobalHeader.getBoundingClientRect();
+    this.top = height;
   },
   updated() {
     //   this.generateCatalogStr();
@@ -205,13 +209,15 @@ export default {
 @import "~@/style/vars.less";
 .article-catalog {
   position: fixed;
-  top: 100px;
+  top: 60px;
   right: 10px;
   background: white;
   padding-bottom: 20px;
-  border: 1px solid #ccc;
+  //   border: 1px solid #ccc;
   box-sizing: border-box;
   width: @article-catalog-width;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
 
   &-reminder {
     padding: 0 0 10px 10px;

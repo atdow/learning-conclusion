@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 01:05:25
+ * @LastEditTime: 2022-04-05 01:57:29
  * @Description: file description
 -->
 <template>
@@ -10,8 +10,10 @@
     <GlobalHeader />
     <div class="s-content">
       <SideBar />
-      <div class="main-content-container">
-        <router-view></router-view>
+      <div class="main-content-container" :style="{ height: contentHeight }">
+        <div class="main-content-container-wrapper">
+          <router-view></router-view>
+        </div>
       </div>
       <ArticleCatalog />
     </div>
@@ -29,6 +31,7 @@ export default {
   data() {
     return {
       count: 0,
+      contentHeight: 0,
     };
   },
   components: {
@@ -39,6 +42,9 @@ export default {
   mounted() {
     this.setCodeHighLight();
     this.addExpand();
+    let sGlobalHeader = document.querySelector(".s-global-header");
+    const { height = 0 } = sGlobalHeader.getBoundingClientRect();
+    this.contentHeight = `calc(100vh - ${height}px)`;
   },
   updated() {
     this.setCodeHighLight();
@@ -80,16 +86,28 @@ export default {
 </script>
 <style lang="less" scoped>
 @import "~@/style/vars.less";
+.s-home {
+  background-color: #f4f5f5;
+}
 .s-content {
   display: flex;
+  box-sizing: border-box;
 }
 .main-content-container {
   width: 100%;
-  padding: 30px;
+  padding-top: 30px;
   overflow-y: auto;
   box-sizing: border-box;
-  height: calc(100vh - 50px);
-  padding-right: @article-catalog-width+40px;
+  // height: calc(100vh - 50px);
+  margin-right: @article-catalog-width+20px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  &-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 30px;
+  }
 }
 
 /deep/.vue-demo-highlight {

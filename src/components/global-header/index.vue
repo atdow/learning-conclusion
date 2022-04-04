@@ -2,23 +2,25 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2022-04-04 18:00:43
+ * @LastEditTime: 2022-04-05 01:59:43
  * @Description: file description
 -->
 <template>
   <div class="s-global-header">
-    <div class="global-logo"><img src="@/assets/aaa.gif" alt="" /></div>
-    <ul class="s-menu">
-      <template v-for="(item, index) in navConfig['zh-CN']">
-        <li
-          :class="{ 's-menu__active': $route.path.indexOf(item.path) !== -1 }"
-          :key="index"
-          @click="changeMenu(item)"
-        >
-          {{ item.name }}
-        </li>
-      </template>
-    </ul>
+    <div class="s-global-header-wrapper">
+      <div class="global-logo"><img src="@/assets/aaa.gif" alt="" /></div>
+      <ul class="s-menu">
+        <template v-for="(item, index) in navConfig['zh-CN']">
+          <li
+            :class="{ 's-menu__active': $route.path.indexOf(item.path) !== -1 }"
+            :key="index"
+            @click="changeMenu(item)"
+          >
+            {{ item.name }}
+          </li>
+        </template>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -54,14 +56,20 @@ export default {
 <style lang="less" scoped>
 @import "~@/style/vars.less";
 .s-global-header {
-  height: 50px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  height: @global-header-height;
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 0 0 10px 0;
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: white;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+  }
 }
 .global-logo {
   display: flex;
