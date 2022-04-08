@@ -26,6 +26,10 @@
                 {
                     "path": "/vue/vue-router",
                     "title": "vue-router"
+                },
+                {
+                    "path": "/vue/vue-cli",
+                    "title": "vue-cli"
                 }
             ]
         }

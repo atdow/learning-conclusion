@@ -2,8 +2,8 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 02:02:27
- * @Description: file description
+ * @LastEditTime: 2022-04-05 02:12:31
+ * @Description: 目录组件
 -->
 <template>
    
@@ -43,14 +43,11 @@ export default {
   computed: {},
   created() {},
   mounted() {
-    //  this.generateCatalogStr();
     let sGlobalHeader = document.querySelector(".s-global-header");
     const { height = 0 } = sGlobalHeader.getBoundingClientRect();
     this.top = height;
   },
-  updated() {
-    //   this.generateCatalogStr();
-  },
+  updated() {},
   methods: {
     generateCatalogStr() {
       this.$nextTick(() => {
@@ -65,7 +62,6 @@ export default {
         var treeData = this.toTree(hFlatLevelArr);
         var domTree = this.getChapterDomTree(treeData);
         this.catalogStr = this.nodeToString(domTree);
-        //  console.log("this.catalogStr:", this.catalogStr);
       });
     },
     nodeToString(node) {
@@ -97,7 +93,7 @@ export default {
         lastHtmlStr && this.parserHtml(lastHtmlStr);
       }
     },
-    // 平级机构转成树
+    // 平级结构转成树
     toTree(flatArr) {
       var tree = [];
       var copyArr = flatArr.map(function (item) {
@@ -213,7 +209,6 @@ export default {
   right: 10px;
   background: white;
   padding-bottom: 20px;
-  //   border: 1px solid #ccc;
   box-sizing: border-box;
   width: @article-catalog-width;
   border-radius: 4px;
