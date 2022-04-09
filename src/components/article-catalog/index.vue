@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 02:12:31
+ * @LastEditTime: 2022-04-09 15:04:40
  * @Description: 目录组件
 -->
 <template>
@@ -22,6 +22,10 @@
 let hFlatLevelArr = [
   // { hLevel: 4 }
 ];
+let dataIdIndex = 0;
+let startTagReg = /<h[0-9]\s{0,100}\S{0,100}>/;
+let endTagReg = /<\/h[0-9]>/;
+let idReg = /heading-[0-9]{1,1000}/;
 export default {
   name: "article-catalog",
   props: {},
@@ -51,17 +55,20 @@ export default {
   methods: {
     generateCatalogStr() {
       this.$nextTick(() => {
-        let dom = document.querySelector(".main-content-container");
-        let domStr = this.nodeToString(dom);
-        hFlatLevelArr = [];
-        this.catalogStr = "";
-        this.parserHtml(domStr);
-        if (hFlatLevelArr.length === 0) {
-          return;
-        }
-        var treeData = this.toTree(hFlatLevelArr);
-        var domTree = this.getChapterDomTree(treeData);
-        this.catalogStr = this.nodeToString(domTree);
+        this.hTagAddId();
+        this.$nextTick(() => {
+          let dom = document.querySelector(".main-content-container");
+          let domStr = this.nodeToString(dom);
+          hFlatLevelArr = [];
+          this.catalogStr = "";
+          this.parserHtml(domStr);
+          if (hFlatLevelArr.length === 0) {
+            return;
+          }
+          var treeData = this.toTree(hFlatLevelArr);
+          var domTree = this.getChapterDomTree(treeData);
+          this.catalogStr = this.nodeToString(domTree);
+        });
       });
     },
     nodeToString(node) {
@@ -74,20 +81,40 @@ export default {
       tmpNode = node = null; // prevent memory leaks in IE
       return str;
     },
+    hTagAddId() {
+      let mainContentDom = document.querySelector(".main-content-container");
+      dataIdIndex = 0;
+      let tagNameArr = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9"];
+      tagNameArr.forEach((tagNameArrItem) => {
+        let domArr = mainContentDom.getElementsByTagName(tagNameArrItem);
+        if (domArr.length > 0) {
+          for (let i = 0; i < domArr.length; i++) {
+            domArr[i].setAttribute("id", `heading-${dataIdIndex}`);
+            dataIdIndex++;
+          }
+        }
+      });
+    },
     parserHtml(htmlStr) {
-      let arr = htmlStr.match(/<h[0-9]>+/);
+      let arr = htmlStr.match(startTagReg);
       if (arr && arr.length > 0) {
         let startTag = arr[0];
-        let startTagIndex = htmlStr.search(/<h[0-9]>+/);
-        let endTag = htmlStr.match(/<\/h[0-9]>/)[0];
-        let endTagIndx = htmlStr.search(/<\/h[0-9]>/);
+        let startTagIndex = htmlStr.search(startTagReg);
+        let endTag = htmlStr.match(endTagReg)[0];
+        let endTagIndx = htmlStr.search(endTagReg);
 
         let hLevel = startTag.match(/[0-9]/)[0];
         let text = htmlStr.slice(startTagIndex + startTag.length, endTagIndx);
-
+        // 查找id属性
+        let dataId = "";
+        let dataIdArr = startTag.match(idReg);
+        if (dataIdArr && dataIdArr.length > 0) {
+          dataId = dataIdArr[0];
+        }
         hFlatLevelArr.push({
           hLevel,
           text,
+          id: dataId,
         });
         let lastHtmlStr = htmlStr.slice(endTagIndx + endTag.length);
         lastHtmlStr && this.parserHtml(lastHtmlStr);
@@ -163,18 +190,7 @@ export default {
       }
       chapterTreeData.forEach((chapterItem) => {
         var itemDom = this.createNodeByHtmlStr(
-          //   '<li><a class="toc-level-' +
-          //     chapterItem.level +
-          //     '" href="#' +
-          //     chapterItem.id +
-          //     '">' +
-          //     chapterItem.text +
-          //     "</a></li>"
-          '<li><a class="toc-level-' +
-            chapterItem.level +
-            '">' +
-            chapterItem.text +
-            "</a></li>"
+          `<li><a href="#${chapterItem.id}" class="toc-level-${chapterItem.level}">${chapterItem.text}</a></li>`
         )[0];
         parentNode.appendChild(itemDom);
         if (chapterItem.children) {
@@ -243,6 +259,7 @@ export default {
     text-overflow: ellipsis;
     // cursor: pointer;
     border-radius: 5px;
+    text-decoration: none;
     &:hover {
       background: rgb(247, 247, 247);
     }
