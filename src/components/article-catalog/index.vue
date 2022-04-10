@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2022-04-09 15:04:40
+ * @LastEditTime: 2022-04-10 15:32:23
  * @Description: 目录组件
 -->
 <template>
@@ -23,7 +23,8 @@ let hFlatLevelArr = [
   // { hLevel: 4 }
 ];
 let dataIdIndex = 0;
-let startTagReg = /<h[0-9]\s{0,100}\S{0,100}>/;
+// let startTagReg = /<h[0-9]\s{0,100}\S{0,100}>/;
+let startTagReg = /<h[0-9]\s{0,100}[A-Za-z0-9='"_-]{0,100}>/;
 let endTagReg = /<\/h[0-9]>/;
 let idReg = /heading-[0-9]{1,1000}/;
 export default {
@@ -97,14 +98,17 @@ export default {
     },
     parserHtml(htmlStr) {
       let arr = htmlStr.match(startTagReg);
+      // console.log("arr:", arr);
       if (arr && arr.length > 0) {
         let startTag = arr[0];
         let startTagIndex = htmlStr.search(startTagReg);
         let endTag = htmlStr.match(endTagReg)[0];
         let endTagIndx = htmlStr.search(endTagReg);
 
+        // console.log("startTag:", startTag);
         let hLevel = startTag.match(/[0-9]/)[0];
         let text = htmlStr.slice(startTagIndex + startTag.length, endTagIndx);
+        // console.log("text:", text);
         // 查找id属性
         let dataId = "";
         let dataIdArr = startTag.match(idReg);
