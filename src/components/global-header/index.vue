@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 01:59:43
+ * @LastEditTime: 2022-04-12 21:04:36
  * @Description: file description
 -->
 <template>
@@ -83,6 +83,12 @@ export default {
   align-items: center;
   height: 100%;
   padding-right: 10px;
+  .active {
+    color: @theme-color;
+    &::after {
+      width: 100%;
+    }
+  }
   li {
     padding: 0 10px;
     height: 100%;
@@ -107,17 +113,11 @@ export default {
       transition: width 0.3s;
     }
     &:hover {
-      color: @theme-color;
-      &::after {
-        width: 100%;
-      }
+      .active;
     }
   }
   &__active {
-    color: @theme-color;
-    &::after {
-      width: 100% !important;
-    }
+    .active;
   }
 }
 </style>

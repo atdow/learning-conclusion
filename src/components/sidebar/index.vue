@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 01:52:27
+ * @LastEditTime: 2022-04-12 21:02:16
  * @Description: file description
 -->
 <template>
@@ -97,18 +97,38 @@ export default {
   flex-direction: column;
   .component-list-content {
     height: 42px;
-    line-height: 42px;
+    line-height: 38px;
     font-size: 14px;
     color: #7285a1;
-    padding: 3px 0 3px 20px;
+    padding: 1px 0 1px 20px;
+    margin-bottom: 2px;
     cursor: pointer;
-    border-left: 4px solid white;
-    &:hover {
+    // border-left: 4px solid white;
+    transition: all 0.3s;
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 0;
+      background: @theme-color;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: height 0.3s;
+    }
+    .active {
       color: @theme-color;
+      &::after {
+        height: 100%;
+      }
+    }
+    &:hover {
+      .active;
     }
     &.active {
-      border-left: 4px solid @theme-color;
-      color: @theme-color;
+      .active;
     }
   }
 }
