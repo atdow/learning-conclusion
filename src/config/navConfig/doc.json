@@ -30,6 +30,10 @@
                 {
                     "path": "/vue/vue-cli",
                     "title": "vue-cli"
+                },
+                {
+                    "path": "/vue/event-bus",
+                    "title": "event-bus"
                 }
             ]
         },
