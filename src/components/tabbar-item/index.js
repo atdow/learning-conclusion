@@ -6,9 +6,9 @@
  * @Description: file description
  */
 /* istanbul ignore next */
-import StabbarItem from "../tabbar/src/tabbar-item";
+import StabbarItem from '../tabbar/src/tabbar-item'
 StabbarItem.install = function(Vue) {
-  Vue.component(StabbarItem.name, StabbarItem);
-};
+  Vue.component(StabbarItem.name, StabbarItem)
+}
 
-export default StabbarItem;
+export default StabbarItem

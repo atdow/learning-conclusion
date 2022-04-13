@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "STabbarItem",
+  name: 'STabbarItem',
   props: {
     label:{
       type:String
@@ -25,15 +25,15 @@ export default {
   },
   data() {
     return {
-      activeName:""
-    };
+      activeName:''
+    }
   },
   components: {},
   watch: {
     '$parent._props.activeName':{
       immediate:true,
       handler:function(){
-        let activeName = this.$parent._props.activeName
+        const activeName = this.$parent._props.activeName
         this.activeName = activeName  
       },
       deep:true
@@ -44,7 +44,7 @@ export default {
   },
   mounted() {},
   beforeDestroy() {},
-};
+}
 </script>
 
 <style lang="less" scoped>

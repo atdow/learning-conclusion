@@ -17,12 +17,12 @@
 
 <script>
 export default {
-  name: "test",
+  name: 'Test',
   props: {},
   data() {
     return {
-      activeName: "first",
-    };
+      activeName: 'first',
+    }
   },
   components: {},
   watch: {},
@@ -33,7 +33,7 @@ export default {
     handleClick() {},
   },
   beforeDestroy() {},
-};
+}
 </script>
 
 <style lang="less" scoped></style>

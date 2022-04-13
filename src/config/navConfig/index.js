@@ -28,7 +28,7 @@ function jsonFormat(json) {
 
 
 export default {
-    "zh-CN": [
+    'zh-CN': [
         jsonFormat(packagesJson),
         jsonFormat(demoJson),
         jsonFormat(docJson)

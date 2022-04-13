@@ -39,7 +39,7 @@ export default {
     }
     let element
     // console.log("binding:", binding)
-    let { selector, height = 300, maxWidth, controls, scrollTarget, delayEvent } = binding.value
+    const { selector, height = 300, maxWidth, controls, scrollTarget, delayEvent } = binding.value
 
     if (!(scrollTarget == 'object' && scrollTarget?.nodeName)) {
       if (selector) {

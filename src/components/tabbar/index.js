@@ -7,9 +7,9 @@
  */
 
 /* istanbul ignore next */
-import SStabbar from "./src/index";
+import SStabbar from './src/index'
 SStabbar.install = function(Vue) {
-  Vue.component(SStabbar.name, SStabbar);
-};
+  Vue.component(SStabbar.name, SStabbar)
+}
 
-export default SStabbar;
+export default SStabbar

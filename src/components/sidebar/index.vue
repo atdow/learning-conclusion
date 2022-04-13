@@ -30,49 +30,49 @@
 </template>
 
 <script>
-import navConfig from "@/config/navConfig";
+import navConfig from '@/config/navConfig'
 export default {
-  name: "sidebar",
+  name: 'Sidebar',
   props: {},
   data() {
     return {
       sideBarData: {
         groups: [],
       },
-    };
+    }
   },
   components: {},
   watch: {},
   updated() {
-    this.updatedSideBar();
+    this.updatedSideBar()
   },
   computed: {
     routeActiveName: function () {
-      return this.$route.name;
+      return this.$route.name
     },
   },
   created() {
-    this.updatedSideBar();
+    this.updatedSideBar()
     // console.log("navConfig:", navConfig);
   },
   methods: {
     switchRoute(listItem) {
       if (this.$route.path.indexOf(listItem.path) === -1) {
-        this.$router.push({ path: listItem.path });
+        this.$router.push({ path: listItem.path })
       }
     },
     updatedSideBar() {
-      let data = navConfig["zh-CN"];
-      let sideBarData =
+      const data = navConfig['zh-CN']
+      const sideBarData =
         data.filter((dataItem) => {
-          return this.$route.path.indexOf(dataItem.path) !== -1;
-        })[0] || {};
-      this.sideBarData = sideBarData;
+          return this.$route.path.indexOf(dataItem.path) !== -1
+        })[0] || {}
+      this.sideBarData = sideBarData
     },
   },
   mounted() {},
   beforeDestroy() {},
-};
+}
 </script>
 
 <style lang="less" scoped>

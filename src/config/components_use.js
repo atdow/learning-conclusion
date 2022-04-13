@@ -6,11 +6,11 @@
  * @Description: file description
  */
 import Vue from 'vue'
-import GeminiScrollbar from "@/components/geminiScrollbar/index";
+import GeminiScrollbar from '@/components/geminiScrollbar/index'
 
 import Tabbar from '../components/tabbar'
 import TabbarItem from '../components/tabbar-item'
 
-Vue.use(GeminiScrollbar);
+Vue.use(GeminiScrollbar)
 Vue.use(Tabbar)
 Vue.use(TabbarItem)

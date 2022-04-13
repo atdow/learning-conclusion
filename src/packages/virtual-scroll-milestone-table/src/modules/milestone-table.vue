@@ -121,9 +121,9 @@
 </template>
 
 <script>
-import { throttle, getClientXY } from "@/utils/util";
+import { throttle, getClientXY } from '@/utils/util'
 export default {
-  name: "MilestoneTable",
+  name: 'MilestoneTable',
   props: {
     data: {
       type: Array,
@@ -162,14 +162,14 @@ export default {
         return {
           top: 0,
           left: 0,
-        };
+        }
       },
     },
   },
   data() {
-    this.tableHeaderScrollThrottle = null;
-    this.tableBodyScrollThrottle = null;
-    this.updateThrottle = null;
+    this.tableHeaderScrollThrottle = null
+    this.tableBodyScrollThrottle = null
+    this.updateThrottle = null
     return {
       theadHeight: 46, // 头部高度
       // tdHeight: 80, // body的td高度
@@ -181,27 +181,27 @@ export default {
       renderData: [],
       virtualContentHeight: 0,
       virtualRenderData: [],
-    };
+    }
   },
   components: {},
   watch: {
     data: {
       immediate: true,
       handler: function () {
-        this.virtualRenderData = [];
+        this.virtualRenderData = []
         this.$nextTick(() => {
           // let startTime = new Date();
           if (this.data.length === 0) {
-            return;
+            return
           }
-          let width = this.data[0] ? this.data[0].length * 230 : 0;
+          const width = this.data[0] ? this.data[0].length * 230 : 0
           if (width > this.tableWidth) {
-            this.tableWidth = width;
+            this.tableWidth = width
           }
-          this.tbodyHeight = this.data.length * this.tdHeight;
+          this.tbodyHeight = this.data.length * this.tdHeight
           // 数据格式处理(排序)
-          let formatData = [];
-          let dataIndex = []; // 存储已经push进去的数据索引
+          const formatData = []
+          const dataIndex = [] // 存储已经push进去的数据索引
           // 循环列
           for (let i = 0; i < this.data[0].length; i++) {
             // 循环数据
@@ -209,18 +209,18 @@ export default {
               if (this.data[j][i]?.event) {
                 // 避免重复push
                 if (dataIndex.indexOf(j) === -1) {
-                  formatData.push(this.data[j]);
-                  dataIndex.push(j);
+                  formatData.push(this.data[j])
+                  dataIndex.push(j)
                   //  break // 不能break终止，因为后面也可能是同一列中也是有event
                 }
               }
             }
           }
           // 加入虚拟滚动
-          this.renderData = formatData;
-          this.virtualContentHeight = this.renderData.length * this.tdHeight;
-          this.update(0, "down");
-        });
+          this.renderData = formatData
+          this.virtualContentHeight = this.renderData.length * this.tdHeight
+          this.update(0, 'down')
+        })
       },
     },
   },
@@ -229,51 +229,51 @@ export default {
     // console.log('getClientXY:', getClientXY())
   },
   mounted() {
-    this.bodyScrollBarScrollInit();
+    this.bodyScrollBarScrollInit()
     // console.log('slot:', this.$scopedSlots.contentSlot)
     // table min-width计算
-    let width = getClientXY().width;
+    let width = getClientXY().width
     try {
       width =
         this.$refs.milestoneTableRef.parentElement.getBoundingClientRect()
-          .width;
+          .width
     } catch (error) {}
-    this.tableWidth = width;
+    this.tableWidth = width
     // header
-    let headerRef = this.$refs.headerGeminiScrollbarRef;
-    let headerScrollBar = headerRef.$el.querySelector(".gm-scroll-view");
-    this.headerScrollBar = headerScrollBar;
+    const headerRef = this.$refs.headerGeminiScrollbarRef
+    const headerScrollBar = headerRef.$el.querySelector('.gm-scroll-view')
+    this.headerScrollBar = headerScrollBar
 
     // body
-    let bodyRef = this.$refs.bodyGeminiScrollbarRef;
-    let bodyScrollBar = bodyRef.$el.querySelector(".gm-scroll-view");
-    this.bodyScrollBar = bodyScrollBar;
-    this.tableBodyScrollThrottle = throttle(this.tableBodyScroll, 100);
-    bodyScrollBar.addEventListener("scroll", this.tableBodyScrollThrottle);
+    const bodyRef = this.$refs.bodyGeminiScrollbarRef
+    const bodyScrollBar = bodyRef.$el.querySelector('.gm-scroll-view')
+    this.bodyScrollBar = bodyScrollBar
+    this.tableBodyScrollThrottle = throttle(this.tableBodyScroll, 100)
+    bodyScrollBar.addEventListener('scroll', this.tableBodyScrollThrottle)
     // 虚拟滚动更新
-    this.updateThrottle = throttle(this.updateThrottleMethod, 100);
+    this.updateThrottle = throttle(this.updateThrottleMethod, 100)
   },
   beforeDestroy() {},
   methods: {
     tableBodyScroll(e) {
-      this.headerScrollBar.scrollLeft = e.target.scrollLeft;
-      let verticalDirection = "";
+      this.headerScrollBar.scrollLeft = e.target.scrollLeft
+      let verticalDirection = ''
       if (e.target.scrollTop > this.scrollData.top) {
-        verticalDirection = "down";
+        verticalDirection = 'down'
       } else if (e.target.scrollTop < this.scrollData.top) {
-        verticalDirection = "up";
+        verticalDirection = 'up'
       }
-      this.$emit("scroll", {
+      this.$emit('scroll', {
         top: e.target.scrollTop,
         left: e.target.scrollLeft,
-      });
+      })
 
       // this.update(e.target.scrollTop);
-      this.updateThrottle(e.target.scrollTop, verticalDirection); // 还是有必要使用节流
+      this.updateThrottle(e.target.scrollTop, verticalDirection) // 还是有必要使用节流
     },
     fullscreen() {
-      this.$emit("fullscreen", true);
-      this.fullscreenState = true;
+      this.$emit('fullscreen', true)
+      this.fullscreenState = true
     },
     bodyScrollBarScrollInit() {
       // console.log("触发");
@@ -281,42 +281,42 @@ export default {
         try {
           setTimeout(() => {
             this.$nextTick(() => {
-              let bodyRef = this.$refs.bodyGeminiScrollbarRef;
-              let bodyScrollBar = bodyRef.$el.querySelector(".gm-scroll-view");
-              bodyScrollBar.scrollLeft = this.scrollData.left;
-              bodyScrollBar.scrollTop = this.scrollData.top;
-              this.update(this.scrollData.top || 0, "down");
-            });
-          }, 0);
+              const bodyRef = this.$refs.bodyGeminiScrollbarRef
+              const bodyScrollBar = bodyRef.$el.querySelector('.gm-scroll-view')
+              bodyScrollBar.scrollLeft = this.scrollData.left
+              bodyScrollBar.scrollTop = this.scrollData.top
+              this.update(this.scrollData.top || 0, 'down')
+            })
+          }, 0)
         } catch (error) {}
-      });
+      })
     },
     // 虚拟滚动更新数据
-    update(scrollTop = 0, verticalDirection = "") {
+    update(scrollTop = 0, verticalDirection = '') {
       this.$nextTick(() => {
         // TODO 左右滑动不做更新(以后增加左右的虚拟滚动)
-        if (verticalDirection !== "up" && verticalDirection !== "down") {
-          return;
+        if (verticalDirection !== 'up' && verticalDirection !== 'down') {
+          return
         }
         // 获取当前可展示数量
-        const count = Math.ceil(this.$el.clientHeight / this.tdHeight);
+        const count = Math.ceil(this.$el.clientHeight / this.tdHeight)
         // 取得可见区域的起始数据索引
-        const start = Math.floor(scrollTop / this.tdHeight);
+        const start = Math.floor(scrollTop / this.tdHeight)
         // 取得可见区域的结束数据索引
-        const end = start + count;
+        const end = start + count
         // 计算出可见区域对应的数据，让 Vue.js 更新
-        this.virtualRenderData = this.renderData.slice(start, end);
+        this.virtualRenderData = this.renderData.slice(start, end)
         // 把可见区域的 top 设置为起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
         this.$refs.content.style.webkitTransform = `translate3d(0, ${
           start * this.tdHeight
-        }px, 0)`;
-      });
+        }px, 0)`
+      })
     },
-    updateThrottleMethod(scrollTop = 0, verticalDirection = "") {
-      this.update(scrollTop, verticalDirection);
+    updateThrottleMethod(scrollTop = 0, verticalDirection = '') {
+      this.update(scrollTop, verticalDirection)
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>

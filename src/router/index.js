@@ -5,11 +5,11 @@
  * @LastEditTime: 2022-04-13 00:12:29
  * @Description: file description
  */
-import Vue from "vue";
-import VueRouter from "vue-router";
-Vue.use(VueRouter);
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 
-import navConfig from "@/config/navConfig";
+import navConfig from '@/config/navConfig'
 
 function componentRequire(path, type) {
   if (process.env.NODE_ENV === 'development') {
@@ -19,8 +19,8 @@ function componentRequire(path, type) {
         [],
         () => r(type ? require(`@/${path}.${type}`) : require(`../${path}.md`)),
         () => { },
-        "zh-CN"
-      );
+        'zh-CN'
+      )
   } else {
     // 懒加载方式
     // let filePath = type ? `@/${path}.${type}` : `@/${path}.md`
@@ -33,7 +33,7 @@ function componentRequire(path, type) {
 }
 
 function generateRoute(arr) {
-  let route = []
+  const route = []
   arr.forEach(arrItem => {
     arrItem.groups.forEach((groupsItem) => {
       groupsItem.list.forEach((listItem) => {
@@ -45,31 +45,31 @@ function generateRoute(arr) {
           },
           component: componentRequire(listItem.path.slice(1), listItem.type),
           children: [],
-        });
-      });
+        })
+      })
     })
   })
 
-  return route;
+  return route
 }
-let route = generateRoute(navConfig['zh-CN']);
+const route = generateRoute(navConfig['zh-CN'])
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: () => import(/* webpackChunkName: "home" */ "../views/home/index.vue"),
+    path: '/',
+    name: 'Home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/home/index.vue'),
     redirect: { path: route[0].path },
     children: [
       ...route,
     ],
   },
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   // mode: "hash",
   routes,
-});
+})
 
-export default router;
+export default router

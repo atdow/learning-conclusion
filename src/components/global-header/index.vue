@@ -25,16 +25,16 @@
 </template>
 
 <script>
-import navConfig from "@/config/navConfig";
+import navConfig from '@/config/navConfig'
 // console.log("navConfig:", navConfig);
 
 export default {
-  name: "global-header",
+  name: 'GlobalHeader',
   props: {},
   data() {
     return {
       navConfig,
-    };
+    }
   },
   components: {},
   watch: {},
@@ -43,14 +43,14 @@ export default {
   mounted() {},
   methods: {
     changeMenu(item) {
-      const path = item.groups[0].list[0].path;
+      const path = item.groups[0].list[0].path
       if (this.$route.path.indexOf(path) === -1) {
-        this.$router.push({ path: path });
+        this.$router.push({ path: path })
       }
     },
   },
   beforeDestroy() {},
-};
+}
 </script>
 
 <style lang="less" scoped>

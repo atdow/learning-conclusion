@@ -38,7 +38,7 @@
  
 <script>
 export default {
-  name: "aaa",
+  name: 'Aaa',
   props: {},
   data() {
     return {
@@ -49,113 +49,113 @@ export default {
       offset: { x: 0, y: 0 },
       moveDebounce: 300,
       isMac: false,
-    };
+    }
   },
   components: {},
   watch: {},
   computed: {},
   created() {},
   mounted() {
-    this.isMac = this.detectOS() === "Mac";
+    this.isMac = this.detectOS() === 'Mac'
     if (this.isMac === true) {
-      return;
+      return
     }
-    window.addEventListener("mouseup", this.windowOnMouseUp);
-    this.$once("hook:beforeDestroy", () => {
-      window.removeEventListener("mouseup", this.windowOnMouseUp);
-    });
+    window.addEventListener('mouseup', this.windowOnMouseUp)
+    this.$once('hook:beforeDestroy', () => {
+      window.removeEventListener('mouseup', this.windowOnMouseUp)
+    })
   },
   methods: {
     tableMousedown(e) {
-      const { x = 0, y = 0 } = e;
-      this.startPositon = { x, y };
-      this.isMouseDown = true;
-      this.isSelect = true; // 这里需要设定isSelect为true
+      const { x = 0, y = 0 } = e
+      this.startPositon = { x, y }
+      this.isMouseDown = true
+      this.isSelect = true // 这里需要设定isSelect为true
     },
     tableMousemove(e) {
       if (this.isMac === true) {
-        return;
+        return
       }
-      let txt = window.getSelection();
+      const txt = window.getSelection()
       if (txt.toString().length > 0) {
-        this.isSelect = true;
-        return;
+        this.isSelect = true
+        return
       }
-      clearTimeout(this.timer);
+      clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         if (txt.toString().length <= 0) {
-          this.isSelect = false;
+          this.isSelect = false
         }
-      }, this.moveDebounce);
+      }, this.moveDebounce)
       if (this.isSelect === true) {
-        return;
+        return
       }
       // 拖动核心
-      const { x = 0, y = 0 } = e;
-      this.currentPositon = { x, y };
+      const { x = 0, y = 0 } = e
+      this.currentPositon = { x, y }
       if (this.isMouseDown === true) {
         this.offset = {
           x: this.currentPositon.x - this.startPositon.x,
           y: this.currentPositon.y - this.startPositon.y,
-        };
-        let scrollLeft = this.$refs.tableContainerRef.scrollLeft;
-        let scrollTop = this.$refs.tableContainerRef.scrollTop;
+        }
+        let scrollLeft = this.$refs.tableContainerRef.scrollLeft
+        let scrollTop = this.$refs.tableContainerRef.scrollTop
 
-        scrollLeft += this.offset.x * -1;
-        scrollTop += this.offset.y * -1;
-        scrollLeft <= 0 && (scrollLeft = 0);
-        scrollTop <= 0 && (scrollTop = 0);
-        this.$refs.tableContainerRef.scrollLeft = scrollLeft;
-        this.$refs.tableContainerRef.scrollTop = scrollTop;
+        scrollLeft += this.offset.x * -1
+        scrollTop += this.offset.y * -1
+        scrollLeft <= 0 && (scrollLeft = 0)
+        scrollTop <= 0 && (scrollTop = 0)
+        this.$refs.tableContainerRef.scrollLeft = scrollLeft
+        this.$refs.tableContainerRef.scrollTop = scrollTop
         this.$nextTick(() => {
-          this.startPositon = JSON.parse(JSON.stringify(this.currentPositon));
-        });
+          this.startPositon = JSON.parse(JSON.stringify(this.currentPositon))
+        })
       }
     },
     windowOnMouseUp() {
-      this.isMouseDown = false;
+      this.isMouseDown = false
     },
     detectOS() {
-      var userAgent = navigator.userAgent;
+      var userAgent = navigator.userAgent
       var isWin =
-        navigator.platform == "Win32" || navigator.platform == "Windows";
+        navigator.platform == 'Win32' || navigator.platform == 'Windows'
       var isMac =
-        navigator.platform == "Mac68K" ||
-        navigator.platform == "MacPPC" ||
-        navigator.platform == "Macintosh" ||
-        navigator.platform == "MacIntel";
-      if (isMac) return "Mac";
-      var isUnix = navigator.platform == "X11" && !isWin && !isMac;
-      if (isUnix) return "Unix";
-      var isLinux = String(navigator.platform).indexOf("Linux") > -1;
-      if (isLinux) return "Linux";
+        navigator.platform == 'Mac68K' ||
+        navigator.platform == 'MacPPC' ||
+        navigator.platform == 'Macintosh' ||
+        navigator.platform == 'MacIntel'
+      if (isMac) return 'Mac'
+      var isUnix = navigator.platform == 'X11' && !isWin && !isMac
+      if (isUnix) return 'Unix'
+      var isLinux = String(navigator.platform).indexOf('Linux') > -1
+      if (isLinux) return 'Linux'
       if (isWin) {
         var isWin2K =
-          userAgent.indexOf("Windows NT 5.0") > -1 ||
-          userAgent.indexOf("Windows 2000") > -1;
-        if (isWin2K) return "Win2000";
+          userAgent.indexOf('Windows NT 5.0') > -1 ||
+          userAgent.indexOf('Windows 2000') > -1
+        if (isWin2K) return 'Win2000'
         var isWinXP =
-          userAgent.indexOf("Windows NT 5.1") > -1 ||
-          userAgent.indexOf("Windows XP") > -1;
-        if (isWinXP) return "WinXP";
+          userAgent.indexOf('Windows NT 5.1') > -1 ||
+          userAgent.indexOf('Windows XP') > -1
+        if (isWinXP) return 'WinXP'
         var isWin2003 =
-          userAgent.indexOf("Windows NT 5.2") > -1 ||
-          userAgent.indexOf("Windows 2003") > -1;
-        if (isWin2003) return "Win2003";
+          userAgent.indexOf('Windows NT 5.2') > -1 ||
+          userAgent.indexOf('Windows 2003') > -1
+        if (isWin2003) return 'Win2003'
         var isWinVista =
-          userAgent.indexOf("Windows NT 6.0") > -1 ||
-          userAgent.indexOf("Windows Vista") > -1;
-        if (isWinVista) return "WinVista";
+          userAgent.indexOf('Windows NT 6.0') > -1 ||
+          userAgent.indexOf('Windows Vista') > -1
+        if (isWinVista) return 'WinVista'
         var isWin7 =
-          userAgent.indexOf("Windows NT 6.1") > -1 ||
-          userAgent.indexOf("Windows 7") > -1;
-        if (isWin7) return "Win7";
+          userAgent.indexOf('Windows NT 6.1') > -1 ||
+          userAgent.indexOf('Windows 7') > -1
+        if (isWin7) return 'Win7'
       }
-      return "other";
+      return 'other'
     },
   },
   beforeDestroy() {},
-};
+}
 </script>
 <style lang="less" scoped>
 .test-table {

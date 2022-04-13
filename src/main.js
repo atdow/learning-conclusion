@@ -5,15 +5,15 @@
  * @LastEditTime: 2022-04-01 19:07:55
  * @Description: file description
  */
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import Vuebar from "vuebar";
-Vue.use(Vuebar);
-import "./style/global.less";
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import Vuebar from 'vuebar'
+Vue.use(Vuebar)
+import './style/global.less'
 // import "prismjs/themes/prism.css";
 
-import "./config/components_use";
+import './config/components_use'
 // import "prismjs/themes/prism-coy.css";
 // import "prismjs/themes/prism-dark.css";
 // import "prismjs/themes/prism-funky.css";
@@ -30,9 +30,9 @@ router.afterEach((to, from) => {
 })
 
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = false
 
 new Vue({
   router,
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount('#app')

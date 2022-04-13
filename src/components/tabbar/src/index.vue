@@ -23,10 +23,10 @@
 
 <script>
 export default {
-  name: "STabbar",
+  name: 'STabbar',
   model: {
-    prop: "activeName",
-    event: "setActiveName",
+    prop: 'activeName',
+    event: 'setActiveName',
   },
   props: {
     activeName: {
@@ -41,17 +41,17 @@ export default {
         //   name:""
         // }
       ],
-    };
+    }
   },
   components: {},
   watch: {
     $slots: {
       immediate: true,
       handler: function() {
-        let slots = this.$slots.default;
+        const slots = this.$slots.default
         slots.forEach((slotsItem) => {
-          this.tabbarData.push(slotsItem.componentOptions.propsData);
-        });
+          this.tabbarData.push(slotsItem.componentOptions.propsData)
+        })
       },
     },
   },
@@ -60,11 +60,11 @@ export default {
   mounted() {},
   methods: {
     tabbarClick(item) {
-      this.$emit("setActiveName", item.name);
+      this.$emit('setActiveName', item.name)
     },
   },
   beforeDestroy() {},
-};
+}
 </script>
 
 <style lang="less" scoped>

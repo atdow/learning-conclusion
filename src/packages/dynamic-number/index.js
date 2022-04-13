@@ -7,9 +7,9 @@
  */
 
 /* istanbul ignore next */
-import ScrollNumber from "./src/index";
+import ScrollNumber from './src/index'
 ScrollNumber.install = function(Vue) {
-  Vue.component(ScrollNumber.name, ScrollNumber);
-};
+  Vue.component(ScrollNumber.name, ScrollNumber)
+}
 
-export default ScrollNumber;
+export default ScrollNumber

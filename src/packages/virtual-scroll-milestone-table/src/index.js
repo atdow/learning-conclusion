@@ -5,8 +5,8 @@
  * @LastEditTime: 2022-04-04 00:08:48
  * @Description: file content
  */
-import MilestoneTable from "./modules/milestone-table";
-import Magnify from "./modules/Magnify";
+import MilestoneTable from './modules/milestone-table'
+import Magnify from './modules/Magnify'
 export default {
   data() {
     return {
@@ -15,7 +15,7 @@ export default {
         left: 0,
       },
       calContentHeight: 300,
-    };
+    }
   },
   props: {
     data: {
@@ -51,7 +51,7 @@ export default {
     },
     fullScreenTitle: {
       type: String,
-      default: "相关药物",
+      default: '相关药物',
     },
   },
   components: {
@@ -59,35 +59,35 @@ export default {
     Magnify,
   },
   mounted() {
-    window.addEventListener("resize", this.calContentHeightResolve);
-    this.$once("hook:beforeDestroy", () => {
-      document.removeEventListener("resize", this.calContentHeightResolve);
-    });
+    window.addEventListener('resize', this.calContentHeightResolve)
+    this.$once('hook:beforeDestroy', () => {
+      document.removeEventListener('resize', this.calContentHeightResolve)
+    })
   },
   methods: {
     fullscreen() {
-      this.$refs.magnifyRef.show();
+      this.$refs.magnifyRef.show()
       this.$nextTick(() => {
-        this.calContentHeightResolve();
-      });
+        this.calContentHeightResolve()
+      })
     },
     scrollResolve(scrollData) {
-      this.scrollData = scrollData;
+      this.scrollData = scrollData
     },
     calContentHeightResolve() {
       try {
-        let magnifyRef = this.$refs.magnifyRef.$el;
-        let magnifyRefContent = magnifyRef.querySelector(".s-magnify-content");
-        let magnifyRefHeader = magnifyRef.querySelector(".s-magnify-header");
-        let contentHeight =
+        const magnifyRef = this.$refs.magnifyRef.$el
+        const magnifyRefContent = magnifyRef.querySelector('.s-magnify-content')
+        const magnifyRefHeader = magnifyRef.querySelector('.s-magnify-header')
+        const contentHeight =
           magnifyRefContent.getBoundingClientRect().height -
-          magnifyRefHeader.getBoundingClientRect().height;
-        this.calContentHeight = contentHeight - 120;
+          magnifyRefHeader.getBoundingClientRect().height
+        this.calContentHeight = contentHeight - 120
       } catch (error) { }
     },
     onClose(flag) {
       // 手动触发
-      this.$refs.milestoneTableSmallRef.bodyScrollBarScrollInit();
+      this.$refs.milestoneTableSmallRef.bodyScrollBarScrollInit()
     },
   },
   render() {
@@ -118,6 +118,6 @@ export default {
           ></MilestoneTable>
         </Magnify>
       </div>
-    );
+    )
   },
-};
+}

@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "magnify",
+  name: 'Magnify',
   props: {
     title: {
       type: String,
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       showState: false,
-    };
+    }
   },
   components: {},
   watch: {
@@ -33,9 +33,9 @@ export default {
       immediate: true,
       handler: function (params) {
         if (this.showState) {
-          document.body.style.overflow = "hidden";
+          document.body.style.overflow = 'hidden'
         } else {
-          document.body.style.overflow = ""; // 出现滚动条
+          document.body.style.overflow = '' // 出现滚动条
         }
       },
     },
@@ -43,29 +43,29 @@ export default {
   computed: {},
   created() {},
   mounted() {
-    document.addEventListener("keydown", this.keyCodeResolve);
-    this.$once("hook:beforeDestroy", () => {
-      document.removeEventListener("keydown", this.keyCodeResolve);
-    });
+    document.addEventListener('keydown', this.keyCodeResolve)
+    this.$once('hook:beforeDestroy', () => {
+      document.removeEventListener('keydown', this.keyCodeResolve)
+    })
   },
   beforeDestroy() {
-    document.body.style.overflow = ""; // 出现滚动条
+    document.body.style.overflow = '' // 出现滚动条
   },
   methods: {
     close() {
-      this.showState = false;
-      this.$emit("close", true);
+      this.showState = false
+      this.$emit('close', true)
     },
     show() {
-      this.showState = true;
+      this.showState = true
     },
     keyCodeResolve(event) {
       if (event.keyCode == 27) {
-        this.close();
+        this.close()
       }
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
