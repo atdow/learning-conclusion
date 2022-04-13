@@ -15,10 +15,10 @@
 </template>
 <script>
 export default {
-  name: "ScrollNumber",
+  name: 'ScrollNumber',
   model: {
-    prop: "count",
-    event: "setCount",
+    prop: 'count',
+    event: 'setCount',
   },
   props: {
     count: {
@@ -35,35 +35,36 @@ export default {
      */
     length: {
       type: Number,
+      default: 9,
     },
   },
   data() {
     return {
-      initNumArray: ["0"], // 初始化显示用
+      initNumArray: ['0'], // 初始化显示用
       displayNumArray: [], // 真正显示的数据
-    };
+    }
   },
   watch: {
     count: {
       immediate: true,
-      handler: function() {
-        const num = this.count;
-        const numArray = this.numToArray(num);
-        this.initNumArray = [];
+      handler: function () {
+        const num = this.count
+        const numArray = this.numToArray(num)
+        this.initNumArray = []
         numArray.forEach((orderNumItem) => {
           if (isNaN(orderNumItem)) {
-            this.initNumArray.push(",");
+            this.initNumArray.push(',')
           } else {
-            this.initNumArray.push("0");
+            this.initNumArray.push('0')
           }
-        });
-        this.displayNumArray = numArray;
+        })
+        this.displayNumArray = numArray
         this.$nextTick(() => {
-          let timer = setTimeout(() => {
-            this.setNumberTransform();
-            clearTimeout(timer);
-          }, 0);
-        });
+          const timer = setTimeout(() => {
+            this.setNumberTransform()
+            clearTimeout(timer)
+          }, 0)
+        })
       },
     },
   },
@@ -73,54 +74,50 @@ export default {
       if (this.isThousandSplit === true) {
         if (this.length) {
           // -----最大限制范围判断start-----
-          let maxNumStr = "";
+          let maxNumStr = ''
           for (let i = 0; i < this.length; i++) {
-            maxNumStr += "9";
+            maxNumStr += '9'
           }
-          if (
-            Number(maxNumStr) < num &&
-            process.env.NODE_ENV === "development"
-          ) {
-            console.warn("超出了最大限制范围");
-            return this.thousandSplit(maxNumStr).split("");
+          if (Number(maxNumStr) < num && process.env.NODE_ENV === 'development') {
+            console.warn('超出了最大限制范围')
+            return this.thousandSplit(maxNumStr).split('')
             // return [];
           }
           // -----最大限制范围判断end-----
           // -----补0start-----
-          let formatNum = "";
+          let formatNum = ''
           if (String(num).length <= this.length) {
-            const subLength = this.length - String(num).length;
-            formatNum = String(num);
+            const subLength = this.length - String(num).length
+            formatNum = String(num)
             for (let i = 0; i < subLength; i++) {
-              formatNum = "0" + formatNum;
+              formatNum = '0' + formatNum
             }
           }
           // -----补0end-----
-          return this.thousandSplit(formatNum).split("");
+          return this.thousandSplit(formatNum).split('')
         } else {
-          return this.thousandSplit(num).split("");
+          return this.thousandSplit(num).split('')
         }
       } else {
-        return String(num).split("");
+        return String(num).split('')
       }
     },
     // 千位分割
     thousandSplit(num) {
-      var reg = /\d{1,3}(?=(\d{3})+$)/g;
-      return (num + "").replace(reg, "$&,");
+      var reg = /\d{1,3}(?=(\d{3})+$)/g
+      return (num + '').replace(reg, '$&,')
     },
     // 文字滚动
     setNumberTransform() {
       this.displayNumArray.forEach((displayNumArrayItem, index) => {
         if (!isNaN(displayNumArrayItem)) {
-          const elem = this.$refs.itemRef[index].children[0].children[0];
-          elem.style.transform = `translate(-50%, -${displayNumArrayItem *
-            10}%)`;
+          const elem = this.$refs.itemRef[index].children[0].children[0]
+          elem.style.transform = `translate(-50%, -${displayNumArrayItem * 10}%)`
         }
-      });
+      })
     },
   },
-};
+}
 </script>
 <style scoped lang="less">
 /*总量滚动数字设置*/

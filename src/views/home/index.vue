@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-05 01:57:29
+ * @LastEditTime: 2022-04-13 22:20:54
  * @Description: file description
 -->
 <template>
@@ -20,19 +20,19 @@
   </div>
 </template>
 <script>
-import SideBar from "@/components/sidebar";
-import GlobalHeader from "@/components/global-header";
-import "highlight.js/styles/atom-one-dark.css";
-import hljs from "highlight.js";
-import ArticleCatalog from "@/components/article-catalog";
+import SideBar from '@/components/sidebar'
+import GlobalHeader from '@/components/global-header'
+import 'highlight.js/styles/atom-one-dark.css'
+import hljs from 'highlight.js'
+import ArticleCatalog from '@/components/article-catalog'
 
 export default {
-  name: "index",
+  name: 'Index',
   data() {
     return {
       count: 0,
       contentHeight: 0,
-    };
+    }
   },
   components: {
     SideBar,
@@ -40,52 +40,53 @@ export default {
     ArticleCatalog,
   },
   mounted() {
-    this.setCodeHighLight();
-    this.addExpand();
-    let sGlobalHeader = document.querySelector(".s-global-header");
-    const { height = 0 } = sGlobalHeader.getBoundingClientRect();
-    this.contentHeight = `calc(100vh - ${height}px)`;
+    this.setCodeHighLight()
+    this.addExpand()
+    const sGlobalHeader = document.querySelector('.s-global-header')
+    const { height = 0 } = sGlobalHeader.getBoundingClientRect()
+    this.contentHeight = `calc(100vh - ${height}px)`
   },
   updated() {
-    this.setCodeHighLight();
-    this.addExpand();
+    this.setCodeHighLight()
+    this.addExpand()
   },
   methods: {
     setCodeHighLight() {
       this.$nextTick(() => {
-        [
+        ;[
           ...document.querySelectorAll(
             // ".vue-demo-highlight pre code:not(.hljs)"
-            "pre code:not(.hljs)"
+            'pre code:not(.hljs)'
           ),
         ].forEach((block) => {
-          hljs.highlightBlock(block);
-        });
-      });
+          hljs.highlightBlock(block)
+        })
+      })
     },
     addExpand() {
+      // console.log(1111)
       this.$nextTick(() => {
-        let dom = document.querySelectorAll(".vue-demo-highlight pre");
+        const dom = document.querySelectorAll('.vue-demo-highlight pre')
         dom.forEach((domItem) => {
-          let height = domItem.scrollHeight;
-          domItem.style.setProperty("--max-height", height + "px");
-          domItem.addEventListener("dblclick", () => {
-            let className = domItem.className;
-            if (className.indexOf("expand") === -1) {
-              className = "expand";
+          const height = domItem.scrollHeight
+          domItem.style.setProperty('--max-height', height + 'px')
+          domItem.addEventListener('dblclick', () => {
+            let className = domItem.className
+            if (className.indexOf('expand') === -1) {
+              className = 'expand'
             } else {
-              className = "";
+              className = ''
             }
-            domItem.className = className;
-          });
-        });
-      });
+            domItem.className = className
+          })
+        })
+      })
     },
   },
-};
+}
 </script>
 <style lang="less" scoped>
-@import "~@/style/vars.less";
+@import '~@/style/vars.less';
 .s-home {
   background-color: #f4f5f5;
 }
@@ -114,7 +115,7 @@ export default {
   position: relative;
   padding-bottom: 30px;
   &::after {
-    content: "双击代码区域折叠展开";
+    content: '双击代码区域折叠展开';
     text-align: center;
     display: block;
     width: 100%;

@@ -1,5 +1,9 @@
 {
     "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "vetur.validation.template": false,
     "cSpell.ignoreWords": [
         "atdow",
         "tabbar",
