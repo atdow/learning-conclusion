@@ -22,7 +22,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
-      "npm run eslintTest",
+      "npm run eslintTest77",
       "git add"
     ]
   },
