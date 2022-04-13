@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-01 14:14:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-13 23:08:49
+ * @LastEditTime: 2022-04-13 23:28:14
  * @Description: file description
  */
 module.exports = {
@@ -56,6 +56,8 @@ module.exports = {
         'beforeStatementContinuationChars': 'never'
       }
     ],
+    'no-undef': 2, // 没有定义的变量
+    'no-use-before-define': ["error", { "functions": true, "classes": true }],
     'no-delete-var': 2,
     'prefer-const': [
       2,
