@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-01 14:14:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-13 22:17:46
+ * @LastEditTime: 2022-04-13 23:08:49
  * @Description: file description
  */
 module.exports = {
@@ -39,6 +39,7 @@ module.exports = {
     'vue/no-use-v-if-with-v-for': 0,
     'vue/html-closing-bracket-newline': 0,
     'vue/no-parsing-error': 0,
+    'vue/require-default-prop': 0, // prop必须指定默认值
     'no-tabs': 0,
     'quotes': [
       2,

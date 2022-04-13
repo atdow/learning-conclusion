@@ -1,3 +1,4 @@
 # /src
 build/*.js
 node_modules/*
+/src/iconfont
