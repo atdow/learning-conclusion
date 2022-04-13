@@ -11,7 +11,8 @@
     "build:qa": "vue-cli-service build  --mode qa",
     "build:production": "vue-cli-service build  --mode production",
     "lint": "vue-cli-service lint",
-    "docs": "docsify serve ./docs"
+    "docs": "docsify serve ./docs",
+    "eslintTest": "eslint src/**/*.{js,vue}"
   },
   "husky": {
     "hooks": {
@@ -21,7 +22,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
-      "eslint src/**/*.{js,vue}",
+      "npm run eslintTest",
       "git add"
     ]
   },
