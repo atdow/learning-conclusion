@@ -15,8 +15,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "node ./scripts/git/commit-msg.js -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "node ./scripts/git/commit-msg.js -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
