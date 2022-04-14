@@ -14,7 +14,12 @@
                     "path": "/grab-table",
                     "title": "带拖动抓手的table案例",
                     "type": "vue"
-                }
+                },
+                {
+                  "path": "/progress",
+                  "title": "进度条",
+                  "type": "vue"
+              }
             ]
         }
     ]
