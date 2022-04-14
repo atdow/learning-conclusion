@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-13 22:58:38
+ * @LastEditTime: 2022-04-13 23:27:57
  * @Description: file description
 -->
 <template>
@@ -64,7 +64,6 @@ export default {
       })
     },
     addExpand() {
-      // console.log(1111)
       this.$nextTick(() => {
         const dom = document.querySelectorAll('.vue-demo-highlight pre')
         dom.forEach((domItem) => {
