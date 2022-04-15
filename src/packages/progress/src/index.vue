@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-14 22:15:53
  * @LastEditors: null
- * @LastEditTime: 2022-04-16 00:35:35
+ * @LastEditTime: 2022-04-16 01:19:00
  * @Description: file description
 -->
 <template>
@@ -73,7 +73,7 @@ export default {
     },
     background: {
       type: String,
-      default: 'white',
+      default: '#ebeef5',
     },
     height: {
       type: Number,
@@ -81,11 +81,11 @@ export default {
     },
     strokeRadius: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     containerRadius: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     minWidth: {
       type: Number,
