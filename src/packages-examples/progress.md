@@ -1,4 +1,6 @@
-:::demo #### 1. 基础用法
+#### 1. 基础用法
+
+:::demo
 
 ```vue
 <template>
@@ -17,7 +19,9 @@ export default {
 
 :::
 
-:::demo #### 2. 使用插槽指定文字
+#### 2. 使用插槽指定文字
+
+:::demo 
 
 ```vue
 <template>
@@ -36,7 +40,9 @@ export default {
 
 :::
 
-:::demo #### 3. 进度条颜色
+#### 3. 进度条颜色
+
+:::demo 
 
 ```vue
 <template>
@@ -58,7 +64,9 @@ export default {
 
 :::
 
-:::demo #### 4. 进度条方向
+#### 4. 进度条方向
+
+:::demo 
 
 ```vue
 <template>
@@ -77,7 +85,9 @@ export default {
 
 :::
 
-:::demo #### 5. 进度条高度
+#### 5. 进度条高度
+
+:::demo 
 
 ```vue
 <template>
@@ -96,7 +106,9 @@ export default {
 
 :::
 
-:::demo #### 6. 是否使用进度条圆角
+#### 6. 是否使用进度条圆角
+
+:::demo 
 
 ```vue
 <template>
@@ -115,7 +127,9 @@ export default {
 
 :::
 
-:::demo #### 7. 指定最小宽度
+#### 7. 指定最小宽度
+
+:::demo 
 
 ```vue
 <template>

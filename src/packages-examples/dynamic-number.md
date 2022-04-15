@@ -1,4 +1,6 @@
-:::demo #### 1. 基础用法
+#### 1. 基础用法
+
+:::demo 
 
 ```vue
 <template>
@@ -38,7 +40,9 @@ export default {
 
 :::
 
-:::demo #### 2. 指定数字最大显示长度
+#### 2. 指定数字最大显示长度
+
+:::demo 
 
 ```vue
 <template>
@@ -78,7 +82,9 @@ export default {
 
 :::
 
-:::demo #### 3. 使用千分分割
+#### 3. 使用千分分割
+
+:::demo 
 
 ```vue
 <template>

@@ -1,6 +1,8 @@
 > 默认使用 `{name:xxx, value:xxx}` 中的 value 显示格子内容，不显示 tooltip
 
-:::demo #### 1. 基本使用:
+#### 1. 基本使用
+
+:::demo 
 
 ```vue
 <template>
@@ -53,7 +55,9 @@ export default {
 
 :::
 
-:::demo #### 2. 使用插槽显示格子内容:
+#### 2. 使用插槽显示格子内容
+
+:::demo 
 
 ```vue
 <template>
@@ -106,7 +110,9 @@ export default {
 
 :::
 
-:::demo #### 3. 使用 tooltip:
+#### 3. 使用 tooltip
+
+:::demo
 
 ```vue
 <template>
@@ -159,7 +165,9 @@ export default {
 
 :::
 
-:::demo #### 4. 改变 grid 中的鼠标样式:
+#### 4. 改变 grid 中的鼠标样式
+
+:::demo 
 
 ```vue
 <template>

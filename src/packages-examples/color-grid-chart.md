@@ -1,6 +1,6 @@
-## 色块图
+### 1. 基本使用
 
-:::demo ### 1. 基本使用:
+:::demo 
 
 ```vue
 <template>
@@ -49,7 +49,9 @@ export default {
 
 :::
 
-:::demo ### 2. 使用插槽:
+### 2. 使用插槽
+
+:::demo 
 
 ```vue
 <template>
