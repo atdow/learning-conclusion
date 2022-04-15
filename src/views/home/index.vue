@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-13 23:27:57
+ * @LastEditTime: 2022-04-16 03:43:29
  * @Description: file description
 -->
 <template>
@@ -40,14 +40,15 @@ export default {
     ArticleCatalog,
   },
   mounted() {
-    this.setCodeHighLight()
-    this.addExpand()
+    // this.setCodeHighLight()
+    // this.addExpand()
     const sGlobalHeader = document.querySelector('.s-global-header')
     const { height = 0 } = sGlobalHeader.getBoundingClientRect()
     this.contentHeight = `calc(100vh - ${height}px)`
   },
   updated() {
     this.setCodeHighLight()
+    this.addExpand(true)
     this.addExpand()
   },
   methods: {
@@ -63,23 +64,40 @@ export default {
         })
       })
     },
-    addExpand() {
+    addExpand(isRemove = false) {
       this.$nextTick(() => {
-        const dom = document.querySelectorAll('.vue-demo-highlight pre')
+        const dom = document.querySelectorAll('.vue-demo-highlight')
         dom.forEach((domItem) => {
-          const height = domItem.scrollHeight
-          domItem.style.setProperty('--max-height', height + 'px')
-          domItem.addEventListener('dblclick', () => {
-            let className = domItem.className
-            if (className.indexOf('expand') === -1) {
-              className = 'expand'
-            } else {
-              className = ''
+          const preDom = domItem.querySelector('.vue-demo-highlight pre')
+          const height = preDom.scrollHeight
+          preDom.style.setProperty('--max-height', height + 'px')
+          const codeFolderDom = domItem.querySelector('.code-folder')
+          if (isRemove === true) {
+            codeFolderDom.onclick = null
+          } else {
+            codeFolderDom.onclick = (target) => {
+              this.codeFolderDomClickResolve(target, preDom)
             }
-            domItem.className = className
-          })
+          }
         })
       })
+    },
+    codeFolderDomClickResolve(target, preDom) {
+      const srcElement = target.srcElement
+      const text = srcElement.innerText
+      if (text === '显示代码' || '') {
+        srcElement.innerText = '隐藏代码'
+      } else {
+        srcElement.innerText = '显示代码'
+      }
+      // 代码折叠高度控制
+      let className = preDom.className
+      if (className.indexOf('expand') === -1) {
+        className = 'expand'
+      } else {
+        className = ''
+      }
+      preDom.className = className
     },
   },
 }
@@ -113,28 +131,30 @@ export default {
 /deep/.vue-demo-highlight {
   position: relative;
   padding-bottom: 30px;
-  &::after {
-    content: '双击代码区域折叠展开';
-    text-align: center;
-    display: block;
-    width: 100%;
-    height: 30px;
-    border: 1px solid #ccc;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: white;
-    color: #ccc;
-    font-size: 12px;
-    line-height: 30px;
-  }
   pre {
     transition: max-height 0.5s;
     overflow: hidden;
-    max-height: 100px;
+    max-height: 0px;
     margin-bottom: 0;
     &.expand {
       max-height: var(--max-height);
+    }
+  }
+  .code-folder {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 12px;
+    line-height: 30px;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover {
+      color: @theme-color;
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
     }
   }
 }

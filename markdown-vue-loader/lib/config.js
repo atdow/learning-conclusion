@@ -82,8 +82,11 @@ function default_1(md, { containerName = "demo", demoWrapperClass, descClass, hi
                 : ""}\n
                 <div ${getEffectiveClass(highlightClass)}>
                     ${getEffectiveSlot(beforeCodeSlotName)}
-                    <pre><code class="html" v-pre >${md.utils.escapeHtml(token.content)}</code></pre>
+                    <div class="vue-demo-highlight-content">
+                      <pre><code class="html" v-pre >${md.utils.escapeHtml(token.content)}</code></pre>
+                    </div>
                     ${getEffectiveSlot(afterCodeSlotName)}
+                    <div class="code-folder">显示代码</div>
                 </div>\n
             `;
         }
