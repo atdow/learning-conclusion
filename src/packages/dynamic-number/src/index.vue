@@ -27,7 +27,7 @@ export default {
     },
     isThousandSplit: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     /**
      * 最大限制范围
