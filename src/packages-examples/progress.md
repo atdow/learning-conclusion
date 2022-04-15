@@ -180,4 +180,4 @@ export default {
 | strokeRadius | 进度条是否使用圆角 | Boolean       | false |
 | containerRadius | 进度条容器是否使用圆角 | Boolean       | false     |
 | minWidth | 最小长度 | Number       | 0 `px` |
-| resizeDebounce | resize节流时间系数，当minWidth不为0时，增加resizeDebounce可以提升性能 | Number       | 0 `ms` |
+| resizeDebounce | resize节流时间系数，当 `minWidth` 不为 `0` 时，增加resize可以提升性能 | Number       | 0 `ms` |
