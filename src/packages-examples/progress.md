@@ -116,7 +116,44 @@ export default {
 
 ```vue
 <template>
-  <s-progress :percent="1" :minWidth="50" :strokeRadius="true" :containerRadius="true" background="#ebeef5"></s-progress>
+  <div>
+    <s-progress 
+      :percent="100" 
+      :minWidth="50" 
+      :strokeRadius="true" 
+      :containerRadius="true" 
+      background="#ebeef5" 
+      style="margin-bottom: 10px"
+    >
+    </s-progress>
+    <s-progress 
+      :percent="60" 
+      :minWidth="50" 
+      :strokeRadius="true" 
+      :containerRadius="true" 
+      background="#ebeef5"
+      style="margin-bottom: 10px"
+    >
+    </s-progress>
+    <s-progress 
+      :percent="10" 
+      :minWidth="50"
+      :strokeRadius="true" 
+      :containerRadius="true" 
+      background="#ebeef5"
+      style="margin-bottom: 10px"
+    >
+    </s-progress>
+    <s-progress 
+      :percent="0" 
+      :minWidth="50" 
+      :strokeRadius="true" 
+      :containerRadius="true" 
+      background="#ebeef5"
+      style="margin-bottom: 10px"
+    >
+    </s-progress>
+  </div>
 </template>
  
 <script>
@@ -143,3 +180,4 @@ export default {
 | strokeRadius | 进度条是否使用圆角 | Boolean       | false |
 | containerRadius | 进度条容器是否使用圆角 | Boolean       | false     |
 | minWidth | 最小长度 | Number       | 0 `px` |
+| resizeDebounce | resize节流时间系数，当minWidth不为0时，增加resizeDebounce可以提升性能 | Number       | 0 `ms` |
