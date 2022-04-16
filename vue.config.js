@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:54:48
  * @LastEditors: null
- * @LastEditTime: 2022-04-13 22:12:39
+ * @LastEditTime: 2022-04-16 14:39:37
  * @Description: file description
  */
 
@@ -16,7 +16,7 @@ function resolve(dir) {
 // const publicPath = "";
 
 const vueConfig = {
-  // publicPath: publicPath,
+  publicPath: 'learning-conclusion',
   chainWebpack: (config) => {
     config.resolve.alias.set('@$', resolve('src'))
     // config.module
