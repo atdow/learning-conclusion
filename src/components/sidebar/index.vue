@@ -2,22 +2,16 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-12 21:02:16
+ * @LastEditTime: 2022-04-16 13:15:39
  * @Description: file description
 -->
 <template>
   <aside class="s-sidebar">
-    <div
-      v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []"
-      :key="sideBarDataIndex"
-    >
+    <div v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []" :key="sideBarDataIndex">
       <p class="group-name">{{ sideBarDataItem.groupName }}</p>
       <ul class="component-list">
         <li
-          :class="[
-            'component-list-content',
-            { active: $route.path.indexOf(listItem.path) !== -1 },
-          ]"
+          :class="['component-list-content', { active: $route.path.indexOf(listItem.path) !== -1 }]"
           v-for="(listItem, listIndex) in sideBarDataItem.list"
           :key="listIndex"
           @click="switchRoute(listItem)"
@@ -76,9 +70,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "~@/style/vars.less";
+@import '~@/style/vars.less';
 .s-sidebar {
-  width: 300px;
+  width: 250px;
   // border-right: 1px solid rgba(0, 0, 0, 0.07);
   // border-right-width: 1px;
   // border-right-style: solid;
@@ -91,6 +85,7 @@ export default {
   margin-right: 10px;
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  flex-shrink: 0;
 }
 .component-list {
   display: flex;
@@ -107,7 +102,7 @@ export default {
     transition: all 0.3s;
     position: relative;
     &::after {
-      content: "";
+      content: '';
       display: block;
       width: 4px;
       height: 0;

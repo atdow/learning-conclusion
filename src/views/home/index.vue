@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-16 03:43:29
+ * @LastEditTime: 2022-04-16 13:12:48
  * @Description: file description
 -->
 <template>
@@ -130,7 +130,9 @@ export default {
 
 /deep/.vue-demo-highlight {
   position: relative;
-  padding-bottom: 30px;
+  &:hover {
+    color: @theme-color;
+  }
   pre {
     transition: max-height 0.5s;
     overflow: hidden;
@@ -150,11 +152,12 @@ export default {
     color: #ccc;
     font-size: 12px;
     line-height: 30px;
+    box-sizing: border-box;
     cursor: pointer;
     transition: all 0.5s;
+    border-radius: 0 0 2px 2px;
     &:hover {
       color: @theme-color;
-      box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
     }
   }
 }
