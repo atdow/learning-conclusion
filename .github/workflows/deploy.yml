@@ -15,12 +15,11 @@ jobs:
         with:
           node-version: '14.x'
 
+      - name: build-markdown-vue-loader
+        run: cd markdown-vue-loader && npm install && npm run build
+        
       - name: Install
-        run: cd markdown-vue-loader
-        run: npm install
-        run: npm run build
-        run: cd ..
-        run: npm install # 安装依赖
+        run: cd .. && npm install # 安装依赖
 
       - name: Build
         run: npm run build # 打包
