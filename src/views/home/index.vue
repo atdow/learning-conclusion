@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 00:11:10
+ * @LastEditTime: 2022-04-17 01:10:16
  * @Description: file description
 -->
 <template>
@@ -61,9 +61,9 @@ export default {
             'pre code:not(.hljs)'
           ),
         ].forEach((block) => {
-          // hljs.highlightBlock(block)
+          hljs.highlightBlock(block)
           // hljs.highlightAuto(block)
-          hljs.highlightAll(block)
+          // hljs.highlightAll(block)
         })
       })
     },

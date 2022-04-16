@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 00:25:20
+ * @LastEditTime: 2022-04-17 00:59:30
  * @Description: file description
  */
 import Vue from 'vue'
@@ -67,8 +67,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
-  mode: 'hash',
+  mode: 'history',
+  // mode: 'hash',
   routes,
 })
 
