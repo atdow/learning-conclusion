@@ -16,13 +16,13 @@ jobs:
           node-version: '14.x'
 
       - name: build-markdown-vue-loader
-        run: cd markdown-vue-loader && npm install && npm run build:development
+        run: cd markdown-vue-loader && npm install && npm run build
       
       - name: to-root
         run: cd ..
 
       - name: build-app
-        run: npm install && npm run build # 打包
+        run: npm install && npm run build:development # 打包
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3 # 使用部署到 GitHub pages 的 action
