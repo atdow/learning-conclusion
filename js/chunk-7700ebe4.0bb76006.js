@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-7700ebe4"],{b9f4:function(e,o,n){e.exports={themeColor:"green",articleCatalogWidth:"300px",globalHeaderHeight:"80px"}}}]);
