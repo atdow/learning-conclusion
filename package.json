@@ -29,6 +29,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "gemini-scrollbar": "^1.5.3",
+    "highlight.js": "^11.5.1",
     "less": "^4.0.0",
     "less-loader": "^7.2.0",
     "resize-observer-polyfill": "^1.5.0",

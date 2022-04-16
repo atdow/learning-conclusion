@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-16 13:12:48
+ * @LastEditTime: 2022-04-17 00:11:10
  * @Description: file description
 -->
 <template>
@@ -24,6 +24,7 @@ import SideBar from '@/components/sidebar'
 import GlobalHeader from '@/components/global-header'
 import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
+
 import ArticleCatalog from '@/components/article-catalog'
 
 export default {
@@ -60,7 +61,9 @@ export default {
             'pre code:not(.hljs)'
           ),
         ].forEach((block) => {
-          hljs.highlightBlock(block)
+          // hljs.highlightBlock(block)
+          // hljs.highlightAuto(block)
+          hljs.highlightAll(block)
         })
       })
     },

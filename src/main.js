@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 19:07:55
+ * @LastEditTime: 2022-04-17 00:11:26
  * @Description: file description
  */
 import Vue from 'vue'
@@ -11,7 +11,7 @@ import router from './router'
 import Vuebar from 'vuebar'
 Vue.use(Vuebar)
 import './style/global.less'
-// import "prismjs/themes/prism.css";
+// import 'prismjs/themes/prism.css'
 
 import './config/components_use'
 // import "prismjs/themes/prism-coy.css";

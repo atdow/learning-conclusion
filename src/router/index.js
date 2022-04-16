@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-16 15:43:19
+ * @LastEditTime: 2022-04-17 00:25:20
  * @Description: file description
  */
 import Vue from 'vue'
@@ -29,17 +29,6 @@ function componentRequire(path, type) {
     } else {
       return () => import(`@/${path}.md`)
     }
-    // if (type) {
-    //   return () => import(`@/${path}.${type}`)
-    // } else {
-    //   return (r) =>
-    //     require.ensure(
-    //       [],
-    //       () => r(require(`../${path}.md`)),
-    //       () => { },
-    //       'zh-CN'
-    //     )
-    // }
   }
 }
 
