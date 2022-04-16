@@ -16,7 +16,7 @@ jobs:
           node-version: '14.x'
 
       - name: build-markdown-vue-loader
-        run: cd markdown-vue-loader && npm install && npm run build
+        run: cd markdown-vue-loader && npm install && npm run build:development
       
       - name: to-root
         run: cd ..
