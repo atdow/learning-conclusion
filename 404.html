@@ -2,58 +2,55 @@
  * @Author: atdow
  * @Date: 2022-04-17 01:13:11
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 01:13:12
+ * @LastEditTime: 2022-04-17 18:57:33
  * @Description: file description
 -->
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Single Page Apps for GitHub Pages</title>
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    // This script takes the current url and converts the path and query
-    // string into just a query string, and then redirects the browser
-    // to the new url with only a query string and hash fragment,
-    // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-    // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-    // Note: this 404.html file must be at least 512 bytes for it to work
-    // with Internet Explorer (it is currently > 512 bytes)
-
-    // If you're creating a Project Pages site and NOT using a custom domain,
-    // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
-    // This way the code will only replace the route part of the path, and not
-    // the real directory in which the app resides, for example:
-    // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
-    // https://username.github.io/repo-name/?/one/two&a=b~and~c=d#qwe
-    // Otherwise, leave pathSegmentsToKeep as 0.
-    var pathPrefix = true; // 如果你的页面不是使用自定义域名，而是xxx.github.io/xxx，则应该设置为true，不然就为false
-    var l = window.location;
-    l.replace(
-      l.protocol +
-      '//' +
-      l.hostname +
-      (l.port ? ':' + l.port : '') +
-      l.pathname
-        .split('/')
-        .slice(0, 2 * pathPrefix)
-        .join('/') +
-      '/?p=/' +
-      l.pathname
-        .slice(1)
-        .split('/')
-        .slice(pathPrefix)
-        .join('/')
-        .replace(/&/g, '~and~') +
-      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-      l.hash,
-    );
-  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <!-- Start Single Page Apps for GitHub Pages 这里只是用于github pages-->
+  <!-- <script type="text/javascript">
+    (function (l) {
+      if (l.search) {
+        var q = {};
+        l.search
+          .slice(1)
+          .split('&')
+          .forEach(function (v) {
+            var a = v.split('=');
+            q[a[0]] = a
+              .slice(1)
+              .join('=')
+              .replace(/~and~/g, '&');
+          });
+        if (q.p !== undefined) {
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + (q.p || '') + (q.q ? '?' + q.q : '') + l.hash,
+          );
+        }
+      }
+    })(window.location);
+  </script> -->
+  <!-- End Single Page Apps for GitHub Pages 这里只是用于github pages-->
 </head>
 
-<body></body>
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+        Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
 
 </html>
