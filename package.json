@@ -50,7 +50,8 @@
     "prismjs": "^1.23.0",
     "vue-template-compiler": "^2.6.11",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.11"
+    "lint-staged": "^10.2.11",
+    "copy-webpack-plugin": "^6.3.0"
   },
   "eslintConfig": {
     "root": true,

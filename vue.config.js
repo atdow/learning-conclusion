@@ -2,11 +2,12 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:54:48
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 00:24:55
+ * @LastEditTime: 2022-04-17 20:40:31
  * @Description: file description
  */
 
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 // const webpack = require("webpack");
 
 function resolve(dir) {
@@ -18,6 +19,18 @@ function resolve(dir) {
 const vueConfig = {
   publicPath: '/learning-conclusion',
   // publicPath: '/',
+  configureWebpack: {
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: '404.html',
+            to: '',
+          }
+        ]
+      })
+    ]
+  },
   chainWebpack: (config) => {
     config.resolve.alias.set('@$', resolve('src'))
     // config.module
