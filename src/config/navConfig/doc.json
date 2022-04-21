@@ -1,50 +1,59 @@
 {
-    "name": "文章",
-    "path": "/doc",
-    "groups": [
+  "name": "文章",
+  "path": "/doc",
+  "groups": [
+    {
+      "groupName": "Basic",
+      "list": [
         {
-            "groupName": "Basic",
-            "list": [
-                {
-                    "path": "/introduction",
-                    "title": "介绍"
-                }
-            ]
-        },
-        {
-            "groupName": "Git相关",
-            "list": [
-                {
-                    "path": "/git/command",
-                    "title": "git基础命令"
-                }
-            ]
-        },
-        {
-            "groupName": "vue相关",
-            "list": [
-                {
-                    "path": "/vue/vue-router",
-                    "title": "vue-router"
-                },
-                {
-                    "path": "/vue/vue-cli",
-                    "title": "vue-cli"
-                },
-                {
-                    "path": "/vue/event-bus",
-                    "title": "event-bus"
-                }
-            ]
-        },
-        {
-            "groupName": "react相关",
-            "list": [
-                {
-                    "path": "/react/source",
-                    "title": "react原理"
-                }
-            ]
+          "path": "/introduction",
+          "title": "介绍"
         }
-    ]
+      ]
+    },
+    {
+      "groupName": "Git相关",
+      "list": [
+        {
+          "path": "/git/command",
+          "title": "git基础命令"
+        }
+      ]
+    },
+    {
+      "groupName": "vue相关",
+      "list": [
+        {
+          "path": "/vue/vue-router",
+          "title": "vue-router"
+        },
+        {
+          "path": "/vue/vue-cli",
+          "title": "vue-cli"
+        },
+        {
+          "path": "/vue/event-bus",
+          "title": "event-bus"
+        }
+      ]
+    },
+    {
+      "groupName": "react相关",
+      "list": [
+        {
+          "path": "/react/source",
+          "title": "react原理"
+        }
+      ]
+    },
+    {
+      "groupName": "工具方法",
+      "list": [
+        {
+          "path": "/utils/resize-event",
+          "title": "监听dom大小变化"
+        }
+      ]
+    }
+  ]
 }
