@@ -195,3 +195,72 @@ docker image build -t [username]/[repository]:[tag] .
 ```shell
 docker image push [username]/[repository]:[tag]
 ```
+
+# 4. 使用docker在mac搭建gitlab
+
+## 4.1. 下载镜像
+
+```shell
+docker pull gitlab/gitlab-ce
+```
+
+## 4.2. 运行 gitlab 实例
+
+```shell
+sudo docker run -d \
+    --hostname xxxx.xxxx.xx \
+    --name gitlab \
+    --restart always \
+    --publish 30001:22 --publish 30000:80 --publish 30002:443 \
+    --volume $HOME/gitlab/data:/var/opt/gitlab \
+    --volume $HOME/gitlab/logs:/var/log/gitlab \
+    --volume $HOME/gitlab/config:/etc/gitlab \
+    gitlab/gitlab-ce
+```
+
+> 其中 volume 选项将 gitlab 的目录挂载为用户当地目录，以免容器在停止或被删除的时候丢失数据。publish 选项将宿主机器的 30000、30001 和 30002 映射为容器的 80(http)、22(ssh)和 443(https)端口。
+
+拉取镜像后会自动启动服务，直接访问 `http://localhost:30000`
+
+## 4.3. 配置邮箱：/etc/gitlab/gitlab.rb
+
+```rb
+gitlab_rails['gitlab_email_from'] = "xxx@163.com"   
+gitlab_rails["gitlab_email_reply_to"] = "xxx@163.com"
+
+gitlab_rails["smtp_enable"] = true 
+gitlab_rails["smtp_address"] = "smtp.163.com"   
+gitlab_rails["smtp_port"] = 465  
+gitlab_rails["smtp_user_name"] = "xxx@163.com"
+
+# 此处密码应该为客户端授权码，而不是登录密码 
+
+gitlab_rails["smtp_password"] = "xxx"  
+gitlab_rails["smtp_domain"] = "163.com"  
+gitlab_rails["smtp_authentication"] = "login"   
+gitlab_rails["smtp_enable_starttls_auto"] = true   
+gitlab_rails["smtp_tls"] =true
+
+gitlab_rails["smtp_openssl_verify_mode"] = "peer"
+```
+
+## 4.4. 重启服务来更新配置或直接更新配置
+
+```shell
+docker restart gitlab # 重启服务
+# 或
+gitlab-ctl reconfigure # 更新配置
+```
+
+## 4.5. 测试邮箱
+
+```shell
+gitlab-rails console
+Notify.test_email("xxx@qq.com", "测试gitlab邮箱", "gitlab").deliver_now
+```
+
+## 4.6. 登录账户
+
+默认管理员账号： `root`
+
+默认密码：在 `/etc/gitlab/initial_root_password` （ `/Users/a/gitlab/config/initial_root_password` ）文件中查看，默认24小时后自动被删除
