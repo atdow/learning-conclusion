@@ -19,6 +19,12 @@ git push origin branch_name --delete
 ```shell
 git config --global user.name <yourUserName>
 git config --global user.email <xxx@xx.com>
+
+git config --global user.name zhuwendong
+git config --global user.email zhuwendong@sinohealth.cn
+
+git config --global user.name atdow
+git config --global user.email 758815713@qq.com
 ```
 
 ## 4. github代理

@@ -26,6 +26,11 @@
           "path": "/progress",
           "title": "进度条",
           "type": "md"
+        },
+        {
+          "path": "/granule-button",
+          "title": "粒子button",
+          "type": "md"
         }
       ]
     },
