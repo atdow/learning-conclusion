@@ -1,0 +1,41 @@
+@import '../vars.less';
+
+.sino-select-option {
+  height: @liHeight * 1px;
+  display: block;
+  padding: 5px 12px;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 400;
+  font-size: 0.14rem;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: rgba(39, 60, 112, 0.26);
+  }
+
+  p {
+    white-space: nowrap;
+  }
+
+  .check {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+}
+
+.select_active {
+  font-weight: bold;
+}
+
+.multiple {
+  padding-right: 20px;
+}
+
+i {
+  font-size: 12px;
+}

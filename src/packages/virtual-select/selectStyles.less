@@ -1,0 +1,47 @@
+@import './vars.less';
+
+
+
+@set: {
+  color: rgba(60, 67, 83, 1);
+  opacity: 0.4;
+}
+
+
+// .reset-input-placeholder(@set);
+.s-select {
+  position: relative;
+  outline: none;
+
+  .s-select-drop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: red;
+    color: rgba(0, 0, 0, 0.65);
+    font-variant: tabular-nums;
+    z-index: 1050;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: height 0.1s;
+
+    ul {
+      margin-bottom: 0;
+      box-sizing: border-box;
+      padding: 4px 0;
+    }
+  }
+}
+
+.list-view-phantom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
