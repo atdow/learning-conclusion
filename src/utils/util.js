@@ -289,3 +289,66 @@ export const getClientXY = function () {
   }
 }
 
+/**
+ * 树级数据深度优先遍历
+ * @param { Object } treeData 
+ * @param { Function } callback (data, parent)=>{} 回调函数一个参数是当前遍历项，第二个参数是当前项父级（根节点的parent===null）
+ */
+export const treeDepthFirstTraversal = (treeData = {}, callback = () => { }) => {
+  if (Object.keys(treeData).length > 0) {
+    callback(treeData, null)
+  }
+  if (treeData.children && treeData.children.length > 0) {
+    recursion(treeData.children, treeData)
+  }
+  function recursion(list = [], parent) {
+    list.forEach(listItem => {
+      callback(listItem, parent)
+      if (listItem.children && listItem.children.length > 0) {
+        recursion(listItem.children, listItem)
+      }
+    })
+  }
+}
+
+/**
+ * list数据深度优先遍历
+ * @param { Array } list 
+ * @param { Function } callback (data, parent)=>{} 回调函数一个参数是当前遍历项，第二个参数是当前项父级（根节点的parent===null）
+ */
+export const listDepthFirstTraversal = (list = [], callback = () => { }) => {
+  recursion(list, null)
+  function recursion(list = [], parent) {
+    list.forEach(listItem => {
+      callback(listItem, parent)
+      if (listItem.children && listItem.children.length > 0) {
+        recursion(listItem.children, listItem)
+      }
+    })
+  }
+}
+
+/**
+ * 给树级数据增加mesh层级（mesh从0开始）
+ * @param { Object } treeData 
+ */
+export const treeAddMesh = (treeData = {}) => {
+  treeDepthFirstTraversal(treeData, (itemData, parent) => {
+    if (!parent) {
+      itemData.mesh = 0
+    } else {
+      itemData.mesh = parent.mesh + 1
+    }
+  })
+}
+
+/**
+ * 给树级数据增加指定到层级collapsed属性
+ * @param { Object } treeData 
+ * @param { Number } mesh 展开到那个层级
+ */
+export const treeAddCollapsed = (treeData, mesh = -1) => {
+  treeDepthFirstTraversal(treeData, (data) => {
+    data.collapsed = data.mesh + 1 > mesh ? true : false
+  })
+}

@@ -1,0 +1,18 @@
+@import './vars.less';
+/deep/ .chart-grid-collapse {
+  height: @sLeftTitleGridHeight * 1px;
+}
+/deep/ .is-height-none {
+  height: 0;
+  overflow: hidden;
+}
+// 强制修改transform失效，防止色块图定位fixed不能相对浏览器定位问题
+.color-grid-scroll {
+  /deep/ .gm-scrollbar-container .gm-scroll-view {
+    transform: none !important;
+  }
+}
+.tableWrapper {
+  width: 100%;
+  overflow: auto;
+}

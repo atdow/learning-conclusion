@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-03-23 15:10:51
  * @LastEditors: null
- * @LastEditTime: 2022-04-01 17:13:21
+ * @LastEditTime: 2022-10-11 21:02:47
  * @Description: file description
 -->
 <template>
@@ -12,16 +12,8 @@
       :style="`height:${contentHeight + 'px'}`"
       ref="geminiScrollbarRef"
     >
-      <div
-        class="list-view-phantom"
-        ref="clientHeight"
-        :style="{ height: virtualContentHeight + 'px' }"
-      ></div>
-      <div
-        ref="content"
-        @mouseenter="contentMouseenter"
-        @mouseleave="contentMouseleave"
-      >
+      <div class="list-view-phantom" ref="clientHeight" :style="{ height: virtualContentHeight + 'px' }"></div>
+      <div ref="content" @mouseenter="contentMouseenter" @mouseleave="contentMouseleave">
         <div
           class="color-grid-chart-row"
           v-for="(dataRow, dataRowIndex) in renderData"
@@ -90,14 +82,23 @@ export default {
         }
       },
     },
+    startColor: {
+      type: String,
+      default: '#c1cae9',
+    },
+    endColor: {
+      type: String,
+      default: '#273C70',
+    },
+    boundaryValue: {
+      type: Object,
+    },
   },
   data() {
     return {
       maxValue: 0,
       minValue: 0,
       colors: [],
-      startColor: '#eceff9',
-      endColor: '#273C70',
       // 虚拟滚动
       renderData: [],
       virtualContentHeight: 300,
@@ -177,11 +178,7 @@ export default {
         ms = i / (steps - 1)
         me = 1 - ms
         for (j = 0; j < 3; j++) {
-          so[j] = this.pad(
-            Math.round(
-              Math.pow(start[j] * me + end[j] * ms, 1 / gamma) * 255
-            ).toString(16)
-          )
+          so[j] = this.pad(Math.round(Math.pow(start[j] * me + end[j] * ms, 1 / gamma) * 255).toString(16))
         }
         output.push('#' + so.join(''))
       }
@@ -195,17 +192,19 @@ export default {
             .map(function (s) {
               return 0x11 * parseInt(s, 16)
             })
-        : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(
-            function (s) {
-              return parseInt(s, 16)
-            }
-          )
+        : [hexStr.substr(1, 2), hexStr.substr(3, 2), hexStr.substr(5, 2)].map(function (s) {
+            return parseInt(s, 16)
+          })
     },
     // zero-pad 1 digit to 2
     pad(s) {
       return s.length === 1 ? '0' + s : s
     },
     calDataBoundaryValue() {
+      if (this.boundaryValue) {
+        const { max, min } = this.boundaryValue
+        return { min, max }
+      }
       let max = 0
       let min = 0
       this.data.forEach((dataItem) => {
@@ -249,9 +248,7 @@ export default {
        * 基本公式：colorsIndex/(this.colors.length - 1) = value/(this.maxValue - this.minValue)
        * 但是不一定会有整取的索引，容易越界
        */
-      let colorsIndex = Math.ceil(
-        ((this.colors.length - 1) * value) / (this.maxValue - this.minValue)
-      )
+      let colorsIndex = Math.ceil(((this.colors.length - 1) * value) / (this.maxValue - this.minValue))
       // 容易越界处理
       if (colorsIndex > this.colors.length - 1) {
         colorsIndex = this.colors.length - 1
@@ -291,9 +288,7 @@ export default {
         // 把可见区域的 top 设置为起始元素在整个列表中的位置（使用 transform 是为了更好的性能）
         this.$nextTick(() => {
           if (this.$refs.content) {
-            this.$refs.content.style.webkitTransform = `translate3d(0, ${
-              start * this.itemHeight
-            }px, 0)`
+            this.$refs.content.style.webkitTransform = `translate3d(0, ${start * this.itemHeight}px, 0)`
           }
         })
       })

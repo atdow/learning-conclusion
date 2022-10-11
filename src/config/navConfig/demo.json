@@ -24,6 +24,16 @@
           "path": "/virtual-select-demo",
           "title": "虚拟滚动select",
           "type": "vue"
+        },
+        {
+          "path": "/time-travel-demo",
+          "title": "宇宙穿梭",
+          "type": "vue"
+        },
+        {
+          "path": "/color-grid-tree-scroll-demo/index",
+          "title": "colorGridTreeScrollDemo",
+          "type": "vue"
         }
       ]
     }

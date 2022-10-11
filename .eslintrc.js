@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-01 14:14:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 00:23:23
+ * @LastEditTime: 2022-10-11 20:52:49
  * @Description: file description
  */
 module.exports = {
@@ -57,7 +57,8 @@ module.exports = {
       }
     ],
     'no-undef': 2, // 没有定义的变量
-    'no-use-before-define': ["error", { "functions": true, "classes": true }], // 避免变量提升影响代码风格和造成错误
+    // 'no-use-before-define': ["error", { "functions": true, "classes": true }], // 避免变量提升影响代码风格和造成错误
+    'no-use-before-define': 'off',
     'no-delete-var': 2,
     'prefer-const': [
       2,
