@@ -58,3 +58,9 @@ mac git配置文件位置
 ```text
 /Users/a/.gitconfig
 ```
+
+## 5. 更新本地列表
+
+```text
+git remote update
+```
