@@ -15,7 +15,7 @@
           <li v-for="(item,index) in 10" :key="index">{{item}}</li>   
         </ul>
       </sino-scrollbar >
-      <button @click="scrollTopTest">滚动到顶部</button>
+      <button style="margin-top: 10px" @click="scrollTopTest">滚动到顶部</button>
     </div>
 </template>
 <script>
@@ -78,7 +78,6 @@ li {
 | --------- | -------------------- | ------------------ |
 | scroll | 滚动事件 | (data) => void |
 | scrollBottom | 滚动到底部事件 | - |
-| scroll | 滚动事件 | (data) => void |
 
 ### 方法
 
