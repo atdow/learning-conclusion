@@ -122,11 +122,19 @@ export default {
   },
 
   methods: {
-    handleScroll() {
+    handleScroll(e) {
       const wrap = this.wrap
 
       this.moveY = ((wrap.scrollTop * 100) / wrap.clientHeight)
       this.moveX = ((wrap.scrollLeft * 100) / wrap.clientWidth)
+      this.$emit('scroll', { scrollTop: e.target.scrollTop, scrollLeft: e.target.scrollLeft, e })
+      if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight) {
+        // 防抖
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.$emit('scrollBottom')
+        }, 100)
+      }
     },
 
     update() {
@@ -140,6 +148,9 @@ export default {
 
       this.sizeHeight = (heightPercentage < 100) ? (heightPercentage + '%') : ''
       this.sizeWidth = (widthPercentage < 100) ? (widthPercentage + '%') : ''
+    },
+    resetToTop() {
+      this.wrap.scrollTop = 0
     }
   },
 
