@@ -1,0 +1,44 @@
+.sino-scrollbar__wrap {
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+}
+.sino-scrollbar {
+  overflow: hidden;
+  position: relative;
+}
+.sino-scrollbar__bar {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 0.12s ease-out;
+}
+.sino-scrollbar__bar.is-horizontal {
+  height: 6px;
+  left: 2px;
+  // background: rgba(235, 237, 248, 1);
+}
+.sino-scrollbar__bar.is-horizontal > div {
+  height: 100%;
+}
+.sino-scrollbar__bar.is-vertical {
+  width: 6px;
+  top: 2px;
+  // background: rgba(235, 237, 248, 1);
+}
+.sino-scrollbar__bar.is-vertical > div {
+  width: 100%;
+}
+.sino-scrollbar__thumb {
+  position: relative;
+  display: block;
+  width: 0;
+  height: 0;
+  cursor: pointer;
+  border-radius: inherit;
+  background-color: rgba(180, 185, 210, 0.4);
+  transition: background-color 0.3s;
+}

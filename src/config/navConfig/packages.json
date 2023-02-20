@@ -10,6 +10,10 @@
           "title": "滚动数字"
         },
         {
+          "path": "/scrollbar",
+          "title": "自定义滚动条"
+        },
+        {
           "path": "/color-grid-chart",
           "title": "色块图"
         },
