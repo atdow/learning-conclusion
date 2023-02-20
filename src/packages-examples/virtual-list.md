@@ -4,14 +4,20 @@
 
 ```vue
 <template>
-  <virtual-list 
-    :data="data" 
-    :maxHeight="300" 
-    :itemHeight="30" 
-    @scrollBottom="scrollBottom"
-  >
-    <div slot-scope="{ item, index }">{{ item }}</div>
-  </virtual-list>
+  <div>
+    <virtual-list 
+      :data="data" 
+      :maxHeight="300" 
+      :itemHeight="30" 
+      ref="virtualListRef"
+      @scroll="scroll"
+      @scrollBottom="scrollBottom"
+    >
+      <div slot-scope="{ item, index }">{{ item }}</div>
+    </virtual-list>
+    <button style="margin-top: 10px" @click="scrollTopTest">滚动到顶部</button>
+  </div>
+
 </template>
 <script>
 import VirtualList from "@/packages/virtual-list";
@@ -39,6 +45,12 @@ export default {
   methods: {
     scrollBottom() {
       console.log('scrollBottom')
+    },
+    scroll(data) {
+      console.log('data:', data)
+    },
+    scrollTopTest() {
+      this.$refs.virtualListRef.resetToTop()
     }
   },
   beforeDestroy() {},
@@ -65,6 +77,7 @@ export default {
 
 | 事件名称  | 说明                 | 回调参数           |
 | --------- | -------------------- | ------------------ |
+| scroll | 滚动事件 | (data) => void |
 | scrollBottom | 滚动到底部事件 | - |
 
 ### 方法

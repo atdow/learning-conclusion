@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-11-18 10:41:36
  * @LastEditors: null
- * @LastEditTime: 2023-02-20 22:34:04
+ * @LastEditTime: 2023-02-20 22:59:11
  * @Description: file description
 -->
 <template>
@@ -137,6 +137,7 @@ export default {
       const {scrollTop} = data
       this.update(scrollTop)
       this.currentScrollTop = scrollTop
+      this.$emit('scroll', data)
     },
     resetToTopUpdate() {
       this.$nextTick(() => {
