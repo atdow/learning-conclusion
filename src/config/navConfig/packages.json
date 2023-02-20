@@ -14,6 +14,10 @@
           "title": "自定义滚动条"
         },
         {
+          "path": "/virtual-list",
+          "title": "虚拟滚动-定高"
+        },
+        {
           "path": "/color-grid-chart",
           "title": "色块图"
         },
