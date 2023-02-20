@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2022-04-16 13:15:39
+ * @LastEditTime: 2023-02-20 21:44:18
  * @Description: file description
 -->
 <template>
@@ -11,7 +11,7 @@
       <p class="group-name">{{ sideBarDataItem.groupName }}</p>
       <ul class="component-list">
         <li
-          :class="['component-list-content', { active: $route.path.indexOf(listItem.path) !== -1 }]"
+          :class="['component-list-content', { active: $route.path.endsWith(listItem.path) }]"
           v-for="(listItem, listIndex) in sideBarDataItem.list"
           :key="listIndex"
           @click="switchRoute(listItem)"
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     switchRoute(listItem) {
-      if (this.$route.path.indexOf(listItem.path) === -1) {
+      if (!this.$route.path.endsWith(listItem.path)) {
         this.$router.push({ path: listItem.path })
       }
     },
