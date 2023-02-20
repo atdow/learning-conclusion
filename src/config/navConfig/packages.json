@@ -18,6 +18,10 @@
           "title": "虚拟滚动-定高"
         },
         {
+          "path": "/virtual-list-dynamic-height",
+          "title": "虚拟滚动-不定高"
+        },
+        {
           "path": "/color-grid-chart",
           "title": "色块图"
         },
