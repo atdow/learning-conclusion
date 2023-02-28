@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 21:20:13
+ * @LastEditTime: 2023-02-28 22:50:52
  * @Description: 目录组件
 -->
 <template>
@@ -37,6 +37,7 @@ export default {
       catalogStr: '',
       top: 100,
       menuList: [],
+      scrollTop: 0,
     }
   },
   components: {
@@ -228,7 +229,16 @@ export default {
       this.$refs.menuRef.receiveContentScrollData(data)
     },
     activeChange(activeId, dom) {
-      this.$refs.scrollbarRef.scrollToTop(dom.offsetTop - 400 + 38)
+      const scrollTop = this.$refs.scrollbarRef.wrap.scrollTop
+      const pageHeight = 400
+      const unitHeight = 38
+      // 激活锚点在下部隐藏，直接往下翻一页
+      if (dom.offsetTop > scrollTop + pageHeight - unitHeight) {
+        this.$refs.scrollbarRef.scrollToTop(dom.offsetTop)
+      } else if (dom.offsetTop < scrollTop - unitHeight) {
+        // 激活锚点在上部隐藏，往上移动一个单元
+        this.$refs.scrollbarRef.scrollToTop(dom.offsetTop)
+      }
     },
   },
   beforeDestroy() {},
