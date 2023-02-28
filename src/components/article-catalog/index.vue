@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 19:46:51
+ * @LastEditTime: 2023-02-28 21:20:13
  * @Description: 目录组件
 -->
 <template>
@@ -11,7 +11,7 @@
      
     <p class="article-catalog-reminder">目录</p>
     <SinoScrollbar :style="`height: ${400}px`" class="scrollbar" ref="scrollbarRef">
-      <Menu :list="menuList" @menuClick="menuClick" ref="menuRef" />
+      <Menu :list="menuList" @menuClick="menuClick" ref="menuRef" @activeChange="activeChange" />
       <p class="article-catalog-default" v-if="menuList.length === 0">暂无目录</p>
       <!-- <div v-html="catalogStr" v-else></div> -->
     </SinoScrollbar>
@@ -227,6 +227,9 @@ export default {
     receiveContentScrollData(data) {
       this.$refs.menuRef.receiveContentScrollData(data)
     },
+    activeChange(activeId, dom) {
+      this.$refs.scrollbarRef.scrollToTop(dom.offsetTop - 400 + 38)
+    },
   },
   beforeDestroy() {},
 }
@@ -263,7 +266,6 @@ export default {
   }
 }
 /deep/.markdown-toc-list {
-  padding-left: 20px;
   a {
     color: inherit;
     display: inline-block;
@@ -275,8 +277,21 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;
+    box-sizing: border-box;
     &.active {
       color: @theme-color;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        background: @theme-color;
+        height: 16px;
+        border-radius: 0 6px 6px 0;
+      }
     }
     &:hover {
       background: rgb(247, 247, 247);
