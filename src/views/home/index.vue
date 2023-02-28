@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 18:05:50
+ * @LastEditTime: 2023-02-28 18:48:20
  * @Description: file description
 -->
 <template>
@@ -28,6 +28,7 @@ import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
 import ArticleCatalog from '@/components/article-catalog'
 import MyScrollbar from '@/packages/scrollbar'
+import { scrollTo } from '@/utils/scrollUtils'
 
 export default {
   name: 'Index',
@@ -106,8 +107,7 @@ export default {
       preDom.className = className
     },
     menuClick(id) {
-      const dom = this.$el.querySelector(`#${id}`)
-      this.$refs.scrollbarRef.scrollToTop(dom.offsetTop)
+      scrollTo(this.$el.querySelector(`#${id}`).offsetTop, { getContainer: () => this.$refs.scrollbarRef.wrap })
     },
   },
 }
