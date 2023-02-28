@@ -52,7 +52,8 @@
     "vue-template-compiler": "^2.6.11",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "copy-webpack-plugin": "^6.3.0"
+    "copy-webpack-plugin": "^6.3.0",
+    "raf": "^3.4.0"
   },
   "eslintConfig": {
     "root": true,
