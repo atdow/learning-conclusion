@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 01:10:16
+ * @LastEditTime: 2023-02-28 18:05:50
  * @Description: file description
 -->
 <template>
@@ -11,11 +11,13 @@
     <div class="s-content">
       <SideBar />
       <div class="main-content-container" :style="{ height: contentHeight }">
-        <div class="main-content-container-wrapper">
-          <router-view></router-view>
-        </div>
+        <MyScrollbar style="height: 100%" ref="scrollbarRef">
+          <div class="main-content-container-wrapper">
+            <router-view></router-view>
+          </div>
+        </MyScrollbar>
       </div>
-      <ArticleCatalog />
+      <ArticleCatalog @menuClick="menuClick" />
     </div>
   </div>
 </template>
@@ -24,8 +26,8 @@ import SideBar from '@/components/sidebar'
 import GlobalHeader from '@/components/global-header'
 import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
-
 import ArticleCatalog from '@/components/article-catalog'
+import MyScrollbar from '@/packages/scrollbar'
 
 export default {
   name: 'Index',
@@ -39,6 +41,7 @@ export default {
     SideBar,
     GlobalHeader,
     ArticleCatalog,
+    MyScrollbar,
   },
   mounted() {
     // this.setCodeHighLight()
@@ -102,6 +105,10 @@ export default {
       }
       preDom.className = className
     },
+    menuClick(id) {
+      const dom = this.$el.querySelector(`#${id}`)
+      this.$refs.scrollbarRef.scrollToTop(dom.offsetTop)
+    },
   },
 }
 </script>
@@ -125,8 +132,6 @@ export default {
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
   &-wrapper {
-    height: 100%;
-    overflow-y: auto;
     padding: 0 30px;
   }
 }

@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2022-04-10 15:32:23
+ * @LastEditTime: 2023-02-28 18:11:36
  * @Description: 目录组件
 -->
 <template>
@@ -10,15 +10,17 @@
   <div class="article-catalog" :style="{ top: top + 'px' }">
      
     <p class="article-catalog-reminder">目录</p>
-    <div class="article-catalog-content">
-      <p class="article-catalog-default" v-if="!catalogStr">暂无目录</p>
-      <div v-html="catalogStr" v-else></div>
-    </div>
-     
+    <SinoScrollbar :style="`height: ${400}px`" class="scrollbar" ref="scrollbarRef">
+      <Menu :list="menuList" @menuClick="menuClick" ref="menuRef" />
+      <p class="article-catalog-default" v-if="menuList.length === 0">暂无目录</p>
+      <!-- <div v-html="catalogStr" v-else></div> -->
+    </SinoScrollbar>
   </div>
 </template>
  
 <script>
+import SinoScrollbar from '@/packages/scrollbar'
+import Menu from './Menu'
 let hFlatLevelArr = [
   // { hLevel: 4 }
 ]
@@ -34,13 +36,18 @@ export default {
     return {
       catalogStr: '',
       top: 100,
+      menuList: [],
     }
   },
-  components: {},
+  components: {
+    SinoScrollbar,
+    Menu,
+  },
   watch: {
     $route: {
       immediate: true,
       handler: function () {
+        console.log('监听')
         this.generateCatalogStr()
       },
     },
@@ -61,14 +68,16 @@ export default {
           const dom = document.querySelector('.main-content-container')
           const domStr = this.nodeToString(dom)
           hFlatLevelArr = []
-          this.catalogStr = ''
+          // this.catalogStr = ''
+          this.menuList = []
           this.parserHtml(domStr)
           if (hFlatLevelArr.length === 0) {
             return
           }
           var treeData = this.toTree(hFlatLevelArr)
-          var domTree = this.getChapterDomTree(treeData)
-          this.catalogStr = this.nodeToString(domTree)
+          this.menuList = treeData
+          // var domTree = this.getChapterDomTree(treeData)
+          // this.catalogStr = this.nodeToString(domTree)
         })
       })
     },
@@ -188,9 +197,7 @@ export default {
     // 依据树状构造数据生成章节目录dom树
     getChapterDomTree(chapterTreeData, parentNode) {
       if (!parentNode) {
-        parentNode = this.createNodeByHtmlStr(
-          '<ul class="markdown-toc-list"></ul>'
-        )[0]
+        parentNode = this.createNodeByHtmlStr('<ul class="markdown-toc-list"></ul>')[0]
       }
       chapterTreeData.forEach((chapterItem) => {
         var itemDom = this.createNodeByHtmlStr(
@@ -198,9 +205,7 @@ export default {
         )[0]
         parentNode.appendChild(itemDom)
         if (chapterItem.children) {
-          var catalogList = this.createNodeByHtmlStr(
-            '<ul class="markdown-toc-list"></ul>'
-          )[0]
+          var catalogList = this.createNodeByHtmlStr('<ul class="markdown-toc-list"></ul>')[0]
           itemDom.appendChild(catalogList)
           this.getChapterDomTree(chapterItem.children, catalogList)
         }
@@ -216,13 +221,17 @@ export default {
       div = null
       return children
     },
+    menuClick(item) {
+      const { id } = item
+      this.$emit('menuClick', id)
+    },
   },
   beforeDestroy() {},
 }
 </script>
  
 <style lang="less" scoped>
-@import "~@/style/vars.less";
+@import '~@/style/vars.less';
 .article-catalog {
   position: fixed;
   top: 60px;
@@ -261,9 +270,9 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    // cursor: pointer;
     border-radius: 5px;
     text-decoration: none;
+    cursor: pointer;
     &:hover {
       background: rgb(247, 247, 247);
     }

@@ -18,17 +18,17 @@ export default {
     viewStyle: {},
     showHorizontalBar: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showVerticalBar: {
       type: Boolean,
-      default: true
+      default: true,
     },
     noresize: Boolean, // 如果 container 尺寸不会发生变化，最好设置它可以优化性能
     tag: {
       type: String,
-      default: 'div'
-    }
+      default: 'div',
+    },
   },
 
   data() {
@@ -36,14 +36,14 @@ export default {
       sizeWidth: '0',
       sizeHeight: '0',
       moveX: 0,
-      moveY: 0
+      moveY: 0,
     }
   },
 
   computed: {
     wrap() {
       return this.$refs.wrap
-    }
+    },
   },
 
   render(h) {
@@ -69,17 +69,22 @@ export default {
     } else {
       style += `width: 100%;height: 100%;`
     }
-    const view = h(this.tag, {
-      class: ['sino-scrollbar__view', this.viewClass],
-      style: this.viewStyle,
-      ref: 'resize'
-    }, this.$slots.default)
+    const view = h(
+      this.tag,
+      {
+        class: ['sino-scrollbar__view', this.viewClass],
+        style: this.viewStyle,
+        ref: 'resize',
+      },
+      this.$slots.default
+    )
     const wrap = (
       <div
         ref="wrap"
         style={style}
         onScroll={this.handleScroll}
-        class={[this.wrapClass, 'sino-scrollbar__wrap', gutter ? '' : 'sino-scrollbar__wrap--hidden-default']}>
+        class={[this.wrapClass, 'sino-scrollbar__wrap', gutter ? '' : 'sino-scrollbar__wrap--hidden-default']}
+      >
         {[view]}
       </div>
     )
@@ -88,15 +93,10 @@ export default {
     if (!this.native) {
       nodes = [wrap]
       if (this.showHorizontalBar) {
-        nodes.push(<Bar
-          move={this.moveX}
-          size={this.sizeWidth}></Bar>)
+        nodes.push(<Bar move={this.moveX} size={this.sizeWidth}></Bar>)
       }
       if (this.showVerticalBar) {
-        nodes.push(<Bar
-          vertical
-          move={this.moveY}
-          size={this.sizeHeight}></Bar>)
+        nodes.push(<Bar vertical move={this.moveY} size={this.sizeHeight}></Bar>)
       }
       // nodes = ([
       //   wrap,
@@ -109,14 +109,11 @@ export default {
       //     size={this.sizeHeight}></Bar>
       // ])
     } else {
-      nodes = ([
-        <div
-          ref="wrap"
-          class={[this.wrapClass, 'sino-scrollbar__wrap']}
-          style={style}>
+      nodes = [
+        <div ref="wrap" class={[this.wrapClass, 'sino-scrollbar__wrap']} style={style}>
           {[view]}
-        </div>
-      ])
+        </div>,
+      ]
     }
     return h('div', { class: 'sino-scrollbar' }, nodes)
   },
@@ -125,8 +122,8 @@ export default {
     handleScroll(e) {
       const wrap = this.wrap
 
-      this.moveY = ((wrap.scrollTop * 100) / wrap.clientHeight)
-      this.moveX = ((wrap.scrollLeft * 100) / wrap.clientWidth)
+      this.moveY = (wrap.scrollTop * 100) / wrap.clientHeight
+      this.moveX = (wrap.scrollLeft * 100) / wrap.clientWidth
       this.$emit('scroll', { scrollTop: e.target.scrollTop, scrollLeft: e.target.scrollLeft, e })
       if (e.target.scrollTop + e.target.offsetHeight >= e.target.scrollHeight) {
         // 防抖
@@ -143,15 +140,18 @@ export default {
       const wrap = this.wrap
       if (!wrap) return
 
-      heightPercentage = (wrap.clientHeight * 100 / wrap.scrollHeight)
-      widthPercentage = (wrap.clientWidth * 100 / wrap.scrollWidth)
+      heightPercentage = (wrap.clientHeight * 100) / wrap.scrollHeight
+      widthPercentage = (wrap.clientWidth * 100) / wrap.scrollWidth
 
-      this.sizeHeight = (heightPercentage < 100) ? (heightPercentage + '%') : ''
-      this.sizeWidth = (widthPercentage < 100) ? (widthPercentage + '%') : ''
+      this.sizeHeight = heightPercentage < 100 ? heightPercentage + '%' : ''
+      this.sizeWidth = widthPercentage < 100 ? widthPercentage + '%' : ''
     },
     resetToTop() {
       this.wrap.scrollTop = 0
-    }
+    },
+    scrollToTop(top) {
+      this.wrap.scrollTop = top
+    },
   },
 
   mounted() {
@@ -163,5 +163,5 @@ export default {
   beforeDestroy() {
     if (this.native) return
     !this.noresize && removeResizeListener(this.$refs.resize, this.update)
-  }
+  },
 }
