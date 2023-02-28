@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 18:50:56
+ * @LastEditTime: 2023-02-28 19:46:51
  * @Description: 目录组件
 -->
 <template>
@@ -224,6 +224,9 @@ export default {
       const { id } = item
       this.$emit('menuClick', id)
     },
+    receiveContentScrollData(data) {
+      this.$refs.menuRef.receiveContentScrollData(data)
+    },
   },
   beforeDestroy() {},
 }
@@ -272,6 +275,9 @@ export default {
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;
+    &.active {
+      color: @theme-color;
+    }
     &:hover {
       background: rgb(247, 247, 247);
     }
