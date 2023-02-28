@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 18:11:36
+ * @LastEditTime: 2023-02-28 18:50:56
  * @Description: 目录组件
 -->
 <template>
@@ -47,7 +47,6 @@ export default {
     $route: {
       immediate: true,
       handler: function () {
-        console.log('监听')
         this.generateCatalogStr()
       },
     },
