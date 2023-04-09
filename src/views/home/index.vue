@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 19:32:02
+ * @LastEditTime: 2023-04-09 18:10:38
  * @Description: file description
 -->
 <template>
@@ -29,9 +29,10 @@ import hljs from 'highlight.js'
 import ArticleCatalog from '@/components/article-catalog'
 import MyScrollbar from '@/packages/scrollbar'
 import { scrollTo } from '@/utils/scrollUtils'
-
+import contentMixin from '@/mixins/contentMixin'
 export default {
   name: 'Index',
+  mixins: [contentMixin],
   data() {
     return {
       count: 0,
@@ -47,9 +48,6 @@ export default {
   mounted() {
     // this.setCodeHighLight()
     // this.addExpand()
-    const sGlobalHeader = document.querySelector('.s-global-header')
-    const { height = 0 } = sGlobalHeader.getBoundingClientRect()
-    this.contentHeight = `calc(100vh - ${height}px)`
   },
   updated() {
     this.setCodeHighLight()

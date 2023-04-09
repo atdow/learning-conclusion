@@ -2,31 +2,49 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-02-20 21:44:18
+ * @LastEditTime: 2023-04-09 18:10:01
  * @Description: file description
 -->
 <template>
-  <aside class="s-sidebar">
-    <div v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []" :key="sideBarDataIndex">
-      <p class="group-name">{{ sideBarDataItem.groupName }}</p>
-      <ul class="component-list">
-        <li
-          :class="['component-list-content', { active: $route.path.endsWith(listItem.path) }]"
-          v-for="(listItem, listIndex) in sideBarDataItem.list"
-          :key="listIndex"
-          @click="switchRoute(listItem)"
-        >
-          {{ listItem.title }}
-        </li>
-      </ul>
-    </div>
-  </aside>
+  <div class="s-sidebar" :style="{ height: contentHeight }">
+    <MyScrollbar style="height: 100%">
+      <div v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []" :key="sideBarDataIndex">
+        <div class="group-name" @click="foldChange(sideBarDataItem, sideBarDataIndex)">
+          <p class="group-name_title">{{ sideBarDataItem.groupName }}</p>
+          <span :class="['group-name_fold', { 'is-fold': sideBarDataItem.isFold === true }]">
+            <svg width="23" height="23" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M36 18L24 30L12 18"
+                stroke="rgb(163, 163, 163)"
+                stroke-width="3"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+              />
+            </svg>
+          </span>
+        </div>
+        <ul :class="['component-list', { 'is-fold': sideBarDataItem.isFold === true }]">
+          <li
+            :class="['component-list-content', { active: $route.path.endsWith(listItem.path) }]"
+            v-for="(listItem, listIndex) in sideBarDataItem.list"
+            :key="listIndex"
+            @click="switchRoute(listItem)"
+          >
+            {{ listItem.title }}
+          </li>
+        </ul>
+      </div>
+    </MyScrollbar>
+  </div>
 </template>
 
 <script>
 import navConfig from '@/config/navConfig'
+import MyScrollbar from '@/packages/scrollbar'
+import contentMixin from '@/mixins/contentMixin'
 export default {
   name: 'Sidebar',
+  mixins: [contentMixin],
   props: {},
   data() {
     return {
@@ -35,7 +53,9 @@ export default {
       },
     }
   },
-  components: {},
+  components: {
+    MyScrollbar,
+  },
   watch: {},
   updated() {
     this.updatedSideBar()
@@ -49,6 +69,7 @@ export default {
     this.updatedSideBar()
     // console.log("navConfig:", navConfig);
   },
+  mounted() {},
   methods: {
     switchRoute(listItem) {
       if (!this.$route.path.endsWith(listItem.path)) {
@@ -63,8 +84,13 @@ export default {
         })[0] || {}
       this.sideBarData = sideBarData
     },
+    foldChange(sideBarDataItem, sideBarDataIndex) {
+      this.$set(this.sideBarData.groups, sideBarDataIndex, {
+        ...sideBarDataItem,
+        isFold: !Boolean(sideBarDataItem.isFold),
+      })
+    },
   },
-  mounted() {},
   beforeDestroy() {},
 }
 </script>
@@ -90,6 +116,10 @@ export default {
 .component-list {
   display: flex;
   flex-direction: column;
+  &.is-fold {
+    height: 0;
+    overflow: hidden;
+  }
   .component-list-content {
     height: 42px;
     line-height: 38px;
@@ -129,6 +159,17 @@ export default {
 }
 .group-name {
   color: rgb(163, 163, 163);
-  padding-left: 10px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  .group-name_fold {
+    cursor: pointer;
+    // transform: rotateZ(90deg);
+    &.is-fold {
+      transform: rotateZ(180deg);
+    }
+  }
 }
 </style>
