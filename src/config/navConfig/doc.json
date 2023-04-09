@@ -72,6 +72,19 @@
           "title": "element总结"
         }
       ]
+    },
+    {
+      "groupName": "小程序",
+      "list": [
+        {
+          "path": "/miniProgram/tool",
+          "title": "工具封装"
+        },
+        {
+          "path": "/miniProgram/styles",
+          "title": "样式"
+        }
+      ]
     }
   ]
 }
