@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2022-04-17 00:11:26
+ * @LastEditTime: 2023-04-16 16:19:04
  * @Description: file description
  */
 import Vue from 'vue'
@@ -10,7 +10,9 @@ import App from './App.vue'
 import router from './router'
 import Vuebar from 'vuebar'
 Vue.use(Vuebar)
+import './lazy/index'
 import './style/global.less'
+import './mock/index'
 // import 'prismjs/themes/prism.css'
 
 import './config/components_use'
@@ -22,13 +24,11 @@ import './config/components_use'
 // import "prismjs/themes/prism-tomorrow.css";
 // import "prismjs/themes/prism-twilight.css";
 
-
 router.afterEach((to, from) => {
   const { meta = {} } = to
   const title = meta.title || '常用组件'
   document.title = title
 })
-
 
 Vue.config.productionTip = false
 
