@@ -64,3 +64,13 @@ mac git配置文件位置
 ```text
 git remote update
 ```
+
+## 5. https和ssh切换
+
+### 5.1 https切换ssh
+
+```shell
+# ssh地址：git@github.com:atdow/xxx.git
+# git remote set-url origin '重新设置的url'
+git remote set-url origin git@github.com:atdow/xxx.git
+```
