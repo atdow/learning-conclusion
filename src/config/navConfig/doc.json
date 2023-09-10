@@ -61,6 +61,10 @@
         {
           "path": "/server/docker-base",
           "title": "docker的基本使用"
+        },
+        {
+          "path": "/server/nginx-base",
+          "title": "nginx的基本使用"
         }
       ]
     },
