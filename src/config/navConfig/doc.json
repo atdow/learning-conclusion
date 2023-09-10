@@ -17,6 +17,10 @@
         {
           "path": "/git/command",
           "title": "git基础命令"
+        },
+        {
+          "path": "/git/github",
+          "title": "github部署教程"
         }
       ]
     },
