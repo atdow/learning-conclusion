@@ -41,8 +41,8 @@
           "type": "vue"
         },
         {
-          "path": "/horizontal-drag-demo",
-          "title": "horizontal-drag Demo",
+          "path": "/width-drag-demo",
+          "title": "宽度拖拽",
           "type": "vue"
         }
       ]

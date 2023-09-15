@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 19:59:29
+ * @LastEditTime: 2023-09-15 20:59:28
  * @Description: file description
 -->
 <template>
@@ -35,13 +35,7 @@
         </ul>
       </div>
     </MyScrollbar>
-    <horizontal-drag
-      class="horizontal-drag"
-      :width="menuWidth"
-      :min-width="250"
-      :max-width="400"
-      @widthChange="widthChange"
-    />
+    <width-drag class="width-drag" :width="menuWidth" :min-width="250" :max-width="400" @widthChange="widthChange" />
   </div>
 </template>
 
@@ -49,7 +43,7 @@
 import navConfig from '@/config/navConfig'
 import MyScrollbar from '@/packages/scrollbar'
 import contentMixin from '@/mixins/contentMixin'
-import HorizontalDrag from '@/packages/horizontal-drag'
+import WidthDrag from '@/packages/width-drag'
 export default {
   name: 'Sidebar',
   mixins: [contentMixin],
@@ -64,7 +58,7 @@ export default {
   },
   components: {
     MyScrollbar,
-    HorizontalDrag,
+    WidthDrag,
   },
   watch: {},
   updated() {
@@ -126,7 +120,7 @@ export default {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
   flex-shrink: 0;
   position: relative;
-  /deep/.horizontal-drag {
+  /deep/.width-drag {
     position: absolute;
     top: 0;
     right: 0px;

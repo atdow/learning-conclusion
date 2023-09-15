@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 20:45:39
+ * @LastEditTime: 2023-09-15 21:03:44
  * @Description: 目录组件
 -->
 <template>
@@ -15,8 +15,8 @@
       <p class="article-catalog-default" v-if="menuList.length === 0">暂无目录</p>
       <!-- <div v-html="catalogStr" v-else></div> -->
     </SinoScrollbar>
-    <horizontal-drag
-      class="horizontal-drag"
+    <width-drag
+      class="width-drag"
       :width="menuWidth"
       :min-width="300"
       :max-width="400"
@@ -28,7 +28,7 @@
  
 <script>
 import SinoScrollbar from '@/packages/scrollbar'
-import HorizontalDrag from '@/packages/horizontal-drag'
+import WidthDrag from '@/packages/width-drag'
 import Menu from './Menu'
 let hFlatLevelArr = [
   // { hLevel: 4 }
@@ -52,7 +52,7 @@ export default {
   },
   components: {
     SinoScrollbar,
-    HorizontalDrag,
+    WidthDrag,
     Menu,
   },
   watch: {
@@ -291,15 +291,15 @@ export default {
     overflow-y: scroll;
   }
   position: relative;
-  /deep/.horizontal-drag {
+  /deep/.width-drag {
     position: absolute;
     top: 0;
     left: 0px;
     bottom: 0;
     z-index: 1000;
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px 0 0 4px;
     .drag-dom {
-      border-radius: 0 4px 4px 0;
+      border-radius: 4px 0 0 4px;
     }
   }
 }
