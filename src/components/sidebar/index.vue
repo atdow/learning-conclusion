@@ -2,11 +2,11 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-04-09 18:10:01
+ * @LastEditTime: 2023-09-15 19:59:29
  * @Description: file description
 -->
 <template>
-  <div class="s-sidebar" :style="{ height: contentHeight }">
+  <div class="s-sidebar" :style="{ height: contentHeight, width: menuWidth + 'px' }">
     <MyScrollbar style="height: 100%">
       <div v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []" :key="sideBarDataIndex">
         <div class="group-name" @click="foldChange(sideBarDataItem, sideBarDataIndex)">
@@ -35,6 +35,13 @@
         </ul>
       </div>
     </MyScrollbar>
+    <horizontal-drag
+      class="horizontal-drag"
+      :width="menuWidth"
+      :min-width="250"
+      :max-width="400"
+      @widthChange="widthChange"
+    />
   </div>
 </template>
 
@@ -42,6 +49,7 @@
 import navConfig from '@/config/navConfig'
 import MyScrollbar from '@/packages/scrollbar'
 import contentMixin from '@/mixins/contentMixin'
+import HorizontalDrag from '@/packages/horizontal-drag'
 export default {
   name: 'Sidebar',
   mixins: [contentMixin],
@@ -51,10 +59,12 @@ export default {
       sideBarData: {
         groups: [],
       },
+      menuWidth: 250,
     }
   },
   components: {
     MyScrollbar,
+    HorizontalDrag,
   },
   watch: {},
   updated() {
@@ -90,6 +100,9 @@ export default {
         isFold: !Boolean(sideBarDataItem.isFold),
       })
     },
+    widthChange(value) {
+      this.menuWidth = value
+    },
   },
   beforeDestroy() {},
 }
@@ -112,6 +125,18 @@ export default {
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
   flex-shrink: 0;
+  position: relative;
+  /deep/.horizontal-drag {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0 4px 4px 0;
+    .drag-dom {
+      border-radius: 0 4px 4px 0;
+    }
+  }
 }
 .component-list {
   display: flex;

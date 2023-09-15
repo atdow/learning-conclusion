@@ -39,6 +39,11 @@
           "path": "/s-table-demo",
           "title": "s-table Demo",
           "type": "vue"
+        },
+        {
+          "path": "/horizontal-drag-demo",
+          "title": "horizontal-drag Demo",
+          "type": "vue"
         }
       ]
     }

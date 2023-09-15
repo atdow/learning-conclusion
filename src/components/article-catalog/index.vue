@@ -2,12 +2,12 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-02-28 22:50:52
+ * @LastEditTime: 2023-09-15 20:45:39
  * @Description: 目录组件
 -->
 <template>
    
-  <div class="article-catalog" :style="{ top: top + 'px' }">
+  <div class="article-catalog" :style="{ width: menuWidth + 'px' }">
      
     <p class="article-catalog-reminder">目录</p>
     <SinoScrollbar :style="`height: ${400}px`" class="scrollbar" ref="scrollbarRef">
@@ -15,11 +15,20 @@
       <p class="article-catalog-default" v-if="menuList.length === 0">暂无目录</p>
       <!-- <div v-html="catalogStr" v-else></div> -->
     </SinoScrollbar>
+    <horizontal-drag
+      class="horizontal-drag"
+      :width="menuWidth"
+      :min-width="300"
+      :max-width="400"
+      positionType="right"
+      @widthChange="widthChange"
+    />
   </div>
 </template>
  
 <script>
 import SinoScrollbar from '@/packages/scrollbar'
+import HorizontalDrag from '@/packages/horizontal-drag'
 import Menu from './Menu'
 let hFlatLevelArr = [
   // { hLevel: 4 }
@@ -38,10 +47,12 @@ export default {
       top: 100,
       menuList: [],
       scrollTop: 0,
+      menuWidth: 300,
     }
   },
   components: {
     SinoScrollbar,
+    HorizontalDrag,
     Menu,
   },
   watch: {
@@ -240,6 +251,9 @@ export default {
         this.$refs.scrollbarRef.scrollToTop(dom.offsetTop)
       }
     },
+    widthChange(value) {
+      this.menuWidth = value
+    },
   },
   beforeDestroy() {},
 }
@@ -248,8 +262,8 @@ export default {
 <style lang="less" scoped>
 @import '~@/style/vars.less';
 .article-catalog {
-  position: fixed;
-  top: 60px;
+  position: relative;
+  // top: 60px;
   right: 10px;
   background: white;
   padding-bottom: 20px;
@@ -257,6 +271,8 @@ export default {
   width: @article-catalog-width;
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  height: 500px;
+  flex-shrink: 0;
 
   &-reminder {
     padding: 0 0 10px 10px;
@@ -273,6 +289,18 @@ export default {
   &-content {
     height: 400px;
     overflow-y: scroll;
+  }
+  position: relative;
+  /deep/.horizontal-drag {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    bottom: 0;
+    z-index: 1000;
+    border-radius: 0 4px 4px 0;
+    .drag-dom {
+      border-radius: 0 4px 4px 0;
+    }
   }
 }
 /deep/.markdown-toc-list {

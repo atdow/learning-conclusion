@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2023-04-09 18:10:38
+ * @LastEditTime: 2023-09-15 20:13:30
  * @Description: file description
 -->
 <template>
@@ -128,7 +128,7 @@ export default {
   overflow-y: auto;
   box-sizing: border-box;
   // height: calc(100vh - 50px);
-  margin-right: @article-catalog-width+20px;
+  margin-right: 20px;
   background: white;
   border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
