@@ -2,13 +2,13 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 22:20:20
+ * @LastEditTime: 2023-09-28 22:49:45
  * @Description: file description
 -->
 <template>
   <div class="s-global-header">
     <div class="s-global-header-wrapper">
-      <div class="global-logo"><img src="@/assets/aaa.gif" alt="" /></div>
+      <div class="global-logo"><img src="@/assets/logo.png" alt="" /></div>
       <div class="header-right">
         <ul class="s-menu">
           <template v-for="(item, index) in navConfig['zh-CN']">
