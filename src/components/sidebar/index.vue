@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-09-29 00:34:28
+ * @LastEditTime: 2023-09-29 02:45:39
  * @Description: file description
 -->
 <template>
@@ -23,16 +23,21 @@
             </svg>
           </span>
         </div>
-        <ul :class="['component-list', { 'is-fold': sideBarDataItem.isFold === true }]">
-          <li
-            :class="['component-list-content', { active: $route.path.endsWith(listItem.path) }]"
-            v-for="(listItem, listIndex) in sideBarDataItem.list"
-            :key="listIndex"
-            @click="switchRoute(listItem)"
+        <CollapseTransition>
+          <ul
+            v-show="sideBarDataItem.isFold !== true"
+            :class="['component-list', { 'is-fold': sideBarDataItem.isFold === true }]"
           >
-            {{ listItem.title }}
-          </li>
-        </ul>
+            <li
+              :class="['component-list-content', { active: $route.path.endsWith(listItem.path) }]"
+              v-for="(listItem, listIndex) in sideBarDataItem.list"
+              :key="listIndex"
+              @click="switchRoute(listItem)"
+            >
+              {{ listItem.title }}
+            </li>
+          </ul>
+        </CollapseTransition>
       </div>
     </MyScrollbar>
     <width-drag
@@ -50,6 +55,7 @@ import navConfig from '@/config/navConfig'
 import MyScrollbar from '@/packages/scrollbar'
 import contentMixin from '@/mixins/contentMixin'
 import WidthDrag from '@/packages/width-drag'
+import CollapseTransition from '@/packages/collapse-transition'
 import { Menu_Min_Width, Menu_Max_Width } from '@/store/mutation-types'
 
 export default {
@@ -68,6 +74,7 @@ export default {
   components: {
     MyScrollbar,
     WidthDrag,
+    CollapseTransition,
   },
   watch: {},
   updated() {
@@ -145,8 +152,8 @@ export default {
   display: flex;
   flex-direction: column;
   &.is-fold {
-    height: 0;
-    overflow: hidden;
+    // height: 0;
+    // overflow: hidden;
   }
   .component-list-content {
     height: 42px;
