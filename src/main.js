@@ -2,12 +2,13 @@
  * @Author: atdow
  * @Date: 2021-06-17 10:31:50
  * @LastEditors: null
- * @LastEditTime: 2023-04-16 16:19:04
+ * @LastEditTime: 2023-09-29 00:23:08
  * @Description: file description
  */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store/'
 import Vuebar from 'vuebar'
 Vue.use(Vuebar)
 import './lazy/index'
@@ -34,5 +35,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app')

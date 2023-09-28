@@ -2,11 +2,11 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 20:59:28
+ * @LastEditTime: 2023-09-29 00:34:28
  * @Description: file description
 -->
 <template>
-  <div class="s-sidebar" :style="{ height: contentHeight, width: menuWidth + 'px' }">
+  <div class="s-sidebar" :style="{ height: contentHeight, width: $store.getters.menuWidth + 'px' }">
     <MyScrollbar style="height: 100%">
       <div v-for="(sideBarDataItem, sideBarDataIndex) in sideBarData.groups || []" :key="sideBarDataIndex">
         <div class="group-name" @click="foldChange(sideBarDataItem, sideBarDataIndex)">
@@ -35,7 +35,13 @@
         </ul>
       </div>
     </MyScrollbar>
-    <width-drag class="width-drag" :width="menuWidth" :min-width="250" :max-width="400" @widthChange="widthChange" />
+    <width-drag
+      class="width-drag"
+      :width="$store.getters.menuWidth"
+      :min-width="menuMinWidth"
+      :max-width="menuMaxWidth"
+      @widthChange="widthChange"
+    />
   </div>
 </template>
 
@@ -44,6 +50,8 @@ import navConfig from '@/config/navConfig'
 import MyScrollbar from '@/packages/scrollbar'
 import contentMixin from '@/mixins/contentMixin'
 import WidthDrag from '@/packages/width-drag'
+import { Menu_Min_Width, Menu_Max_Width } from '@/store/mutation-types'
+
 export default {
   name: 'Sidebar',
   mixins: [contentMixin],
@@ -53,7 +61,8 @@ export default {
       sideBarData: {
         groups: [],
       },
-      menuWidth: 250,
+      menuMinWidth: Menu_Min_Width,
+      menuMaxWidth: Menu_Max_Width,
     }
   },
   components: {
@@ -95,7 +104,7 @@ export default {
       })
     },
     widthChange(value) {
-      this.menuWidth = value
+      this.$store.dispatch('setMenuWidth', value)
     },
   },
   beforeDestroy() {},

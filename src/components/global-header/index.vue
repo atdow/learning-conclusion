@@ -2,13 +2,15 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2023-09-28 22:49:45
+ * @LastEditTime: 2023-09-29 00:39:48
  * @Description: file description
 -->
 <template>
   <div class="s-global-header">
     <div class="s-global-header-wrapper">
-      <div class="global-logo"><img src="@/assets/logo.png" alt="" /></div>
+      <div class="global-logo" :style="{ width: $store.getters.menuWidth + 'px' }">
+        <img src="@/assets/logo.png" alt="" />
+      </div>
       <div class="header-right">
         <ul class="s-menu">
           <template v-for="(item, index) in navConfig['zh-CN']">
@@ -78,20 +80,21 @@ export default {
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
     height: 100%;
     box-sizing: border-box;
-    padding: 0 10px;
     .header-right {
       display: flex;
       align-items: center;
       flex: 1;
       justify-content: space-between;
       height: 100%;
+      padding-right: 10px;
     }
   }
 }
 .global-logo {
   display: flex;
   align-items: center;
-  width: 250px;
+  box-sizing: border-box;
+  padding-left: 10px;
   img {
     height: 45px;
   }
