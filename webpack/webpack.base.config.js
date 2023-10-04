@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2023-10-04 17:05:34
  * @LastEditors: null
- * @LastEditTime: 2023-10-04 18:27:08
+ * @LastEditTime: 2023-10-04 19:26:28
  * @Description: file description
  */
 const path = require('path')
@@ -21,7 +21,7 @@ module.exports = {
   output: {
     filename: 'js/[name].[chunkhash].js',
     path: resolvePath('../dist'),
-    publicPath: '/learning-conclusion/',
+    publicPath: '/',
   },
   module: {
     rules: [
