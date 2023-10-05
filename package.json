@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack/webpack.dev.config.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --config ./webpack/webpack.dev.config.js",
     "build": "cross-env NODE_ENV=production env_config=prod webpack --progress --config ./webpack/webpack.prod.config.js",
     "serve": "vue-cli-service serve",
     "build:development": "vue-cli-service build  --mode development",
