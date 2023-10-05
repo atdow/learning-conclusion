@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-10-05 12:09:34
+ * @LastEditTime: 2023-10-05 16:24:58
  * @Description: 目录组件
 -->
 <template>
@@ -297,9 +297,9 @@ export default {
     left: 0px;
     bottom: 0;
     z-index: 1000;
-    border-radius: 4px 0 0 4px;
+    border-radius: 2px 0 0 2px;
     .drag-dom {
-      border-radius: 4px 0 0 4px;
+      border-radius: 2px 0 0 2px;
     }
   }
 }

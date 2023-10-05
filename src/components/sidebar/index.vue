@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 15:38:27
  * @LastEditors: null
- * @LastEditTime: 2023-09-29 02:45:39
+ * @LastEditTime: 2023-10-05 16:23:58
  * @Description: file description
 -->
 <template>
@@ -142,9 +142,9 @@ export default {
     right: 0px;
     bottom: 0;
     z-index: 1000;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 2px 2px 0;
     .drag-dom {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 2px 2px 0;
     }
   }
 }
