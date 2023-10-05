@@ -43,6 +43,11 @@
           "path": "/granule-button",
           "title": "粒子button",
           "type": "md"
+        },
+        {
+          "path": "/width-drag",
+          "title": "宽度拖拽",
+          "type": "md"
         }
       ]
     },
