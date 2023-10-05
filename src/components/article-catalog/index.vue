@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-04-04 22:36:44
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 21:03:44
+ * @LastEditTime: 2023-10-05 12:09:34
  * @Description: 目录组件
 -->
 <template>
@@ -20,7 +20,7 @@
       :width="menuWidth"
       :min-width="300"
       :max-width="400"
-      positionType="right"
+      positionType="left"
       @widthChange="widthChange"
     />
   </div>
