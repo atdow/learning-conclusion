@@ -48,6 +48,11 @@
           "path": "/width-drag",
           "title": "宽度拖拽",
           "type": "md"
+        },
+        {
+          "path": "/collapse-transition",
+          "title": "折叠过度",
+          "type": "md"
         }
       ]
     },
