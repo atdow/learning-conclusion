@@ -43,6 +43,11 @@
           "path": "/collapse-transition",
           "title": "折叠过度",
           "type": "md"
+        },
+        {
+          "path": "/ellipsis-tooltip",
+          "title": "省略tooltip",
+          "type": "md"
         }
       ]
     },
