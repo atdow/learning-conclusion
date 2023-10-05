@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2023-09-15 19:25:48
  * @LastEditors: null
- * @LastEditTime: 2023-09-15 20:55:14
+ * @LastEditTime: 2023-10-05 12:08:44
  * @Description: file description
 -->
 <template>
@@ -37,7 +37,7 @@ export default {
       validator(val) {
         return ['left', 'right'].indexOf(val) !== -1
       },
-      default: 'left',
+      default: 'right',
     },
   },
   data() {
@@ -53,7 +53,7 @@ export default {
   watch: {},
   computed: {
     positionRate: function () {
-      return this.positionType === 'left' ? 1 : -1
+      return this.positionType === 'right' ? 1 : -1
     },
   },
   created() {},
