@@ -3,7 +3,7 @@
   "path": "/packages-examples",
   "groups": [
     {
-      "groupName": "成型组件",
+      "groupName": "通用组件",
       "list": [
         {
           "path": "/dynamic-number",
@@ -30,18 +30,8 @@
           "title": "色块图-虚拟滚动"
         },
         {
-          "path": "/virtualScroll-milestoneTable",
-          "title": "虚拟滚动milestone表格",
-          "type": "md"
-        },
-        {
           "path": "/progress",
           "title": "进度条",
-          "type": "md"
-        },
-        {
-          "path": "/granule-button",
-          "title": "粒子button",
           "type": "md"
         },
         {
@@ -52,6 +42,21 @@
         {
           "path": "/collapse-transition",
           "title": "折叠过度",
+          "type": "md"
+        }
+      ]
+    },
+    {
+      "groupName": "业务组件",
+      "list": [
+        {
+          "path": "/virtualScroll-milestoneTable",
+          "title": "虚拟滚动milestone表格",
+          "type": "md"
+        },
+        {
+          "path": "/granule-button",
+          "title": "粒子button",
           "type": "md"
         }
       ]
