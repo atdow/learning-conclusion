@@ -2,14 +2,17 @@
  * @Author: atdow
  * @Date: 2023-09-15 19:25:48
  * @LastEditors: null
- * @LastEditTime: 2023-10-05 12:08:44
+ * @LastEditTime: 2023-10-05 16:22:28
  * @Description: file description
 -->
 <template>
    
   <div
     ref="horizontalDragDom"
-    :class="['horizontal-drag', { 'horizontal-drag__hidden': showDragDom }]"
+    :class="[
+      'horizontal-drag',
+      { 'horizontal-drag__left': positionType === 'left', 'horizontal-drag__hidden': showDragDom },
+    ]"
     @mousedown="handleMouseDown"
   >
     <div v-if="showDragDom" ref="dragDomRef" class="drag-dom" :style="getDragDomStyle()"></div>
@@ -70,8 +73,8 @@ export default {
       if (!event.target.classList.contains('horizontal-drag')) {
         return
       }
-      const { height, left, top } = this.$refs.horizontalDragDom.getBoundingClientRect()
-      // startPosition.value = { x: event.clientX, y: event.clientY } // 这里将会产生抖动
+      const { height, width: horizontalDragDomWidth, left, top } = this.$refs.horizontalDragDom.getBoundingClientRect()
+      // this.startPosition = { x: event.clientX, y: event.clientY } // 这里将会产生抖动
       this.startPosition = { x: left, y: top }
 
       this.dragDomX = 0
@@ -80,6 +83,15 @@ export default {
       this.setGlobalCursor('col-resize')
       document.addEventListener('mousemove', this.handleMouseMove)
       document.addEventListener('mouseup', this.handleMouseUp)
+
+      if (this.positionType === 'right') {
+        this.$nextTick(() => {
+          this.startPosition = {
+            x: left + horizontalDragDomWidth - this.$refs.dragDomRef.getBoundingClientRect().width,
+            y: top,
+          }
+        })
+      }
     },
     handleMouseMove(event) {
       const currentX = event.clientX
@@ -120,21 +132,32 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@color: green;
+@dragDomWidth: 2px;
 .horizontal-drag {
   position: relative;
-  width: 3px;
+  width: 6px;
   background: transparent;
   cursor: col-resize;
-  &:hover {
-    background: green;
+  &:not(.horizontal-drag__left) {
+    border-right: @dragDomWidth solid transparent;
+    &:hover {
+      border-right: @dragDomWidth solid @color;
+    }
+  }
+  &.horizontal-drag__left {
+    border-left: @dragDomWidth solid transparent;
+    &:hover {
+      border-left: @dragDomWidth solid @color;
+    }
   }
   &.horizontal-drag__hidden {
-    background: transparent;
+    border: none !important;
   }
   .drag-dom {
     position: fixed;
-    width: 3px;
-    background: green;
+    width: @dragDomWidth;
+    background: @color;
     cursor: col-resize;
   }
 }
