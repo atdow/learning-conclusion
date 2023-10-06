@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2021-06-18 16:56:38
  * @LastEditors: null
- * @LastEditTime: 2023-09-29 00:39:48
+ * @LastEditTime: 2023-10-06 22:52:43
  * @Description: file description
 -->
 <template>
@@ -85,8 +85,9 @@ export default {
       align-items: center;
       flex: 1;
       justify-content: space-between;
+      box-sizing: border-box;
       height: 100%;
-      padding-right: 10px;
+      padding: 0 10px;
     }
   }
 }
@@ -107,7 +108,7 @@ export default {
   .active {
     color: @theme-color;
     &::after {
-      width: 100%;
+      width: 100% !important;
     }
   }
   li {
@@ -123,7 +124,6 @@ export default {
     &::after {
       content: '';
       display: block;
-      width: 100%;
       height: 2px;
       background: @theme-color;
       position: absolute;
