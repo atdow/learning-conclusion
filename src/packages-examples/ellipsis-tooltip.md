@@ -54,8 +54,8 @@ export default {
 ```vue
 <template>
    <div>
-    <ellipsis-tooltip :lines="2" text="多行省略">
-      1.多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略
+    <ellipsis-tooltip :lines="2" text="多行省略" style="line-height: 20px">
+      1.多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略多行省略
     </ellipsis-tooltip>
     <br/>
     <ellipsis-tooltip :lines="2" :text="text" style="line-height: 20px">{{ text }}</ellipsis-tooltip>
