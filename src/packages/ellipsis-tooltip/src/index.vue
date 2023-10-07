@@ -2,12 +2,12 @@
  * @Author: atdow
  * @Date: 2023-10-05 16:38:40
  * @LastEditors: null
- * @LastEditTime: 2023-10-05 18:13:33
+ * @LastEditTime: 2023-10-07 22:12:23
  * @Description: file description
 -->
 <template>
    
-  <div class="ellipsis">
+  <div class="ellipsis" ref="contentRef">
     <div v-if="lines > 1" ref="slotMultiContainerRef">
       <div v-if="isEllipsis" class="over-ellipsis-n" :style="{ '-webkit-line-clamp': lines }">
         <el-tooltip class="box-item" effect="dark" placement="top">
@@ -38,6 +38,7 @@
 </template>
  
 <script>
+import { addResizeListener, removeResizeListener } from '@/utils/resize-event'
 export default {
   name: 'EllipsisTooltip',
   props: {
@@ -45,41 +46,67 @@ export default {
       type: Number,
       default: 1,
     },
+    // 用于检测文字变化触发重新计算
+    text: {
+      type: String,
+      require: true,
+    },
   },
   data() {
     return {
       isEllipsis: false,
+      resizeResolveTimer: null,
     }
   },
   components: {},
-  watch: {},
+  watch: {
+    text: {
+      handler: function () {
+        this.$nextTick(() => {
+          this.calTooltip()
+        })
+      },
+    },
+  },
   computed: {},
   created() {},
   mounted() {
-    // 多行超出
-    if (this.lines > 1) {
-      const slotDom = this.$refs.slotMultiContainerRef
-      if (!slotDom) {
-        return
-      }
-      const style = window.getComputedStyle(slotDom, null)
-      const fontSize = style.fontSize.replace('px', '')
-      // TODO有潜在的问题
-      const lineHeight = style.lineHeight === 'normal' ? fontSize : style.lineHeight.replace('px', '')
-      const textLines = Math.round(style.height.replace('px', '') / lineHeight)
-      // console.log('textLines:', textLines)
-      this.setTooltip(textLines >= this.lines)
-    } else {
-      // 单行超出
-      const slotDom = this.$refs.slotSingleContainerRef2
-      if (!slotDom) {
-        return
-      }
-      const flag = this.isSingleOverEllipsis(slotDom)
-      this.setTooltip(flag)
-    }
+    addResizeListener(this.$refs.contentRef, this.resizeResolve)
   },
   methods: {
+    // TODO 这里可能出现无限抖动
+    resizeResolve() {
+      // 防抖
+      clearTimeout(this.resizeResolveTimer)
+      this.resizeResolveTimer = setTimeout(() => {
+        this.calTooltip()
+        clearTimeout(this.resizeResolveTimer)
+      }, 300)
+    },
+    calTooltip() {
+      this.setTooltip(false)
+      // 多行超出
+      if (this.lines > 1) {
+        const slotDom = this.$refs.slotMultiContainerRef
+        if (!slotDom) {
+          return
+        }
+        const style = window.getComputedStyle(slotDom, null)
+        const fontSize = style.fontSize.replace('px', '')
+        // NOTE 如果lineHeight计算不对，需要外部样式设置容器的line-height样式
+        const lineHeight = style.lineHeight === 'normal' ? fontSize : style.lineHeight.replace('px', '')
+        const textLines = Math.round(style.height.replace('px', '') / lineHeight)
+        this.setTooltip(textLines > this.lines)
+      } else {
+        // 单行超出
+        const slotDom = this.$refs.slotSingleContainerRef2
+        if (!slotDom) {
+          return
+        }
+        const flag = this.isSingleOverEllipsis(slotDom)
+        this.setTooltip(flag)
+      }
+    },
     setTooltip(flag) {
       this.isEllipsis = flag
     },
@@ -95,7 +122,9 @@ export default {
       return rangeWidth > targetW
     },
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    removeResizeListener(this.$refs.contentRef, this.resizeResolve)
+  },
 }
 </script>
  
