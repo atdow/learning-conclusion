@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-11-18 10:41:36
  * @LastEditors: null
- * @LastEditTime: 2023-11-16 00:20:26
+ * @LastEditTime: 2023-11-16 00:25:52
  * @Description: file description
 -->
 <template>
@@ -49,6 +49,15 @@ export default {
       default: 30,
       require: true,
     },
+    bufferCount: {
+      type: Number,
+      default: 3,
+    },
+    // 当data更新时，是否自动滚到到顶部
+    defaultUpdateToTop: {
+      type: Boolean,
+      default: true,
+    },
     fixedContainerHeight: {
       type: Boolean,
       default: true,
@@ -56,15 +65,6 @@ export default {
     maxHeight: {
       type: Number,
       default: 200,
-    },
-    // 当data更新时，是否自动滚到到顶部
-    defaultUpdateToTop: {
-      type: Boolean,
-      default: true,
-    },
-    bufferCount: {
-      type: Number,
-      default: 3,
     },
   },
   data() {
