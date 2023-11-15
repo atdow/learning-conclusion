@@ -2,13 +2,13 @@
  * @Author: atdow
  * @Date: 2022-11-18 10:41:36
  * @LastEditors: null
- * @LastEditTime: 2023-02-20 22:59:11
+ * @LastEditTime: 2023-11-15 20:23:12
  * @Description: file description
 -->
 <template>
-  <div class="virtual-list">
+  <div class="virtual-list" :style="virtualListContainerStyle">
     <SinoScrollbar
-      :style="`height: ${height}px`"
+      style="height: 100%"
       class="scrollbar"
       @scroll="scrollResolve"
       @scrollBottom="scrollBottomResolve"
@@ -27,8 +27,8 @@
         </li>
         <slot name="bottom"></slot>
       </ul>
-      <no-data v-else />
-    </SinoScrollbar> 
+      <no-data v-else /> </SinoScrollbar
+    > 
   </div>
 </template>
  
@@ -39,46 +39,44 @@ export default {
   props: {
     data: {
       type: Array,
+      require: true,
       default: function () {
         return []
-      }
-    },
-    loading: {
-      type: Boolean,
-      default: false
+      },
     },
     itemHeight: {
       type: Number,
-      default: 30
-    },
-    maxHeight: {
-      type: Number,
-      default: 200
+      default: 30,
+      require: true,
     },
     fixedHeight: {
       type: Boolean,
-      default: false
+      default: true,
+    },
+    maxHeight: {
+      type: Number,
+      default: 200,
     },
     // 当data更新时，是否自动滚到到顶部
     defaultUpdateToTop: {
       type: Boolean,
-      default: true
+      default: true,
     },
     bufferCount: {
       type: Number,
-      default: 3
-    }
+      default: 3,
+    },
   },
   data() {
     return {
       height: 200,
       virtualContentHeight: 0,
       virtualRenderData: [],
-      currentScrollTop: 0
+      currentScrollTop: 0,
     }
   },
   components: {
-    SinoScrollbar
+    SinoScrollbar,
   },
   watch: {
     data: {
@@ -94,10 +92,18 @@ export default {
           }
           this.update(this.currentScrollTop)
         })
-      }
-    }
+      },
+    },
   },
-  computed: {},
+  computed: {
+    virtualListContainerStyle: function () {
+      if (this.fixedHeight === true) {
+        return { height: '100%' }
+      } else {
+        return { height: this.height + 'px' }
+      }
+    },
+  },
   created() {},
   mounted() {},
   methods: {
@@ -106,11 +112,11 @@ export default {
       this.$refs.scrollbarRef.resetToTop()
     },
     calGeminiScrollbarHeight() {
-      const height = this.itemHeight * this.data.length
       if (this.fixedHeight === true) {
-        this.height = this.maxHeight
         return
       }
+      const height = this.itemHeight * this.data.length
+      // 动态高度
       if (height > this.maxHeight || height === 0) {
         this.height = this.maxHeight
       } else {
@@ -134,7 +140,7 @@ export default {
       })
     },
     scrollResolve(data) {
-      const {scrollTop} = data
+      const { scrollTop } = data
       this.update(scrollTop)
       this.currentScrollTop = scrollTop
       this.$emit('scroll', data)
@@ -145,17 +151,17 @@ export default {
         this.update(0)
       })
     },
-    scrollBottomResolve(){
+    scrollBottomResolve() {
       this.$emit('scrollBottom')
-    }
+    },
   },
-  beforeDestroy() {}
+  beforeDestroy() {},
 }
 </script>
  
 <style lang="less" scoped>
 .virtual-list {
-  /deep/ .sino-scrollbar__view{
+  /deep/ .sino-scrollbar__view {
     position: relative;
   }
   .list-view-phantom {
