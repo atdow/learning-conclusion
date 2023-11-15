@@ -1,19 +1,21 @@
 <template>
-  <SinoScrollbar class="virtual-list-dynamic-height" :style="{ height: contentHeight + 'px' }" ref="scrollbarRef" @scroll="onScroll">
-    <div class="list-view-phantom" :style="{ height: scrollBarHeight + 'px' }"></div>
-    <!-- 列表总高 -->
-    <ul ref="contentRef">
-      <Item
-        v-for="item in visibleList"
-        :data="item.data"
-        :index="item.index"
-        :key="item.index"
-        @update-height="updateItemHeight"
-      >
-        <slot slot-scope="{ data, index }" :data="data" :index="index"></slot>
-      </Item>
-    </ul>
-  </SinoScrollbar>
+  <div ref="containerRef" :style="virtualListContainerStyle">
+    <SinoScrollbar class="virtual-list-dynamic-height" style="height: 100%" ref="scrollbarRef" @scroll="onScroll">
+      <div class="list-view-phantom" :style="{ height: scrollBarHeight + 'px' }"></div>
+      <!-- 列表总高 -->
+      <ul ref="contentRef">
+        <Item
+          v-for="item in visibleList"
+          :data="item.data"
+          :index="item.index"
+          :key="item.index"
+          @update-height="updateItemHeight"
+        >
+          <slot slot-scope="{ data, index }" :data="data" :index="index"></slot>
+        </Item>
+      </ul>
+    </SinoScrollbar>
+  </div>
 </template>
  
 <script>
@@ -24,34 +26,35 @@ export default {
   props: {
     list: {
       type: Array,
+      required: true,
       default: function () {
         return []
-      }
-    },
-    maxHeight: {
-      type: Number,
-      default: 600
-    },
-    // 固定容器的高度
-    isFixContainerHeight: {
-      type: Boolean,
-      default: false
+      },
     },
     // 每一项假定的高度
     // 不宜调得太小，不然首次渲染的时候将会渲染太大数据；调得太小可能会出现瞬间留白
     estimatedItemHeight: {
       type: Number,
-      default: 40
+      default: 40,
     },
     // 缓冲加载项
     bufferItemCount: {
       type: Number,
-      default: 4
-    }
+      default: 4,
+    },
+    // 固定容器的高度
+    isFixContainerHeight: {
+      type: Boolean,
+      default: true,
+    },
+    maxHeight: {
+      type: Number,
+      default: 600,
+    },
   },
   data() {
     return {
-      contentHeight: 0,
+      containerHeight: 0,
       dataList: [
         // {
         //   index:0,
@@ -70,14 +73,22 @@ export default {
         //   height: 0
         // }
       ],
-      itemTopCache: [] // 每一项距顶部的实际高度
+      itemTopCache: [], // 每一项距顶部的实际高度
     }
   },
   components: {
     SinoScrollbar,
-    Item
+    Item,
   },
-  computed: {},
+  computed: {
+    virtualListContainerStyle: function () {
+      if (this.isFixContainerHeight === true) {
+        return { height: '100%' }
+      } else {
+        return { height: this.containerHeight + 'px' }
+      }
+    },
+  },
   watch: {
     list: {
       immediate: true,
@@ -89,18 +100,16 @@ export default {
         this.dataList = this.list.map((item, index) => {
           return {
             index,
-            data: item
+            data: item,
           }
         })
         //  console.log('this.dataList:', this.dataList)
         this.generateEstimatedItemData()
         this.update()
-      }
-    }
+      },
+    },
   },
-  created() {
-    this.contentHeight = this.maxHeight
-  },
+  created() {},
   mounted() {},
   methods: {
     generateEstimatedItemData() {
@@ -118,7 +127,7 @@ export default {
       // 每次创建的时候都会抛出事件，因为没有处理异步的情况，所以必须每次高度变化都需要更新
       // dom元素加载后得到实际高度 重新赋值回去
       this.itemHeightCache[index] = { isEstimated: false, height: height }
-      this.updateContentHeight()
+      this.updateContainerHeight()
       // 重新确定列表的实际总高度
       this.scrollBarHeight = this.itemHeightCache.reduce((pre, current) => {
         return pre + current.height
@@ -203,26 +212,32 @@ export default {
       this.scrollTop = data.scrollTop
       this.update()
     },
-    updateContentHeight() {
-      if (this.isFixContainerHeight || this.scrollTop !== 0) {
+    updateContainerHeight() {
+      if (this.isFixContainerHeight) {
+        this.containerHeight = this.$refs.containerRef.getBoundingClientRect().height
+        return
+      }
+      if (this.scrollTop !== 0) {
         return
       }
       if (this.itemHeightCache.every((item) => item.isEstimated === false)) {
         const itemTotalHeight = this.itemHeightCache.reduce((pre, value) => pre + value.height, 0)
-        if (itemTotalHeight < this.contentHeight) {
-          this.contentHeight = itemTotalHeight
+        if (itemTotalHeight < this.maxHeight) {
+          this.containerHeight = itemTotalHeight
+        } else {
+          this.containerHeight = this.maxHeight
         }
         // console.log('itemTotalHeight:', itemTotalHeight)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="less" scoped>
 .virtual-list-dynamic-height {
   // overflow: auto;
   // position: relative;
-  /deep/ .sino-scrollbar__view{
+  /deep/ .sino-scrollbar__view {
     position: relative;
   }
   .list-view-phantom {
