@@ -17,10 +17,13 @@
         slot-scope="{ data, index }"
         :style="{
           height: index === 10 || index === 13 ? null : data.height + 'px',
-          background: index % 2 === 0 ? '#ccc' : 'white'
+          lineHeight: index === 10 || index === 13 ? null : data.height + 'px',
+          boxSizing: 'border-box',
+          padding: '0 10px',
+          background: index % 2 === 0 ? '#f4f5f5' : 'white'
         }"
       >
-        {{ index }}:{{ data }}
+        {{ index }}: {{ data }}
         <img
           v-if="index === 10 || index === 13"
           style="height: 300px"
@@ -54,7 +57,7 @@ export default {
       index: i,
       brandId: i + 1,
       name: `第${i + 1}项`,
-      height: Math.floor(Math.max(Math.random() * 10, 5)) * 5
+      height: Math.floor(Math.max(Math.random() * 10, 5)) * 7
       // height: 40
     }))
     console.log('this.dataList:', this.dataList)
