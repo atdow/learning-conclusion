@@ -84,88 +84,13 @@ export default {
 
 :::
 
-### 2. 内容高度小于maxHeight时取内容高度
-
-:::demo 
-
-```vue
-<template>
-  <div>
-    <virtual-list-dynamic-height 
-      :list="dataList" 
-      ref="virtualListRef"
-      :isFixContainerHeight="true"
-      :maxHeight="300"
-    >
-      <div
-        class="slot-item"
-        slot-scope="{ data, index }"
-        :style="{
-          height: randomHeight[index] + 'px',
-          lineHeight: randomHeight[index] + 'px',
-          boxSizing: 'border-box',
-          padding: '0 10px',
-          background: index % 2 === 0 ? '#f4f5f5' : 'white'
-        }"
-      >
-        <div>{{ index }}: {{ data }}</div>
-      </div>
-    </virtual-list-dynamic-height>
-    <button style="margin-top: 10px" @click="scrollTopTest">滚动到顶部</button>
-  </div>
-
-</template>
-<script>
-import VirtualListDynamicHeight from "@/packages/VirtualListDynamicHeight";
-export default {
-  name: "ScrollbarExample",
-  props: {},
-  data() {
-    return {
-      dataList: [],
-      randomHeight: [],
-      dataLength: 100
-    };
-  },
-  components: {
-    VirtualListDynamicHeight,
-  },
-  watch: {},
-  computed: {},
-  created() {
-    this.dataList = [...Array(this.dataLength || 0).keys()].map((v, i) => ({
-      id: i + 1,
-      name: `第${i + 1}项`
-    }))
-    this.randomHeight = [...Array(this.dataLength || 0).keys()].map((v, i) => {
-      return Math.floor(Math.max(Math.random() * 10, 5)) * 7
-    })
-    console.log('this.dataList:', this.dataList)
-  },
-  mounted() {},
-  methods: {
-    scrollTopTest() {
-      this.$refs.virtualListRef.resetToTop()
-    }
-  },
-  beforeDestroy() {},
-};
-</script>
-<style lang="less" scoped>
-</style>
-```
-
-:::
-
 ### API
 
 | 属性       | 说明           | 类型         | 默认值 |
 | ---------- | -------------- | ------------ | ------ |
 | data  | 数据  | Array `required` | [] |
-| estimatedItemHeight | 每一项假定的高度(不宜调得太小，不然首次渲染的时候将会渲染太大数据；调得太小可能会出现瞬间留白) | Number `required` | 40     |
-| bufferItemCount | 预渲染数据 | Number       | 3     |
-| isFixContainerHeight | 是否固定容器高度 | Boolean       | true     |
-| maxHeight | 最大高度 | Number 当 `isFixContainerHeight:true` 时需要指定 `maxHeight` | 200     |
+| estimatedItemHeight | 每一项假定的高度(不宜调得太小，不然首次渲染的时候将会渲染太大数据；调得太小可能会出现瞬间留白) | Number | 40     |
+| bufferCount | 预渲染数据 | Number       | 3     |
 | defaultUpdateToTop | 当data更新时，是否自动滚到到顶部 | Boolean       | true     |
 
 ### 事件

@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" :style="virtualListContainerStyle">
+  <div ref="containerRef" style="height: 100%">
     <SinoScrollbar class="virtual-list-dynamic-height" style="height: 100%" ref="scrollbarRef" @scroll="onScroll">
       <div class="list-view-phantom" :style="{ height: scrollBarHeight + 'px' }"></div>
       <!-- 列表总高 -->
@@ -38,18 +38,9 @@ export default {
       default: 40,
     },
     // 缓冲加载项
-    bufferItemCount: {
+    bufferCount: {
       type: Number,
       default: 4,
-    },
-    // 固定容器的高度
-    isFixContainerHeight: {
-      type: Boolean,
-      default: true,
-    },
-    maxHeight: {
-      type: Number,
-      default: 600,
     },
   },
   data() {
@@ -80,15 +71,7 @@ export default {
     SinoScrollbar,
     Item,
   },
-  computed: {
-    virtualListContainerStyle: function () {
-      if (this.isFixContainerHeight === true) {
-        return { height: '100%' }
-      } else {
-        return { height: this.containerHeight + 'px' }
-      }
-    },
-  },
+  computed: {},
   watch: {
     list: {
       immediate: true,
@@ -105,12 +88,14 @@ export default {
         })
         //  console.log('this.dataList:', this.dataList)
         this.generateEstimatedItemData()
-        this.update()
+        this.$nextTick(() => this.update())
       },
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    this.containerHeight = this.$refs.containerRef.getBoundingClientRect().height
+  },
   methods: {
     generateEstimatedItemData() {
       const estimatedTotalHeight = this.dataList.reduce((pre, current, index) => {
@@ -127,7 +112,6 @@ export default {
       // 每次创建的时候都会抛出事件，因为没有处理异步的情况，所以必须每次高度变化都需要更新
       // dom元素加载后得到实际高度 重新赋值回去
       this.itemHeightCache[index] = { isEstimated: false, height: height }
-      this.updateContainerHeight()
       // 重新确定列表的实际总高度
       this.scrollBarHeight = this.itemHeightCache.reduce((pre, current) => {
         return pre + current.height
@@ -177,7 +161,7 @@ export default {
     },
     getEndIndex() {
       const whiteHeight = this.scrollTop - this.itemTopCache[this.startIndex] // 出现留白的高度
-      const clientHeight = this.$refs.scrollbarRef?.clientHeight || this.maxHeight
+      const clientHeight = this.containerHeight
       let itemHeightTotal = 0
       let endIndex = 0
       for (let i = this.startIndex; i < this.dataList.length; i++) {
@@ -189,7 +173,7 @@ export default {
           break
         }
       }
-      endIndex = endIndex + this.bufferItemCount // 加上预渲染数
+      endIndex = endIndex + this.bufferCount // 加上预渲染数
       return endIndex
     },
     update() {
@@ -211,24 +195,6 @@ export default {
     onScroll(data) {
       this.scrollTop = data.scrollTop
       this.update()
-    },
-    updateContainerHeight() {
-      if (this.isFixContainerHeight) {
-        this.containerHeight = this.$refs.containerRef.getBoundingClientRect().height
-        return
-      }
-      if (this.scrollTop !== 0) {
-        return
-      }
-      if (this.itemHeightCache.every((item) => item.isEstimated === false)) {
-        const itemTotalHeight = this.itemHeightCache.reduce((pre, value) => pre + value.height, 0)
-        if (itemTotalHeight < this.maxHeight) {
-          this.containerHeight = itemTotalHeight
-        } else {
-          this.containerHeight = this.maxHeight
-        }
-        // console.log('itemTotalHeight:', itemTotalHeight)
-      }
     },
   },
 }
