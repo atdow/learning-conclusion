@@ -42,6 +42,11 @@ export default {
       type: Number,
       default: 4,
     },
+    // 当data更新时，是否自动滚到到顶部
+    defaultUpdateToTop: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -88,7 +93,12 @@ export default {
         })
         //  console.log('this.dataList:', this.dataList)
         this.generateEstimatedItemData()
-        this.$nextTick(() => this.update())
+        this.$nextTick(() => {
+          if (this.defaultUpdateToTop) {
+            this.scrollToTop()
+          }
+          this.update()
+        })
       },
     },
   },
