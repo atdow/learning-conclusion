@@ -16,14 +16,14 @@
         class="slot-item"
         slot-scope="{ data, index }"
         :style="{
-          height: index === 10 || index === 13 ? null : data.height + 'px',
-          lineHeight: index === 10 || index === 13 ? null : data.height + 'px',
+          height: index === 10 || index === 13 ? null : randomHeight[index] + 'px',
+          lineHeight: index === 10 || index === 13 ? null : randomHeight[index] + 'px',
           boxSizing: 'border-box',
           padding: '0 10px',
           background: index % 2 === 0 ? '#f4f5f5' : 'white'
         }"
       >
-        {{ index }}: {{ data }}
+        <div>{{ index }}: {{ data }}</div>
         <img
           v-if="index === 10 || index === 13"
           style="height: 300px"
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       dataList: [],
+      randomHeight: [],
       dataLength: 100
     };
   },
@@ -54,12 +55,12 @@ export default {
   computed: {},
   created() {
     this.dataList = [...Array(this.dataLength || 0).keys()].map((v, i) => ({
-      index: i,
-      brandId: i + 1,
-      name: `第${i + 1}项`,
-      height: Math.floor(Math.max(Math.random() * 10, 5)) * 7
-      // height: 40
+      id: i + 1,
+      name: `第${i + 1}项`
     }))
+    this.randomHeight = [...Array(this.dataLength || 0).keys()].map((v, i) => {
+      return Math.floor(Math.max(Math.random() * 10, 5)) * 7
+    })
     console.log('this.dataList:', this.dataList)
   },
   mounted() {},
