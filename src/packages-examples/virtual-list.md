@@ -50,7 +50,7 @@ export default {
       console.log('data:', data)
     },
     scrollTopTest() {
-      this.$refs.virtualListRef.resetToTop()
+      this.$refs.virtualListRef.scrollToTop()
     }
   },
   beforeDestroy() {},
@@ -72,7 +72,7 @@ export default {
     <virtual-list 
       :data="data" 
       :itemHeight="30" 
-      :fixedHeight="true"
+      :fixedContainerHeight="false"
       :maxHeight="300"
       ref="virtualListRef"
     >
@@ -130,10 +130,10 @@ export default {
 | ---------- | -------------- | ------------ | ------ |
 | data  | 数据  | Array `required` | []  |
 | itemHeight | 每一项的高度 | Number `required` | 30     |
-| fixedHeight | 是否固定高度 | Boolean       | true     |
-| maxHeight | 最大高度 | Number 当 `fixedHeight:true` 时需要指定 `maxHeight` | 200     |
-| defaultUpdateToTop | 当data更新时，是否自动滚到到顶部 | Boolean       | true     |
 | bufferCount | 预渲染数据 | Number       | 3     |
+| defaultUpdateToTop | 当data更新时，是否自动滚到到顶部 | Boolean       | true     |
+| fixedContainerHeight | 是否固定容器高度 | Boolean       | true     |
+| maxHeight | 最大高度 | Number 当 `fixedContainerHeight:false` 时需要指定 `maxHeight` | 200     |
 
 ### 事件
 
@@ -146,4 +146,5 @@ export default {
 
 | 事件名称  | 说明                 | 参数           |
 | --------- | -------------------- | ------------------ |
-| resetToTop | 滚动到顶部 | - |
+| scrollToTop | 滚动到顶部 | - |
+| scrollTo | 滚动到指定位置 | top `number` |

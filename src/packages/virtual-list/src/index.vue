@@ -2,7 +2,7 @@
  * @Author: atdow
  * @Date: 2022-11-18 10:41:36
  * @LastEditors: null
- * @LastEditTime: 2023-11-15 21:29:08
+ * @LastEditTime: 2023-11-16 00:20:26
  * @Description: file description
 -->
 <template>
@@ -49,7 +49,7 @@ export default {
       default: 30,
       require: true,
     },
-    fixedHeight: {
+    fixedContainerHeight: {
       type: Boolean,
       default: true,
     },
@@ -88,7 +88,7 @@ export default {
         this.$nextTick(() => {
           this.updateContainerHeight()
           if (this.defaultUpdateToTop) {
-            this.resetToTop()
+            this.scrollToTop()
           }
           this.update(this.currentScrollTop)
         })
@@ -97,7 +97,7 @@ export default {
   },
   computed: {
     virtualListContainerStyle: function () {
-      if (this.fixedHeight === true) {
+      if (this.fixedContainerHeight === true) {
         return { height: '100%' }
       } else {
         return { height: this.containerHeight + 'px' }
@@ -107,12 +107,12 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    resetToTop() {
+    scrollToTop() {
       this.currentScrollTop = 0
       this.$refs.scrollbarRef.resetToTop()
     },
     updateContainerHeight() {
-      if (this.fixedHeight === true) {
+      if (this.fixedContainerHeight === true) {
         this.containerHeight = this.$refs.containerRef.getBoundingClientRect().height
         return
       }
@@ -148,12 +148,16 @@ export default {
     },
     resetToTopUpdate() {
       this.$nextTick(() => {
-        this.resetToTop()
+        this.scrollToTop()
         this.update(0)
       })
     },
     scrollBottomResolve() {
       this.$emit('scrollBottom')
+    },
+    scrollTo(top) {
+      this.currentScrollTop = top
+      this.$refs.scrollbarRef.resetToTop()
     },
   },
   beforeDestroy() {},
