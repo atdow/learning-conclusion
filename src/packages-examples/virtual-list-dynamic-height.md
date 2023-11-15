@@ -88,12 +88,12 @@ export default {
 
 | 属性       | 说明           | 类型         | 默认值 |
 | ---------- | -------------- | ------------ | ------ |
-| data  | 数据  | Array | [] |
-| itemHeight | 每一项的高度 | Number       | 30     |
+| data  | 数据  | Array `required` | [] |
+| isFixContainerHeight | 是否固定高度 | Boolean       | false     |
 | maxHeight | 最大高度 | Number       | 200     |
-| fixedHeight | 是否固定高度 | Boolean       | false     |
+| estimatedItemHeight | 每一项假定的高度(不宜调得太小，不然首次渲染的时候将会渲染太大数据；调得太小可能会出现瞬间留白) | Number `required` | 40     |
+| bufferItemCount | 预渲染数据 | Number       | 3     |
 | defaultUpdateToTop | 当data更新时，是否自动滚到到顶部 | Boolean       | true     |
-| bufferCount | 预渲染数据 | Number       | 3     |
 
 ### 事件
 
