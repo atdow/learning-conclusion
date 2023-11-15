@@ -2,11 +2,11 @@
  * @Author: atdow
  * @Date: 2022-11-18 10:41:36
  * @LastEditors: null
- * @LastEditTime: 2023-11-15 20:23:12
+ * @LastEditTime: 2023-11-15 21:29:08
  * @Description: file description
 -->
 <template>
-  <div class="virtual-list" :style="virtualListContainerStyle">
+  <div class="virtual-list" :style="virtualListContainerStyle" ref="containerRef">
     <SinoScrollbar
       style="height: 100%"
       class="scrollbar"
@@ -69,7 +69,7 @@ export default {
   },
   data() {
     return {
-      height: 200,
+      containerHeight: 200,
       virtualContentHeight: 0,
       virtualRenderData: [],
       currentScrollTop: 0,
@@ -86,7 +86,7 @@ export default {
         this.virtualRenderData = []
         this.virtualContentHeight = this.itemHeight * this.data.length
         this.$nextTick(() => {
-          this.calGeminiScrollbarHeight()
+          this.updateContainerHeight()
           if (this.defaultUpdateToTop) {
             this.resetToTop()
           }
@@ -100,7 +100,7 @@ export default {
       if (this.fixedHeight === true) {
         return { height: '100%' }
       } else {
-        return { height: this.height + 'px' }
+        return { height: this.containerHeight + 'px' }
       }
     },
   },
@@ -111,23 +111,24 @@ export default {
       this.currentScrollTop = 0
       this.$refs.scrollbarRef.resetToTop()
     },
-    calGeminiScrollbarHeight() {
+    updateContainerHeight() {
       if (this.fixedHeight === true) {
+        this.containerHeight = this.$refs.containerRef.getBoundingClientRect().height
         return
       }
       const height = this.itemHeight * this.data.length
       // 动态高度
       if (height > this.maxHeight || height === 0) {
-        this.height = this.maxHeight
+        this.containerHeight = this.maxHeight
       } else {
-        this.height = height
+        this.containerHeight = height
       }
     },
     // 更新数据
     update(scrollTop = 0) {
       this.$nextTick(() => {
         // 获取当前可展示数量
-        const count = Math.ceil(this.height / this.itemHeight)
+        const count = Math.ceil(this.containerHeight / this.itemHeight)
         const start = Math.floor(scrollTop / this.itemHeight)
         // 取得可见区域的结束数据索引
         const end = start + count + this.bufferCount
