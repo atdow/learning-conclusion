@@ -72,7 +72,7 @@ export default {
       console.log('data:', data)
     },
     scrollTopTest() {
-      this.$refs.virtualListRef.resetToTop()
+      this.$refs.virtualListRef.scrollToTop()
     }
   },
   beforeDestroy() {},
@@ -104,4 +104,5 @@ export default {
 
 | 事件名称  | 说明                 | 参数           |
 | --------- | -------------------- | ------------------ |
-| resetToTop | 滚动到顶部 | - |
+| scrollToTop | 滚动到顶部 | - |
+| scrollTo | 滚动到指定位置 | top `number` |

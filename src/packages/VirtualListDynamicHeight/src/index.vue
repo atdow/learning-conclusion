@@ -196,6 +196,14 @@ export default {
       this.scrollTop = data.scrollTop
       this.update()
     },
+    scrollToTop() {
+      this.scrollTop = 0
+      this.$refs.scrollbarRef.resetToTop()
+    },
+    scrollTo(top = 0) {
+      this.scrollTop = top
+      this.$refs.scrollbarRef.resetToTop()
+    },
   },
 }
 </script>
