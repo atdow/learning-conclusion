@@ -51,6 +51,19 @@
       ]
     },
     {
+      "groupName": "flutter",
+      "list": [
+        {
+          "path": "/flutter/envPrepare",
+          "title": "环境安装"
+        },
+        {
+          "path": "/flutter/compileError",
+          "title": "编译报错"
+        }
+      ]
+    },
+    {
       "groupName": "工具方法",
       "list": [
         {
